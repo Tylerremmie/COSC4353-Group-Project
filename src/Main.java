@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.*;
 
 public class Main {
 
@@ -14,6 +13,8 @@ public class Main {
 		 * keyboard is the object to receive console input
 		 * 
 		 */
+
+		 /*
 		
 		Scanner keyboard = new Scanner(System.in);
 		
@@ -34,6 +35,9 @@ public class Main {
 		Dice die = new Dice();
 		System.out.println("Rolling Dice.");
 		System.out.println(die.roll());
-		
+		*/
+
+		Board board = new Board();
+		board.createBoard();
 	}
 }
