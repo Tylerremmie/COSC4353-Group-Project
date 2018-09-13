@@ -1,4 +1,12 @@
 
+##eclipse:
+bin/
+.project
+.classpath
+
+
+
+
 # Created by https://www.gitignore.io/api/java,linux,intellij
 
 ### Intellij ###
