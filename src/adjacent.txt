@@ -7,9 +7,9 @@ Northwest Territory, Alaska, Greenland, Ontario, Alberta
 Ontario, Northwest Territory, Greenland, Quebec, Eastern United States, Western United States, Alberta
 Quebec, Ontario, Greenland, Eastern United States
 Western United States, Alberta, Ontario, Eastern United States, Central America
-Argentina, Venezuela, Brazil
-Brazil, Venezuela, North Africa, Argentina
-Venezuela, Central America, Brazil, Argentina
+Argentina, Peru, Brazil
+Brazil, Venezuela, North Africa, Peru, Argentina
+Venezuela, Central America, Brazil, Peru
 Great Britain, Iceland, Scandinavia, Northern Europe, Western Europe
 Iceland, Greenland, Great Britain
 Northern Europe, Great Britain, Ukraine, Southern Europe, Western Europe
