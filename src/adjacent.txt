@@ -9,6 +9,7 @@ Quebec, Ontario, Greenland, Eastern United States
 Western United States, Alberta, Ontario, Eastern United States, Central America
 Argentina, Peru, Brazil
 Brazil, Venezuela, North Africa, Peru, Argentina
+Peru, Argentina, Venezuela, Brazil
 Venezuela, Central America, Brazil, Peru
 Great Britain, Iceland, Scandinavia, Northern Europe, Western Europe
 Iceland, Greenland, Great Britain
