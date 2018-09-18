@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import javax.smartcardio.Card;
-
 public class Hand {
 
     private ArrayList<Card> hand;
