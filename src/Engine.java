@@ -84,6 +84,7 @@ public class Engine {
 	public static String Get_Color(){
 		String color = "";
 		do{
+			System.out.print("Choose a color: ");
 			color = keyboard.nextLine();
 			if(color.equalsIgnoreCase("yellow")){
 				color ="yellow";
@@ -92,7 +93,7 @@ public class Engine {
 				color = "red";
 				break;
 			}else{
-				System.out.println("Color not Valid!");
+				System.out.println("Color not Valid!\n");
 			}
 			
 		}while(true);
@@ -127,6 +128,7 @@ public class Engine {
 			System.out.println("Player "+ names[i-1]);
 			System.out.println("Roll for your position: ");
 			pos[i-1] = Player_Dice_Roll(d1);
+			System.out.println("Rolled a: "+ pos[i-1]+"\n");
 		}
 		
 		//sorting the arrays
@@ -153,7 +155,7 @@ public class Engine {
 			System.out.println("Player "+ names[i]);
 			String requested_color = "";
 			do{
-				System.out.println("Choose your color: ");
+				//System.out.println("Choose your color: ");
 				requested_color = Get_Color();
 				
 				if(avalible_colors.contains(requested_color)){
@@ -161,7 +163,7 @@ public class Engine {
 					break;
 				}else{
 					System.out.println("Color taken!");
-					System.out.println("Avalible Colors: "+ avalible_colors);
+					System.out.println("Avalible Colors: "+ avalible_colors +"\n");
 				}
 			}while(true);
 			
