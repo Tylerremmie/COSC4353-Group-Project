@@ -1,5 +1,5 @@
 
-# COSC4353-Group-Project
+# COSC4353-Group-Project [![Build Status](https://travis-ci.org/Tylerremmie/COSC4353-Group-Project.svg?branch=master)](https://travis-ci.org/Tylerremmie/COSC4353-Group-Project)
 
 Dan Martinez
 Marc Cardenas
