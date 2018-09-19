@@ -1,10 +1,10 @@
+## Maven Target Files
+target/
 
 ##eclipse:
 bin/
 .project
 .classpath
-
-
 .settings/
 
 # Created by https://www.gitignore.io/api/java,linux,intellij
