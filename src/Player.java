@@ -1,5 +1,5 @@
 import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class Player {
 
@@ -7,13 +7,17 @@ public class Player {
     private String color;
     private int numberofArmies;
     private int turnPosition;
-    private Map<String, Territory> territoriesControlled = new HashMap<>();
-    private Map<String, Continent> continentControlled = new HashMap<>();
+    private HashMap<String, Territory> territoriesControlled;
+    private HashMap<String, Continent> continentControlled;
 
     //Constructor for a new player
     public Player(String name, String color){
         this.name = name;
         this.color = color;
+        turnPosition = 0;
+
+        territoriesControlled = new HashMap<String, Territory>();
+        continentControlled = new HashMap<String, Continent>();
     }
 
     //getters and setters
@@ -48,6 +52,14 @@ public class Player {
 
     public void setTurnPosition(int turnPosition) {
         this.turnPosition = turnPosition;
+    }
+
+    public ArrayList<Territory> getTerritories() {
+        return new ArrayList<Territory>(territoriesControlled.values());
+    }
+
+    public ArrayList<Continent> getContinents() {
+        return new ArrayList<Continent>(continentControlled.values());
     }
 
 }
