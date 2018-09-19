@@ -5,7 +5,7 @@ bin/
 .classpath
 
 
-
+.settings/
 
 # Created by https://www.gitignore.io/api/java,linux,intellij
 
