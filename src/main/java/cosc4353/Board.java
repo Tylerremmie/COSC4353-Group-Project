@@ -1,3 +1,5 @@
+package cosc4353;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -23,9 +25,7 @@ public class Board {
     private String adjacenciesFile = "src\\main\\resources\\adjacent.txt";
     
     private BufferedReader filereader;
-    private StringBuilder filestring;
     private String inputline;
-    private String input;
     private List<String> lines;
 
     public Board() {
@@ -58,10 +58,8 @@ public class Board {
 
             while ((inputline = filereader.readLine()) != null)
                 lines.add(inputline);
-                continentsArray = lines.toArray(new String[]{});
+            continentsArray = lines.toArray(new String[]{});
 
-            for(String s : continentsArray)
-                System.out.println(s);
 
         }   catch (FileNotFoundException error) {
                 System.out.println(error.getMessage());

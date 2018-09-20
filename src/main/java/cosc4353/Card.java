@@ -1,9 +1,12 @@
+package cosc4353;
+
 public class Card {
     String typeofCard;
-    //Territory territoryofCard; not sure what this was about?
+    Territory territoryofCard;
 
-    public Card(String typeofCard){
+    public Card(String typeofCard, Territory territoryofCard){
         this.typeofCard = typeofCard;
+        this.territoryofCard = territoryofCard;
     }
 
     public String getTypeofCard() {
@@ -12,5 +15,13 @@ public class Card {
 
     public void setTypeofCard(String typeofCard) {
         this.typeofCard = typeofCard;
+    }
+
+    public Territory getTerritory() {
+        return territoryofCard;
+    }
+
+    public void setTerritory(Territory territoryofCard) {
+        this.territoryofCard = territoryofCard;
     }
 }

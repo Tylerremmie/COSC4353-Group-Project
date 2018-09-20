@@ -1,6 +1,9 @@
 ## Maven Target Files
 target/
 
+##VisualStudioCode
+.vscode/
+
 ##eclipse:
 bin/
 .project

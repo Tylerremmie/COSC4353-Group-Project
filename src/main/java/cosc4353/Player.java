@@ -1,3 +1,5 @@
+package cosc4353;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 

@@ -1,9 +1,11 @@
+package cosc4353;
+
 import java.util.ArrayList;
 
 public class Hand {
 
     private ArrayList<Card> hand;
-    private boolean turnin; //Hand size too large, must turn in cards (5 i think?)
+    //private boolean turnin; //Hand size too large, must turn in cards (5 i think?)
 
     public Hand (){
         hand = new ArrayList<Card>();
