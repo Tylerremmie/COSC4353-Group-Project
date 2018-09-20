@@ -1,14 +1,13 @@
 package cosc4353;
 
 import java.util.*;
-//import java.lang.*;
 
 public class Engine {
 	
 	private static Player[] players;
 	private static Scanner keyboard = new Scanner(System.in);
 	
-	public static void Startup(){
+	public void Startup(){
 		//Risk Boardgame
 				System.out.println("RISK Board Game");
 				
@@ -44,7 +43,7 @@ public class Engine {
 				//generate map
 				//make dice 
 				//create order for turns
-
+				
 	/**
 	 * Checks to see if the input is a int greater than 0
 	 * 
@@ -111,7 +110,7 @@ public class Engine {
 		for(int i=1;numberoplayers >= i;i++){
 			do{
 				System.out.println("Enter the Name of Player "+ i+": ");
-				names[i-1] = Get_A_String();
+				names[i-1] =Get_A_String();
 					
 			}while(names[i-1] == "");	
 		}
