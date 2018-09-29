@@ -1,42 +1,42 @@
-Alaska, Artillery, 1
-Alberta, Artillery,2
-Central America, Infantry, 3
-Eastern United States, Artillery, 4
-Greenland, Cavalry, 5
-Northwest Territory, Cavalry, 6
-Ontario, Artillery, 7
-Quebec, Artillery, 8
-Western United States, Artillery, 9
-Argentina, Infantry, 10
-Brazil, Infantry, 11
-Peru, Cavalry, 12
-Venezuela, Cavalry, 13
-Great Britain, Infantry, 14
-Iceland, Cavalry, 15
-Northern Europe, Cavalry, 16
-Scandinavia, Infantry, 17
-Southern Europe, Infantry, 18
-Ukraine, Infantry, 19
-Western Europe, Infantry, 20
-Congo, Artillery, 21
-East Africa, Infantry, 22
-Egypt, Cavalry, 23
-Madagascar, Cavalry, 24
-North Africa, Infantry, 25
-South Africa, Artillery, 26
-Afghanistan, Infantry, 27
-China, Artillery, 28
-India, Cavalry, 29
-Irkutsk, Artillery, 30
-Japan, Cavalry, 31
-Kamchatka, Artillery, 32
-Middle East, Artillery, 33
-Mongolia, Cavalry, 34
-Siam, Cavalry, 35
-Siberia, Infantry, 36
-Ural, Infantry, 37
-Yakutsk, Artillery, 38
-Eastern Australia, Cavalry, 39
-Indonesia, Infantry, 40
-New Guinea, Cavalry, 41
-Western Australia, Artillery, 42
+Alaska, Artillery
+Alberta, Artillery
+Central America, Infantry
+Eastern United States, Artillery
+Greenland, Cavalry
+Northwest Territory, Cavalry
+Ontario, Artillery
+Quebec, Artillery
+Western United States, Artillery
+Argentina, Infantry
+Brazil, Infantry
+Peru, Cavalry
+Venezuela, Cavalry
+Great Britain, Infantry
+Iceland, Cavalry
+Northern Europe, Cavalry
+Scandinavia, Infantry
+Southern Europe, Infantry
+Ukraine, Infantry
+Western Europe, Infantry
+Congo, Artillery
+East Africa, Infantry
+Egypt, Cavalry
+Madagascar, Cavalry
+North Africa, Infantry
+South Africa, Artillery
+Afghanistan, Infantry
+China, Artillery
+India, Cavalry
+Irkutsk, Artillery
+Japan, Cavalry
+Kamchatka, Artillery
+Middle East, Artillery
+Mongolia, Cavalry
+Siam, Cavalry
+Siberia, Infantry
+Ural, Infantry
+Yakutsk, Artillery
+Eastern Australia, Cavalry
+Indonesia, Infantry
+New Guinea, Cavalry
+Western Australia, Artillery
