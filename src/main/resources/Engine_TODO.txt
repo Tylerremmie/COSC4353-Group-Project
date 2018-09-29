@@ -9,8 +9,11 @@ beginning of turn
 	-check if player has 5 or 6 cards
 		-force trade-in
 	
-turn menu
+turn menu format:
 	options:
+	
+	-set places where no longer ini turn and end of turn
+	
 	Display player name,free armies, reset bal
 	-armies
 		-if there are placeable armies && start of turn
@@ -19,7 +22,7 @@ turn menu
 				-option to put on held territory
 				-return to turn menu			
 		-Move
-			-move players army
+			-move  players army
 				-ask from which
 				-ask to where
 				-end turn
@@ -37,5 +40,19 @@ turn menu
 	-if first iteration of turn display	and has enough credits
 		-undo til previous turn
 			-reset the board until a certain player identifier comes back
+	
+turn menu todo:
+	-Display_Player_Info
+	-Armies_Place
+	-Armies_Move
+	-Turn_Cards
+	-Play_Cards
+	-Turn_Countries_Neutral
+	-Turn_Countries_Attack
+	-Turn_Reset
+	
+	
+	
+	
 	
 	
