@@ -1,42 +1,41 @@
 package cosc4353;
-import java.util.Random;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Collections;
 
 public class Deck {
 
-		private boolean isInDeck;	
-		private int cardNum;
-		Integer[] deck;
+		private Card cardDrawn;
+		private ArrayList<Territory> territories;
+		private ArrayList<Card> deck;
 		
-		public void initializeDeck(){
-			deck = new Integer[41];
-			 for (int i = 0; i < deck.length; i++){
-				 deck[i]= i;
-			 }
-		}
-		
-		public int chooseCard(){
-			Random rand = new Random();
-			cardNum = rand.nextInt(42)+ 1;
-			return cardNum;
-		}
-		
-		public int getCardNum(){
-			return cardNum;
-		}
-		
-		public boolean isInDeck(){
-			if(deck[cardNum] != null){
-				isInDeck = true;
-				deck[cardNum] = null;
+		public Deck(ArrayList<Territory> territories) {
+			Collections.shuffle(territories);
+			deck = new ArrayList<Card>();
+
+			String cardtypes[] = new String[] { "Infantry", "Cavalry", "Artillery" };
+
+			for(int i = 0; i < territories.size(); i++) {
+				deck.add(new Card(cardtypes[i % 3], territories.get(i)));
 			}
-			else{
-				isInDeck = false;
-				chooseCard();
-			}
-			return isInDeck;
+			Collections.shuffle(deck);
 		}
 		
-		public boolean getisInDeck(){
-			return isInDeck;
+		public Card draw() {
+			cardDrawn = deck.get(0);
+			deck.remove(0);
+
+			return drawnCard;
+    	}
+		
+		public void add(Card card) {
+			deck.add(card);
+		}
+	
+		public void shuffle() {
+			Collections.shuffle(deck);
 		}
 }

@@ -11,6 +11,7 @@ public class Player {
     private int turnPosition;
     private HashMap<String, Territory> territoriesControlled;
     private HashMap<String, Continent> continentControlled;
+    private Hand hand;
 
     //Constructor for a new player
     public Player(String name, String color){
@@ -20,6 +21,7 @@ public class Player {
 
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();
+        hand = new Hand();
     }
 
     //getters and setters
@@ -64,4 +66,15 @@ public class Player {
         return new ArrayList<Continent>(continentControlled.values());
     }
 
+    public ArrayList<Card> getCards() {
+        return hand.getCards();
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+
+    public void turnIn(int[] cards) {
+        hand.turnInCards(cards[0], cards[1], cards[2]);
+    }
 }
