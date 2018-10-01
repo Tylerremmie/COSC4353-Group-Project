@@ -1,5 +1,7 @@
 ## Maven Target Files
 target/
+/pom.xml
+.travis.yml
 
 ##VisualStudioCode
 .vscode/
