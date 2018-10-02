@@ -60,6 +60,4 @@ public class UnitTest
 		Assert.assertEquals(card.getTerritory(), territory);
 	}
 
-
-
 }

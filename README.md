@@ -3,8 +3,8 @@
 
 ##### Dan Martinez, Marc Cardenas, Daria Martin, Tyler Remmie
 
-RISK boardgame:
+##### RISK boardgame:
 
-javac -d bin src/*.java
+javac -d bin src/main/java/cosc4353/*.java
 
-java -cp bin Main
+java -cp bin cosc4353.Main
