@@ -6,5 +6,4 @@
 RISK boardgame:
 
 javac -d bin src/main/java/cosc4353/*.java
-
 java -cp bin cosc4353.Main

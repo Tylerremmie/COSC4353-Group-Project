@@ -51,18 +51,6 @@ turn menu todo:
 	-Turn_Countries_Attack
 	-Turn_Reset
 	
-
-Dice - 		o
-Continent - 	o
-Territory - 	o
-Player -	o
-Card -		o
-Hand -		o
-Deck -		o
-
-Board -		x
-Engine -	x
-Main - 		x
 	
 	
 	
