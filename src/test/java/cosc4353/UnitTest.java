@@ -89,16 +89,20 @@ public class UnitTest
 	@Test
 	public void testHand(){
 		Assert.assertFalse(hand.handSize());
-		hand = new Hand();
-		hand.insert(new Card("Test",new Territory("Brazil")));
+		hand.insert(new Card("Test",territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test2",new Territory("Brazil")));
+		hand.insert(new Card("Test2",territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test3",new Territory("Brazil")));
+		hand.insert(new Card("Test3",territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test4",new Territory("Brazil")));
+		hand.insert(new Card("Test4",territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test5",new Territory("Brazil")));
+		hand.insert(new Card("Test5",territory));
 		Assert.assertTrue(hand.handSize());
+		
+		Assert.assertTrue(hand.checkcards(1, 2, 3));
+		
 	}
+	
+	
 }
