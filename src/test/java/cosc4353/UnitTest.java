@@ -16,6 +16,7 @@ public class UnitTest
 	Territory territory;
 	Continent continent;
 	Card card;
+	Engine = engine;
 	ArrayList<Territory> territories = new ArrayList<Territory>();
 
 	@Before
@@ -25,6 +26,7 @@ public class UnitTest
 			territory = new Territory("Brazil");
 			card = new Card("Infantry", territory);
 			continent = new Continent("South America", 2, territories);
+			
 	}
 	
 	@Test
@@ -60,4 +62,19 @@ public class UnitTest
 		Assert.assertEquals(card.getTerritory(), territory);
 	}
 
+	@Test
+	public void testArmies() {
+		Unit_Armies_Place(0);
+	}
+	
+	@Test
+	public void testCountries() {
+		Unit_Turn_Countries_Neutral(0);
+		Unit_Turn_Countries_Attack(0);
+	}
+	
+	@Test
+	public void testReset() {
+		Unit_Turn_Reset(0);
+	}
 }

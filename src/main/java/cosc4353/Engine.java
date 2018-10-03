@@ -50,6 +50,7 @@ public class Engine {
 
 		while(true){//break if someone has all the territories
 			while(!isendturn()){
+				System.out.println("Turn Status is:"+turnstatus);
 				Display_Player_Info(players[Playerturnindex]);
 				//check if player has 5 or 6 cards
 				//give player armies based on territories
@@ -100,7 +101,7 @@ public class Engine {
 		        keyboard.next();
 		    }
 		    num = keyboard.nextInt();
-		} while (num <= 0);
+		} while (num < 0);
 		keyboard.nextLine();
 			
 		return num;
@@ -222,7 +223,7 @@ public class Engine {
 	}
 
 	public static void Display_Player_Info(Player current){
-		System.out.println(current.getName()+"\t Armies:"+ current.getNumberofArmies()+ "\t Reset Curency:"); // also needs back currency	
+		System.out.println("Player:"+current.getName()+"\t Armies:"+ current.getNumberofArmies()+ "\t Reset Curency:"); // also needs back currency	
 	}
 	
 	private static void Dis_Back(){
@@ -275,7 +276,7 @@ public class Engine {
 		
 		int decision = Get_A_Number_Between(0,2);
 		
-		if(decision == 1 && isiniturn()){
+		if(decision == 1 && initialandarmies){
 			Armies_Place();
 		}else if(decision == 1){
 			System.out.println("Place is no longer avalible!");
@@ -299,7 +300,13 @@ public class Engine {
 		System.out.println("1.Held Territory");
 		System.out.println("2.New Territory");
 		int decision = Get_A_Number_Between(0,2);
-		
+		//decision passed for unit testing
+		Unit_Armies_Place(decision);
+	
+		return;
+	}
+	
+	private static void Unit_Armies_Place(int decision){
 		if(isBack(decision)){
 			return;
 		}else if(decision == 1){
@@ -313,7 +320,7 @@ public class Engine {
 				//allow player to select which to place // loop til 0 pieces or 
 				//decision to exit place using isBack()
 		}
-		
+		turnstatus =1;
 		return;
 	}
 	
@@ -329,6 +336,7 @@ public class Engine {
 		int from = Get_A_Number_Between(0,ownedcountriessize);
 		
 		if(isBack(from)){
+			System.out.println("breaking out of Move");
 			return;
 		}
 		
@@ -353,7 +361,7 @@ public class Engine {
 		
 		//call function that is passed 2 countries and number of armies that moves armies from the first one
 		// use (playercountries[from],playercountries[to],numberofarmies)
-		
+		turnstatus =1;
 		return;
 	}
 	
@@ -398,7 +406,7 @@ public class Engine {
 			
 			// put the card at the given index-1 into selected
 			//delete the chosen card from duplicate list
-			
+			turnstatus =1;
 		}
 		
 		//write card trade in class to check how each card matches up with each other
@@ -444,28 +452,40 @@ public class Engine {
 		Dis_Back();
 		//display adjacent open territories that can be taken over i.e. armies on that country >1
 		int decision = Get_A_Number_Between(0,0); // change to amount of territories available
+		//decision moved for unit testing
+		Unit_Turn_Countries_Neutral(decision);
 		
+		return;
+		
+	}
+	
+	private static void Unit_Turn_Countries_Neutral(int decision){
 		if(isBack(decision)){
 			return;
 		}else{
 			//put action in here for taking over/moving armies to neutral country
 		}
-		
+		turnstatus =-1;
 		return;
-		
 	}
 	
 	private static void Turn_Countries_Attack(){
 		Dis_Back();
 		//list adjacent countries that are able to attack
 		int decision = Get_A_Number_Between(0,0); // change to length of attack list
-		
+		//decision tree moved for unit testing
+		Unit_Turn_Countries_Attack(decision);
+		return;
+	}
+	
+	private static void Unit_Turn_Countries_Attack(int decision){
 		if(isBack(decision)){
 			return;
 		}else{
 			//call function to attack certain territory at certain index-1
 		}
-		
+		turnstatus = -1;
+		return;
 	}
 	
 	
@@ -473,12 +493,19 @@ public class Engine {
 		System.out.println("4.Reset to previous turn");
 	}
 	
+	
 	private static void Turn_Reset(){
 		System.out.println("Are you Sure?");
 		Dis_Back();
 		System.out.println("1.Yes!");
 		int decision = Get_A_Number_Between(0,1);
 		
+		// decision tree moved for unit testing
+		Unit_Turn_Reset(decision);
+		return;
+	}
+	
+	private static void Unit_Turn_Reset(int decision){
 		if(isBack(decision)){
 			return;
 		}else if(decision ==1){
@@ -487,6 +514,8 @@ public class Engine {
 			System.out.println("Error undefined Decission - Turn Reset");
 		}
 		
+		turnstatus =-1;
+		return;
 	}
 }
 
