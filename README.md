@@ -1,5 +1,5 @@
 
-# COSC4353-Group-Project [![Build Status](https://travis-ci.org/Tylerremmie/COSC4353-Group-Project.svg?branch=master)](https://travis-ci.org/Tylerremmie/COSC4353-Group-Project) [![codecov](https://codecov.io/gh/Tylerremmie/tylerremmie.github.io/branch/master/graph/badge.svg)](https://codecov.io/gh/Tylerremmie/tylerremmie.github.io)
+# COSC4353-Group-Project [![Build Status](https://travis-ci.org/Tylerremmie/COSC4353-Group-Project.svg?branch=master)](https://travis-ci.org/Tylerremmie/COSC4353-Group-Project) [![codecov](https://codecov.io/gh/Tylerremmie/COSC4353-Group-Project/branch/master/graph/badge.svg)](https://codecov.io/gh/Tylerremmie/COSC4353-Group-Project)
 
 
 ##### Dan Martinez, Marc Cardenas, Daria Martin, Tyler Remmie
