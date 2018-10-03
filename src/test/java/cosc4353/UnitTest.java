@@ -16,6 +16,7 @@ public class UnitTest
 	Territory territory;
 	Continent continent;
 	Card card;
+	Hand hand;
 	Engine engine;
 	
 	ArrayList<Territory> territories = new ArrayList<Territory>();
@@ -24,6 +25,7 @@ public class UnitTest
 	public void setup() throws Exception {
 			engine = new Engine();
 			player = new Player("Tyler", "Red");
+			hand = new Hand();
 			dice = new Dice();
 			territory = new Territory("Brazil");
 			card = new Card("Infantry", territory);
@@ -82,5 +84,21 @@ public class UnitTest
 	public void testReset() {
 		Assert.assertEquals(engine.Unit_Turn_Reset(0),0);
 		Assert.assertEquals(engine.Unit_Turn_Reset(1),1);
+	}
+	
+	@Test
+	public void testHand(){
+		Assert.assertFalse(hand.handSize());
+		hand = new Hand();
+		hand.insert(new Card("Test",new Territory("Brazil")));
+		Assert.assertFalse(hand.handSize());
+		hand.insert(new Card("Test2",new Territory("Brazil")));
+		Assert.assertFalse(hand.handSize());
+		hand.insert(new Card("Test3",new Territory("Brazil")));
+		Assert.assertFalse(hand.handSize());
+		hand.insert(new Card("Test4",new Territory("Brazil")));
+		Assert.assertFalse(hand.handSize());
+		hand.insert(new Card("Test5",new Territory("Brazil")));
+		Assert.assertTrue(hand.handSize());
 	}
 }
