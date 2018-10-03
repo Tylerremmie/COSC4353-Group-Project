@@ -16,11 +16,13 @@ public class UnitTest
 	Territory territory;
 	Continent continent;
 	Card card;
-	Engine = engine;
+	Engine engine;
+	
 	ArrayList<Territory> territories = new ArrayList<Territory>();
 
 	@Before
 	public void setup() throws Exception {
+			engine = new Engine();
 			player = new Player("Tyler", "Red");
 			dice = new Dice();
 			territory = new Territory("Brazil");
@@ -64,17 +66,21 @@ public class UnitTest
 
 	@Test
 	public void testArmies() {
-		Unit_Armies_Place(0);
+		Assert.assertEquals(engine.Unit_Armies_Place(0),0);
+		Assert.assertEquals(engine.Unit_Armies_Place(1),1);
 	}
 	
 	@Test
 	public void testCountries() {
-		Unit_Turn_Countries_Neutral(0);
-		Unit_Turn_Countries_Attack(0);
+		Assert.assertEquals(engine.Unit_Turn_Countries_Neutral(0),0);
+		Assert.assertEquals(engine.Unit_Turn_Countries_Attack(0),0);
+		Assert.assertEquals(engine.Unit_Turn_Countries_Neutral(1),1);
+		Assert.assertEquals(engine.Unit_Turn_Countries_Attack(1),1);
 	}
 	
 	@Test
 	public void testReset() {
-		Unit_Turn_Reset(0);
+		Assert.assertEquals(engine.Unit_Turn_Reset(0),0);
+		Assert.assertEquals(engine.Unit_Turn_Reset(1),1);
 	}
 }
