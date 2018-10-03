@@ -97,11 +97,12 @@ public class UnitTest
 		Assert.assertFalse(hand.handSize());
 		hand.insert(new Card("Test4",territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test5",territory));
+		hand.insert(new Card("Wild",territory));
 		Assert.assertTrue(hand.handSize());
 		
 		Assert.assertTrue(hand.checkcards(1, 2, 3));
-		
+		Assert.assertTrue(hand.checkcards(1, 2, 5));
+
 	}
 	
 	
