@@ -47,7 +47,12 @@ public class UnitTest
 		player.setNumberofArmies(5);
 		Assert.assertEquals(player.getNumberofArmies(), 5);
 		
+		player.setTurnPosition(0);
+		Assert.assertEquals(player.getTurnPosition(),0);
+		player.setTurnPosition(6);
+		Assert.assertEquals(player.getTurnPosition(),6);
 		
+		Assert.assertEquals(player.getHand(),hand);
 		
 	}
 
