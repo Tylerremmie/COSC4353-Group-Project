@@ -1,0 +1,38 @@
+Unit test creation:
+	Changes:
+		Territory
+			possibly if needed
+				createAdjacencies
+		
+			setPlayer
+				change to return output to bool and return the is_occupied or
+				use getPlayerOccupying
+			setnumberofArmies
+				return num of armies or
+				use getnumberofArmies
+			increaseArmies
+				return num of armies or
+				use getnumberofArmies
+			decreaseArmies
+				return num of armies or
+				use getnumberofArmies
+				
+		Board
+			change create board to bool and return true if successful
+			
+		Deck
+			Run through all 
+				add, draw,shuffle
+				given one territory draw and get that card				
+			
+		Card 
+			use the set functions
+			
+		Player
+			use set and get functions
+			
+		Dice
+			if number gen is between a range
+			
+		Continent
+							

@@ -38,6 +38,17 @@ public class UnitTest
 		Assert.assertEquals(player.getName(), "Tyler");
 		Assert.assertEquals(player.getColor(), "Red");
 		Assert.assertEquals(player.getTurnPosition(), 0);
+		
+		player.setName("Dan");
+		Assert.assertEquals(player.getName(), "Dan");
+		player.setColor("yellow");
+		Assert.assertEquals(player.getColor(), "yellow");
+		
+		player.setNumberofArmies(5);
+		Assert.assertEquals(player.getNumberofArmies(), 5);
+		
+		
+		
 	}
 
 	@Test
