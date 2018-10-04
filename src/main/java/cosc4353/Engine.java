@@ -50,6 +50,7 @@ public class Engine {
 
 		while(true){//break if someone has all the territories
 			while(!isendturn()){
+				System.out.println("Turn Status is:"+turnstatus);
 				Display_Player_Info(players[Playerturnindex]);
 				//check if player has 5 or 6 cards
 				//give player armies based on territories
@@ -100,7 +101,7 @@ public class Engine {
 		        keyboard.next();
 		    }
 		    num = keyboard.nextInt();
-		} while (num <= 0);
+		} while (num < 0);
 		keyboard.nextLine();
 			
 		return num;
@@ -154,7 +155,7 @@ public class Engine {
 		return di.roll();
 	}
 		
-	public static Player[] Create_Names_and_Turn_Position(int numberoplayers){
+	private Player[] Create_Names_and_Turn_Position(int numberoplayers){
 		
 		String names[] = new String[numberoplayers];
 		int pos[] = new int[numberoplayers];
@@ -222,35 +223,35 @@ public class Engine {
 	}
 
 	public static void Display_Player_Info(Player current){
-		System.out.println(current.getName()+"\t Armies:"+ current.getNumberofArmies()+ "\t Reset Curency:"); // also needs back currency	
+		System.out.println("Player:"+current.getName()+"\t Armies:"+ current.getNumberofArmies()+ "\t Reset Curency:"); // also needs back currency	
 	}
 	
-	private static void Dis_Back(){
+	private void Dis_Back(){
 		System.out.println("0.Back");
 	}
 	
-	private static boolean isBack(int input){
+	private boolean isBack(int input){
 		if(input == 0){
 			return true;
 		}
 		return false;
 	}
 	
-	private static boolean isiniturn(){
+	private boolean isiniturn(){
 		if(turnstatus == 0){
 			return true;
 		}
 		return false;
 	}
 	
-	private static boolean isendturn(){
+	private boolean isendturn(){
 		if(turnstatus < 0){
 			return true;
 		}
 		return false;
 	}
 	
-	private static void Dis_Turn_Menu(){
+	private void Dis_Turn_Menu(){
 		Dis_Armies();
 		Dis_Cards();
 		Dis_Countries();
@@ -259,11 +260,11 @@ public class Engine {
 		}
 	}
 	
-	private static void Dis_Armies(){
+	private void Dis_Armies(){
 		System.out.println("1.Armies");
 	}
 	
-	private static void Turn_Armies(Player current){
+	private void Turn_Armies(Player current){
 		boolean initialandarmies = current.getNumberofArmies() > 0 && isiniturn();
 		
 		Dis_Back();
@@ -275,7 +276,7 @@ public class Engine {
 		
 		int decision = Get_A_Number_Between(0,2);
 		
-		if(decision == 1 && isiniturn()){
+		if(decision == 1 && initialandarmies){
 			Armies_Place();
 		}else if(decision == 1){
 			System.out.println("Place is no longer avalible!");
@@ -290,18 +291,24 @@ public class Engine {
 		return;
 	}
 	
-	private static void Dis_Armies_Place(){
+	private void Dis_Armies_Place(){
 		System.out.println("1.Place");
 	}
 	
-	private static void Armies_Place(){
+	private void Armies_Place(){
 		System.out.println("Held territory or new teritory?");
 		System.out.println("1.Held Territory");
 		System.out.println("2.New Territory");
 		int decision = Get_A_Number_Between(0,2);
-		
+		//decision passed for unit testing
+		Unit_Armies_Place(decision);
+	
+		return;
+	}
+	
+	public int Unit_Armies_Place(int decision){
 		if(isBack(decision)){
-			return;
+			return 0;
 		}else if(decision == 1){
 			//function for:
 				//display territories held 
@@ -313,15 +320,15 @@ public class Engine {
 				//allow player to select which to place // loop til 0 pieces or 
 				//decision to exit place using isBack()
 		}
-		
-		return;
+		turnstatus =1;
+		return 1;
 	}
 	
-	private static void Dis_Armies_Move(){
+	private void Dis_Armies_Move(){
 		System.out.println("2.Move");
 	}
 	
-	private static void Armies_Move(){
+	private void Armies_Move(){
 		System.out.println("From? \nOwned Countries:");
 		Dis_Back();
 		int ownedcountriessize =0;
@@ -329,6 +336,7 @@ public class Engine {
 		int from = Get_A_Number_Between(0,ownedcountriessize);
 		
 		if(isBack(from)){
+			System.out.println("breaking out of Move");
 			return;
 		}
 		
@@ -353,19 +361,19 @@ public class Engine {
 		
 		//call function that is passed 2 countries and number of armies that moves armies from the first one
 		// use (playercountries[from],playercountries[to],numberofarmies)
-		
+		turnstatus =1;
 		return;
 	}
 	
-	private static void Dis_Cards(){
+	private void Dis_Cards(){
 		System.out.println("2.Cards");
 	}
 	
-	private static void Dis_Cards_Play(){
+	private void Dis_Cards_Play(){
 		System.out.print("1.Play cards");
 	}
 	
-	private static void Turn_Cards(Player current){
+	private void Turn_Cards(Player current){
 		//display cards in hand of player
 		Dis_Back();
 		//if number of in hand cards >= 3
@@ -382,7 +390,7 @@ public class Engine {
 		return;
 	}
 	
-	private static void Play_Cards(Player current){
+	private void Play_Cards(Player current){
 		int numchosen =0;
 		Card[] selected = new Card[3];
 		//create duplicate list from hand
@@ -398,7 +406,7 @@ public class Engine {
 			
 			// put the card at the given index-1 into selected
 			//delete the chosen card from duplicate list
-			
+			turnstatus =1;
 		}
 		
 		//write card trade in class to check how each card matches up with each other
@@ -407,11 +415,11 @@ public class Engine {
 		return;
 	}
 	
-	private static void Dis_Countries(){
+	private void Dis_Countries(){
 		System.out.println("3.Country Takeover!");
 	}
 	
-	private static void Turn_Countries(){
+	private void Turn_Countries(){
 		Dis_Back();
 		//possibly check if both are available
 		Dis_Countries_Neutral(); 
@@ -432,61 +440,82 @@ public class Engine {
 		return;
 	}
 	
-	private static void Dis_Countries_Neutral(){
+	private void Dis_Countries_Neutral(){
 		System.out.println("1.Obtain a neutral/open country");
 	}
 	
-	private static void Dis_Countries_Attack(){
+	private void Dis_Countries_Attack(){
 		System.out.println("2.Attack another players country");
 	}
 	
-	private static void Turn_Countries_Neutral(){
+	private void Turn_Countries_Neutral(){
 		Dis_Back();
 		//display adjacent open territories that can be taken over i.e. armies on that country >1
 		int decision = Get_A_Number_Between(0,0); // change to amount of territories available
-		
-		if(isBack(decision)){
-			return;
-		}else{
-			//put action in here for taking over/moving armies to neutral country
-		}
+		//decision moved for unit testing
+		Unit_Turn_Countries_Neutral(decision);
 		
 		return;
 		
 	}
 	
-	private static void Turn_Countries_Attack(){
+	public int Unit_Turn_Countries_Neutral(int decision){
+		if(isBack(decision)){
+			return 0;
+		}else{
+			//put action in here for taking over/moving armies to neutral country
+		}
+		turnstatus =-1;
+		return 1;
+	}
+	
+	private void Turn_Countries_Attack(){
 		Dis_Back();
 		//list adjacent countries that are able to attack
 		int decision = Get_A_Number_Between(0,0); // change to length of attack list
-		
+		//decision tree moved for unit testing
+		Unit_Turn_Countries_Attack(decision);
+		return;
+	}
+	
+	public int Unit_Turn_Countries_Attack(int decision){
 		if(isBack(decision)){
-			return;
+			return 0;
 		}else{
 			//call function to attack certain territory at certain index-1
 		}
-		
+		turnstatus = -1;
+		return 1;
 	}
 	
 	
-	private static void Dis_Reset(){
+	private void Dis_Reset(){
 		System.out.println("4.Reset to previous turn");
 	}
 	
-	private static void Turn_Reset(){
+	
+	private void Turn_Reset(){
 		System.out.println("Are you Sure?");
 		Dis_Back();
 		System.out.println("1.Yes!");
 		int decision = Get_A_Number_Between(0,1);
 		
+		// decision tree moved for unit testing
+		Unit_Turn_Reset(decision);
+		return;
+	}
+	
+	public int Unit_Turn_Reset(int decision){
 		if(isBack(decision)){
-			return;
+			return 0;
 		}else if(decision ==1){
 			//call reset function
 		}else{
 			System.out.println("Error undefined Decission - Turn Reset");
 		}
 		
+		turnstatus =-1;
+		return 1;
 	}
 }
 

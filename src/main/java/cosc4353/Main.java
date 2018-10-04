@@ -6,6 +6,7 @@ public class Main {
 		Engine Driver = new Engine();
 		Driver.Startup();
 
+		//Driver.Turn();
 		//Board board = new Board();
 		//board.createBoard();
 	}
