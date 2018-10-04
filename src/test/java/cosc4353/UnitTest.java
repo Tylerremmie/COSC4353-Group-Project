@@ -74,7 +74,7 @@ public class UnitTest
 		Assert.assertEquals(T2.getnumberofArmies(),5);
 		T2.increaseArmies(5);
 		Assert.assertEquals(T2.getnumberofArmies(),10);
-		T2.decreaseArmies(2);
+		T2.decreaseArmies(3);
 		Assert.assertEquals(T2.getnumberofArmies(),7);
 		
 		T2.setPlayer(player);
