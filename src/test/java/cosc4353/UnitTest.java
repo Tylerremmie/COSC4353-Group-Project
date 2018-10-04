@@ -85,7 +85,7 @@ public class UnitTest
 	@Test
 	public void testRoll() {
 		int result = dice.roll();
-		Assert.assertTrue(1 <= result && result <= 6);
+		Assert.assertTrue(1 >= result && result <= 6);
 	}
 
 	@Test
