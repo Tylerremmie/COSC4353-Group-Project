@@ -38,7 +38,7 @@ public class UnitTest
 	public void testPlayer() {
 		Assert.assertEquals(player.getName(), "Tyler");
 		Assert.assertEquals(player.getColor(), "Red");
-		Assert.assertEquals(player.getTurnPosition(), 0);
+		Assert.assertEquals(player.getTurnPosition(), 1);
 		
 		player.setName("Dan");
 		Assert.assertEquals(player.getName(), "Dan");
@@ -83,7 +83,8 @@ public class UnitTest
 	}
 
 	@Test
-	public void testRoll() {
+	public void testDice() {
+		Assert.assertEquals(dice.getval(),0);
 		int result = dice.roll();
 		Assert.assertTrue(1 <= result && result <= 6);
 	}
