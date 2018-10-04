@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Unit test for Group Project.
@@ -37,7 +38,21 @@ public class UnitTest
 	public void testPlayer() {
 		Assert.assertEquals(player.getName(), "Tyler");
 		Assert.assertEquals(player.getColor(), "Red");
-		Assert.assertEquals(player.getTurnPosition(), 1);
+		Assert.assertEquals(player.getTurnPosition(), 0);
+		
+		player.setName("Dan");
+		Assert.assertEquals(player.getName(), "Dan");
+		player.setColor("yellow");
+		Assert.assertEquals(player.getColor(), "yellow");
+		
+		player.setNumberofArmies(5);
+		Assert.assertEquals(player.getNumberofArmies(), 5);
+		
+		player.setTurnPosition(0);
+		Assert.assertEquals(player.getTurnPosition(),0);
+		player.setTurnPosition(6);
+		Assert.assertEquals(player.getTurnPosition(),6);
+	
 	}
 
 	@Test
@@ -52,6 +67,19 @@ public class UnitTest
 		Assert.assertEquals(territory.getName(), "Brazil");
 		Assert.assertEquals(territory.getOccupied(), false);
 		Assert.assertEquals(territory.getnumberofArmies(), 0);
+		
+		Territory T2 = new Territory("Testing");
+		
+		T2.setnumberofArmies(5);
+		Assert.assertEquals(T2.getnumberofArmies(),5);
+		T2.increaseArmies(5);
+		Assert.assertEquals(T2.getnumberofArmies(),10);
+		T2.decreaseArmies(3);
+		Assert.assertEquals(T2.getnumberofArmies(),7);
+		
+		T2.setPlayer(player);
+		Assert.assertEquals(T2.getPlayerOccupying(),player);
+		
 	}
 
 	@Test
@@ -64,6 +92,16 @@ public class UnitTest
 	public void testCard() {
 		Assert.assertEquals(card.getTypeofCard(), "Infantry");
 		Assert.assertEquals(card.getTerritory(), territory);
+	}
+	
+	@Test
+	public void testDeck() {
+		ArrayList<Territory> testTlist= new ArrayList<Territory>();
+		Territory T3 = new Territory("Infantry");
+		testTlist.add(T3);
+		Deck deck = new Deck(testTlist);
+		
+		Assert.assertEquals((deck.draw()).getTypeofCard(),"Infantry");
 	}
 
 	/*
