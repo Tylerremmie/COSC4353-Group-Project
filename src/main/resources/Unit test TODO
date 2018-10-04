@@ -21,7 +21,7 @@ Unit test creation:
 			change create board to bool and return true if successful
 			
 		Deck
-			Run through all 
+			//Run through all 
 				add, draw,shuffle
 				given one territory draw and get that card				
 			
@@ -32,7 +32,7 @@ Unit test creation:
 			//use set and get functions
 			possibly use get hand and compare cards inside
 		Dice
-			if number gen is between a range
+			//if number gen is between a range
 			
 		Continent
 							

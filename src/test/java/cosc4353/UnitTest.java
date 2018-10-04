@@ -98,11 +98,11 @@ public class UnitTest
 	@Test
 	public void testDeck() {
 		ArrayList<Territory> testTlist= new ArrayList<Territory>();
-		Territory T3 = new Territory("Testing");
+		Territory T3 = new Territory("Infantry");
 		testTlist.add(T3);
 		Deck deck = new Deck(testTlist);
 		
-		Assert.assertEquals((deck.draw()).getTypeofCard(),"Testing");
+		Assert.assertEquals((deck.draw()).getTypeofCard(),"Infantry");
 	}
 
 	@Test
