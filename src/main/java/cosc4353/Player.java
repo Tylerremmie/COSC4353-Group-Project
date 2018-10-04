@@ -14,10 +14,10 @@ public class Player {
     private Hand hand;
 
     //Constructor for a new player
-    public Player(String name, String color){
+    public Player(String name, String color, int turnPosition) {
         this.name = name;
         this.color = color;
-        turnPosition = 0;
+        this.turnPosition = turnPosition;
 
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();

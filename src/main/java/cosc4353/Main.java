@@ -4,7 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		Engine Driver = new Engine();
-		Driver.Startup();
+		Driver.StartUp();
+		Driver.Turns();
 
 		//Driver.Turn();
 		//Board board = new Board();
