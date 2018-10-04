@@ -14,7 +14,7 @@ public class Player {
     private Hand hand;
 
     //Constructor for a new player
-    public Player(String name, String color){
+    public Player(String name, String color) {
         this.name = name;
         this.color = color;
         turnPosition = 0;
