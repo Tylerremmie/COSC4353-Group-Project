@@ -66,6 +66,7 @@ public class UnitTest
 		Assert.assertEquals(card.getTerritory(), territory);
 	}
 
+	/*
 	@Test
 	public void testArmies() {
 		Assert.assertEquals(engine.Unit_Armies_Place(0),0);
@@ -85,6 +86,7 @@ public class UnitTest
 		Assert.assertEquals(engine.Unit_Turn_Reset(0),0);
 		Assert.assertEquals(engine.Unit_Turn_Reset(1),1);
 	}
+	*/
 	
 	@Test
 	public void testHand(){
