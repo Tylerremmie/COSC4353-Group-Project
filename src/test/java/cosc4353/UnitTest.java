@@ -24,7 +24,7 @@ public class UnitTest
 	@Before
 	public void setup() throws Exception {
 			engine = new Engine();
-			player = new Player("Tyler", "Red");
+			player = new Player("Tyler", "Red", 1);
 			hand = new Hand();
 			dice = new Dice();
 			territory = new Territory("Brazil");
@@ -37,7 +37,7 @@ public class UnitTest
 	public void testPlayer() {
 		Assert.assertEquals(player.getName(), "Tyler");
 		Assert.assertEquals(player.getColor(), "Red");
-		Assert.assertEquals(player.getTurnPosition(), 0);
+		Assert.assertEquals(player.getTurnPosition(), 1);
 	}
 
 	@Test
