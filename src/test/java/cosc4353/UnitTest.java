@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Unit test for Group Project.
@@ -85,13 +86,23 @@ public class UnitTest
 	@Test
 	public void testRoll() {
 		int result = dice.roll();
-		Assert.assertTrue(1 >= result && result <= 6);
+		Assert.assertTrue(1 <= result && result <= 6);
 	}
 
 	@Test
 	public void testCard() {
 		Assert.assertEquals(card.getTypeofCard(), "Infantry");
 		Assert.assertEquals(card.getTerritory(), territory);
+	}
+	
+	@Test
+	public void testDeck() {
+		ArrayList<Territory> testTlist= new ArrayList<Territory>();
+		Territory T3 = new Territory("Testing");
+		testTlist.add(T3);
+		Deck deck = new Deck(testTlist);
+		
+		Assert.assertEquals((deck.draw()).getTypeofCard(),"Testing");
 	}
 
 	@Test
