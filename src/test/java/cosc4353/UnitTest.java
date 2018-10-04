@@ -52,8 +52,7 @@ public class UnitTest
 		player.setTurnPosition(6);
 		Assert.assertEquals(player.getTurnPosition(),6);
 		
-		Assert.assertEquals(player.getHand(),hand);
-		
+
 	}
 
 	@Test
@@ -68,6 +67,19 @@ public class UnitTest
 		Assert.assertEquals(territory.getName(), "Brazil");
 		Assert.assertEquals(territory.getOccupied(), false);
 		Assert.assertEquals(territory.getnumberofArmies(), 0);
+		
+		Territory T2 = new Territory("Testing");
+		
+		T2.setnumberofArmies(5);
+		Assert.assertEquals(T2.getnumberofArmies(),5);
+		T2.increaseArmies(5);
+		Assert.assertEquals(T2.getnumberofArmies(),10);
+		T2.decreaseArmies(2);
+		Assert.assertEquals(T2.getnumberofArmies(),7);
+		
+		T2.setPlayer(player);
+		Assert.assertEquals(T2.getPlayerOccupying(),player);
+		
 	}
 
 	@Test

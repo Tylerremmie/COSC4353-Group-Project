@@ -4,16 +4,16 @@ Unit test creation:
 			possibly if needed
 				createAdjacencies
 		
-			setPlayer
+			//setPlayer
 				change to return output to bool and return the is_occupied or
 				use getPlayerOccupying
-			setnumberofArmies
+			//setnumberofArmies
 				return num of armies or
 				use getnumberofArmies
-			increaseArmies
+			//increaseArmies
 				return num of armies or
 				use getnumberofArmies
-			decreaseArmies
+			//decreaseArmies
 				return num of armies or
 				use getnumberofArmies
 				
@@ -29,8 +29,8 @@ Unit test creation:
 			use the set functions
 			
 		Player
-			use set and get functions
-			
+			//use set and get functions
+			possibly use get hand and compare cards inside
 		Dice
 			if number gen is between a range
 			
