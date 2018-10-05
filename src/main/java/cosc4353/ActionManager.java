@@ -33,5 +33,9 @@ public class ActionManager {
 		Action action = redos.pop();
 		action.execute();
 		undos.push(action);
-    }
+	}
+	
+	public int getsize() {
+		return undos.size();
+	}
 }

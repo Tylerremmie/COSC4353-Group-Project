@@ -27,8 +27,9 @@ public class Territory {
     //SET functions
 
     //Called later in a board creation function
-    public void createAdjacencies(ArrayList<Territory> adjacent) {
+    public boolean createAdjacencies(ArrayList<Territory> adjacent) {
         this.adjacent = adjacent;
+        return true;
     }
 
     //Called later in a game creation function

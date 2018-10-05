@@ -13,15 +13,17 @@ public class Card {
         return typeofCard;
     }
 
-    public void setTypeofCard(String typeofCard) {
+    public boolean setTypeofCard(String typeofCard) {
         this.typeofCard = typeofCard;
+        return true;
     }
 
     public Territory getTerritory() {
         return territoryofCard;
     }
 
-    public void setTerritory(Territory territoryofCard) {
+    public boolean setTerritory(Territory territoryofCard) {
         this.territoryofCard = territoryofCard;
+        return true;
     }
 }

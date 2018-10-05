@@ -29,9 +29,10 @@ public class Continent {
      //SET functions
 
     //Called later during game play
-    public void setControl(Player playerControlling) {
+    public boolean setControl(Player playerControlling) {
         this.playerControlling = playerControlling;
         is_controlled = true;
+        return true;
     }
 
     //GET Functions

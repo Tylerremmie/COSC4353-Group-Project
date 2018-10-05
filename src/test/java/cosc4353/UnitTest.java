@@ -1,38 +1,25 @@
 package cosc4353;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Unit test for Group Project.
  */
 public class UnitTest
 {
-
-	Player player;
-	Dice dice;
-	Territory territory;
-	Continent continent;
-	Card card;
-	Hand hand;
-	Engine engine;
-	
 	ArrayList<Territory> territories = new ArrayList<Territory>();
-
-	@Before
-	public void setup() throws Exception {
-			engine = new Engine();
-			player = new Player("Tyler", "Red", 1);
-			hand = new Hand();
-			dice = new Dice();
-			territory = new Territory("Brazil");
-			card = new Card("Infantry", territory);
-			continent = new Continent("South America", 2, territories);
-			
-	}
+	ArrayList<Player> players = new ArrayList<Player>();
+	Player player = new Player("Tyler", "Red", 1);
+	Dice dice = new Dice();;
+	Territory territory = new Territory("Brazil");
+	Continent continent = new Continent("South America", 2, territories);
+	Card card = new Card("Infantry", territory);
+	Hand hand = new Hand();
+	Engine engine = new Engine();
+	ActionManager actionManager = new ActionManager();
 	
 	@Test
 	public void testPlayer() {
@@ -52,7 +39,13 @@ public class UnitTest
 		Assert.assertEquals(player.getTurnPosition(),0);
 		player.setTurnPosition(6);
 		Assert.assertEquals(player.getTurnPosition(),6);
-	
+
+		Assert.assertNotNull(player.getTerritories());
+		Assert.assertNotNull(player.getContinents());
+		Assert.assertNotNull(player.getCardsInHand());
+		Assert.assertNotNull(player.getHand());
+		int[] cards = {0,1,2};
+		Assert.assertTrue(player.turnIn(cards));
 	}
 
 	@Test
@@ -67,6 +60,10 @@ public class UnitTest
 		Assert.assertEquals(continent.getName(), "South America");
 		Assert.assertEquals(continent.getBonusArmyValue(), 2);
 		Assert.assertEquals(continent.getIsControlled(), false);
+		continent.setControl(player);
+		Assert.assertTrue(continent.setControl(player));
+		Assert.assertEquals(continent.getControlledBy(), player);
+		Assert.assertNotNull(continent.getTerritories());
 	}
 
 	@Test
@@ -86,7 +83,10 @@ public class UnitTest
 		
 		T2.setPlayer(player);
 		Assert.assertEquals(T2.getPlayerOccupying(),player);
-		
+
+		territories.add(territory);
+		Assert.assertTrue(T2.createAdjacencies(territories));
+		Assert.assertEquals(T2.getAdjacencies(), territories);
 	}
 
 	@Test
@@ -100,6 +100,8 @@ public class UnitTest
 	public void testCard() {
 		Assert.assertEquals(card.getTypeofCard(), "Infantry");
 		Assert.assertEquals(card.getTerritory(), territory);
+		Assert.assertTrue(card.setTypeofCard("Infantry"));
+		Assert.assertTrue(card.setTerritory(territory));
 	}
 	
 	@Test
@@ -110,6 +112,8 @@ public class UnitTest
 		Deck deck = new Deck(testTlist);
 		
 		Assert.assertEquals((deck.draw()).getTypeofCard(),"Infantry");
+		Assert.assertTrue(deck.add(card));
+		Assert.assertTrue(deck.shuffle());
 	}
 
 	/*
@@ -151,7 +155,26 @@ public class UnitTest
 		Assert.assertTrue(hand.checkcards(1, 2, 3));
 		Assert.assertTrue(hand.checkcards(1, 4, 2));
 
+		Assert.assertTrue(hand.turnInCards(0, 1, 2));
+		Assert.assertNotNull(hand.getHand());
+
 	}
-	
-	
+
+	@Test
+	public void testActionManager() {
+		Assert.assertFalse(actionManager.isUndoAvailable());
+		Assert.assertFalse(actionManager.isRedoAvailable());
+	}
+
+	@Test
+	public void testTurnManager() {
+		players.add(player);
+		TurnManager turnManager = new TurnManager(players);
+		Assert.assertEquals(turnManager.getnumberofPlayers(), 1);
+		Assert.assertEquals(turnManager.getplayersTurn(), 0);
+		Assert.assertEquals(turnManager.getturnNumber(), 1);
+		Assert.assertEquals(turnManager.getCurrentPlayerName(), "Tyler");
+	}
+
+
 }

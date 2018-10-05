@@ -1,9 +1,6 @@
 package cosc4353;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Collections;
 
 public class Deck {
@@ -30,11 +27,13 @@ public class Deck {
 		return cardDrawn;
 	}
 	
-	public void add(Card card) {
+	public boolean add(Card card) {
 		deck.add(card);
+		return true;
 	}
 
-	public void shuffle() {
+	public boolean shuffle() {
 		Collections.shuffle(deck);
+		return true;
 	}
 }
