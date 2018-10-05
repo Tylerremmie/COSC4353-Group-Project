@@ -32,7 +32,7 @@ public class Board {
 
     }
 
-    public void createBoard() {
+    public boolean createBoard() {
 
         try {
 
@@ -60,11 +60,13 @@ public class Board {
                 lines.add(inputline);
             continentsArray = lines.toArray(new String[]{});
 
-
+            return true;
         }   catch (FileNotFoundException error) {
                 System.out.println(error.getMessage());
+                return false;
         }   catch (IOException error) {
 			    System.out.println(error.getMessage());
+			    return false;
 		}
 
     }
