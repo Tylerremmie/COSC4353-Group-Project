@@ -58,7 +58,7 @@ public class UnitTest
 	@Test
 	public void testBoard() {
 		Board B1 = new Board();
-		Assert.assertTrue(B1.createboard());
+		Assert.assertTrue(B1.createBoard());
 	}
 
 	
