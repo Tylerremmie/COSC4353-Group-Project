@@ -47,6 +47,10 @@ public class UnitTest
 		Assert.assertEquals(continent.getName(), "South America");
 		Assert.assertEquals(continent.getBonusArmyValue(), 2);
 		Assert.assertEquals(continent.getIsControlled(), false);
+		continent.setControl(player);
+		Assert.assertTrue(continent.setControl(player));
+		Assert.assertEquals(continent.getControlledBy(), player);
+		Assert.assertNotNull(continent.getTerritories());
 	}
 
 	@Test
