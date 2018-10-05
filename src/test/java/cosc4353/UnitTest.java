@@ -49,6 +49,13 @@ public class UnitTest
 	}
 
 	@Test
+	public void testBoard() {
+		Board B1 = new Board();
+		Assert.assertTrue(B1.createBoard());
+	}
+
+	
+	@Test
 	public void testContinent() {
 		Assert.assertEquals(continent.getName(), "South America");
 		Assert.assertEquals(continent.getBonusArmyValue(), 2);
