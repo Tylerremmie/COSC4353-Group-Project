@@ -15,7 +15,7 @@ public class Hand {
         hand.add(card);
     }
 
-    public void turnInCards(int cardinHand1, int cardinHand2, int cardinHand3) {
+    public boolean turnInCards(int cardinHand1, int cardinHand2, int cardinHand3) {
         if(checkcards(cardinHand1, cardinHand2, cardinHand3)) {
             hand.remove(cardinHand1);
             hand.remove(cardinHand2);
@@ -23,6 +23,7 @@ public class Hand {
         }else{
             System.out.println("Cards must be all the same type, one of each type, or atleast one wild card.");
         }
+        return true;
     }
 
     public boolean handSize() {

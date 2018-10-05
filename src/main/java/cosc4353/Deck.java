@@ -27,11 +27,13 @@ public class Deck {
 		return cardDrawn;
 	}
 	
-	public void add(Card card) {
+	public boolean add(Card card) {
 		deck.add(card);
+		return true;
 	}
 
-	public void shuffle() {
+	public boolean shuffle() {
 		Collections.shuffle(deck);
+		return true;
 	}
 }
