@@ -164,6 +164,9 @@ public class UnitTest
 	public void testActionManager() {
 		Assert.assertFalse(actionManager.isUndoAvailable());
 		Assert.assertFalse(actionManager.isRedoAvailable());
+		
+		Assert.assertTrue(actionManager.getsize() >=0);
+		
 	}
 
 	@Test
