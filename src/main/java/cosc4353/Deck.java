@@ -1,9 +1,6 @@
 package cosc4353;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Collections;
 
 public class Deck {
