@@ -20,18 +20,21 @@ public class TurnManager {
         actionManager = new ActionManager();
     }
 
-    public void takeTurn() {
+    public boolean takeTurn() {
         actionManager.executeAction(new Turn(this));
+        return true;
     }
 
-    public void undo() {
+    public boolean undo() {
         if(actionManager.isUndoAvailable())
             actionManager.undo();
+        return true;
     }
 
-    public void redo() {
+    public boolean redo() {
         if(actionManager.isRedoAvailable())
             actionManager.redo();
+        return true;
     }
 
     //////////////////////////////////////////////////
@@ -42,46 +45,55 @@ public class TurnManager {
         return playersTurn;
     }
 
-    public void setplayersTurn(int playersTurn) {
+    public boolean setplayersTurn(int playersTurn) {
         this.playersTurn = playersTurn;
+        return true;
     }
 
     public int getturnNumber() {
         return turnNumber;
     }
 
-    public void setturnNumber(int turnNumber) {
+    public boolean setturnNumber(int turnNumber) {
         this.turnNumber = turnNumber;
+        return true;
     }
 
     public int getnumberofPlayers() {
         return numberofplayers;
     }
 
-    public void setnumberofPlayers(int numberofPlayers) {
+    public boolean setnumberofPlayers(int numberofPlayers) {
         this.numberofplayers = numberofPlayers;
+        return true;
     }
 
-    public void incrementplayer() {
+    public boolean incrementplayer() {
         if(playersTurn < (numberofplayers - 1))
             playersTurn++;
         else
             playersTurn = 0;
+
+        return true;
     }
 
-    public void decrementplayer() {
+    public boolean decrementplayer() {
         if(playersTurn > 0)
             playersTurn--;
         else
             playersTurn = (numberofplayers - 1);
+
+        return true;
     }
 
-    public void incrementturn() {
+    public boolean incrementturn() {
         turnNumber++;
+        return true;
     }
 
-    public void decrementturn() {
+    public boolean decrementturn() {
         turnNumber--;
+        return true;
     }
 
     public String getCurrentPlayerName() {

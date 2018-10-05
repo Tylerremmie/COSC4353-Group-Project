@@ -174,6 +174,17 @@ public class UnitTest
 		Assert.assertEquals(turnManager.getplayersTurn(), 0);
 		Assert.assertEquals(turnManager.getturnNumber(), 1);
 		Assert.assertEquals(turnManager.getCurrentPlayerName(), "Tyler");
+		Assert.assertTrue(turnManager.takeTurn());
+		Assert.assertTrue(turnManager.undo());
+		Assert.assertTrue(turnManager.redo());
+		Assert.assertTrue(turnManager.setplayersTurn(0));
+		Assert.assertTrue(turnManager.setturnNumber(1));
+		Assert.assertTrue(turnManager.setnumberofPlayers(1));
+		Assert.assertTrue(turnManager.incrementplayer());
+		Assert.assertTrue(turnManager.decrementplayer());
+		Assert.assertTrue(turnManager.incrementturn());
+		Assert.assertTrue(turnManager.decrementturn());
+		Assert.assertNotNull(turnManager.getPlayersObject());
 	}
 
 
