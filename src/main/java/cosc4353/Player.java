@@ -74,8 +74,9 @@ public class Player {
         return hand;
     }
 
-    public void turnIn(int[] cards) {
+    public boolean turnIn(int[] cards) {
         hand.turnInCards(cards[0], cards[1], cards[2]);
+        return true;
     }
 
 }

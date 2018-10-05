@@ -39,7 +39,13 @@ public class UnitTest
 		Assert.assertEquals(player.getTurnPosition(),0);
 		player.setTurnPosition(6);
 		Assert.assertEquals(player.getTurnPosition(),6);
-	
+
+		Assert.assertNotNull(player.getTerritories());
+		Assert.assertNotNull(player.getContinents());
+		Assert.assertNotNull(player.getCardsInHand());
+		Assert.assertNotNull(player.getHand());
+		int[] cards = {0,1,2};
+		Assert.assertTrue(player.turnIn(cards));
 	}
 
 	@Test
