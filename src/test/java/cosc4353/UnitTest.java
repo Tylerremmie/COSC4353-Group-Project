@@ -83,6 +83,8 @@ public class UnitTest
 	public void testCard() {
 		Assert.assertEquals(card.getTypeofCard(), "Infantry");
 		Assert.assertEquals(card.getTerritory(), territory);
+		Assert.assertTrue(card.setTypeofCard("Infantry"));
+		Assert.assertTrue(card.setTerritory(territory));
 	}
 	
 	@Test
