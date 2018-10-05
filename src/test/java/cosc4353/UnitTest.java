@@ -52,6 +52,9 @@ public class UnitTest
 	public void testBoard() {
 		Board B1 = new Board();
 		Assert.assertTrue(B1.createBoard());
+		Assert.assertNotNull(B1.getAdjacencies());
+		Assert.assertNotNull(B1.getContinents());
+		Assert.assertNotNull(B1.getTerritories());
 	}
 
 	

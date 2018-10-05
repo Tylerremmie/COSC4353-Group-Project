@@ -70,5 +70,17 @@ public class Board {
 		}
 
     }
+
+    public String[] getTerritories() {
+        return territoriesArray;
+    }
+
+    public String[] getContinents() {
+        return continentsArray;
+    }
+
+    public String[] getAdjacencies() {
+        return adjacenciesArray;
+    }
     
 }
