@@ -51,7 +51,7 @@ public class Engine {
                     turnManager.redo();
 					break;
                     
-                case 4:
+                case 5:
                     gameover = true;
                     clearScreen();
 					break;
@@ -65,13 +65,14 @@ public class Engine {
 		int selection = -1;
 		try{
             clearScreen();
-			while(selection < 1 || selection > 4) {
+			while(selection < 1 || selection > 5) {
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Turn number: " + turnManager.getturnNumber());
 				System.out.println("-------------------------");
 				System.out.println("1 - Finish Turn");
                 System.out.println("2 - Undo");
                 System.out.println("3 - Redo");
-                System.out.println("4 - Exit");
+                System.out.println("4 - Purchase in Game Credit");
+                System.out.println("5 - Exit");
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
