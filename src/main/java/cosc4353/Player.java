@@ -9,6 +9,7 @@ public class Player {
     private String color;
     private int numberofArmies;
     private int turnPosition;
+    private double inGameCredit;
     private HashMap<String, Territory> territoriesControlled;
     private HashMap<String, Continent> continentControlled;
     private Hand hand;
@@ -56,6 +57,14 @@ public class Player {
 
     public void setTurnPosition(int turnPosition) {
         this.turnPosition = turnPosition;
+    }
+
+    public double getInGameCredit() {
+        return inGameCredit;
+    }
+
+    public void setInGameCredit(double inGameCredit) {
+        this.inGameCredit = inGameCredit;
     }
 
     public ArrayList<Territory> getTerritories() {
