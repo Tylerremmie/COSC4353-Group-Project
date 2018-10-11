@@ -37,6 +37,16 @@ public class TurnManager {
         return true;
     }
 
+    public boolean buyCredit() {
+    	System.out.println("you bought credit");
+        return true;
+    }
+    
+    public boolean buyCards() {
+    	System.out.println("what card do you want to buy?");
+    	
+        return true;
+    }
     ////////////////////////////////////////////////////
     // TurnManager GET AND SET functions
     ////////////////////////////////////////////////////

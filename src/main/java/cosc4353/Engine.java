@@ -38,40 +38,53 @@ public class Engine {
 
 		while(!gameover) {
 			int userChoice = menu(turnManager);
-			switch(userChoice) {
-                case 1:
-                    turnManager.takeTurn();
-					break;
-
-                case 2:
-                    turnManager.undo();
-					break;
-				
-                case 3:
-                    turnManager.redo();
-					break;
-                    
-                case 4:
-                    gameover = true;
-                    clearScreen();
-					break;
-	
-				default:
+			if(userChoice == 1){
+				turnManager.takeTurn();
+			}
+			else if(userChoice == 2)
+			{
+				turnManager.undo();
+			}
+			else if(userChoice == 3)
+			{
+				turnManager.redo();
+			}
+			else if(userChoice == 4)
+			{
+				turnManager.buyCredit();
+				System.out.println("workinnnnng");
+			}
+			else if(userChoice == 5)
+			{
+				turnManager.buyCards();
+				System.out.println("working");
+			}
+			else if(userChoice == 6)
+			{
+				gameover = true;
+                clearScreen();
+			}
+			else
+			{
+				System.out.println("Please enter a number between 1 and 6");
 			}
 		}
 	}
+			
 
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
             clearScreen();
-			while(selection < 1 || selection > 4) {
+			while(selection < 1 || selection > 6) {
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Turn number: " + turnManager.getturnNumber());
 				System.out.println("-------------------------");
 				System.out.println("1 - Finish Turn");
                 System.out.println("2 - Undo");
                 System.out.println("3 - Redo");
-                System.out.println("4 - Exit");
+                System.out.println("4 - Purchase Game Credit");
+                System.out.println("5 - Buy Cards using in Game Credit");
+                System.out.println("6 - Exit");
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
