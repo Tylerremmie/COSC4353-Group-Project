@@ -2,6 +2,7 @@ language: java
 sudo: false # faster builds
 
 script: "mvn cobertura:cobertura"
+script: "mvn site"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
