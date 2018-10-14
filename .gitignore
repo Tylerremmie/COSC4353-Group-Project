@@ -128,5 +128,10 @@ hs_err_pid*
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
+#team project keys
+secrets_DDMT.prop
+
+#serialized replay files for our game
+*.ser
 
 # End of https://www.gitignore.io/api/java,linux,intellij
