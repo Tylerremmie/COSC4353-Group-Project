@@ -23,7 +23,7 @@ public class Continent {
         this.territories = territories;
         is_controlled = false;
 
-        System.out.println(name + " created.");
+        //System.out.println(name + " created.");
     }
 
      //SET functions

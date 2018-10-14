@@ -21,7 +21,7 @@ public class Territory {
         this.name = name;
         is_occupied = false;
         numberofarmies = 0;
-        System.out.println(name + " created.");
+        //System.out.println(name + " created.");
     }
 
     //SET functions
@@ -65,7 +65,7 @@ public class Territory {
         return numberofarmies;
     }
 
-    public boolean getOccupied() {
+    public boolean isOccupied() {
         return is_occupied;
     }
 

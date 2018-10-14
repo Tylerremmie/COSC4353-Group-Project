@@ -3,12 +3,11 @@ package cosc4353;
 public class Main {
 
 	public static void main(String[] args) {
-		Engine Driver = new Engine();
-		Driver.StartUp();
-		Driver.Turns();
+		//Engine Driver = new Engine();
+		//Driver.StartUp();
+		//Driver.Turns();
 
-		//Driver.Turn();
-		//Board board = new Board();
-		//board.createBoard();
+		Board board = new Board();
+		board.createBoard();
 	}
 }

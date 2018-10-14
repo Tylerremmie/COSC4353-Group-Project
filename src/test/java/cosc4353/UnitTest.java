@@ -50,13 +50,8 @@ public class UnitTest
 
 	@Test
 	public void testBoard() {
-		/*
-		Board B1 = new Board();
-		Assert.assertTrue(B1.createBoard());
-		Assert.assertNotNull(B1.getAdjacencies());
-		Assert.assertNotNull(B1.getContinents());
-		Assert.assertNotNull(B1.getTerritories());
-		*/
+
+		
 	}
 
 	
@@ -74,7 +69,7 @@ public class UnitTest
 	@Test
 	public void testTerritory() {
 		Assert.assertEquals(territory.getName(), "Brazil");
-		Assert.assertEquals(territory.getOccupied(), false);
+		Assert.assertEquals(territory.isOccupied(), false);
 		Assert.assertEquals(territory.getnumberofArmies(), 0);
 		
 		Territory T2 = new Territory("Testing");
