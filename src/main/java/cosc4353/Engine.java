@@ -52,12 +52,10 @@ public class Engine {
 			else if(userChoice == 4)
 			{
 				turnManager.buyCredit();
-				System.out.println("workinnnnng");
 			}
 			else if(userChoice == 5)
 			{
 				turnManager.buyCards();
-				System.out.println("working");
 			}
 			else if(userChoice == 6)
 			{
@@ -141,8 +139,10 @@ public class Engine {
 		for(int i = 0; i < numberofplayers; i++) {
 			System.out.println("Player " + names[i]);
 			String requested_color = "";
+			int cardNumber;
 			do{
 				requested_color = Get_Color();
+				cardNumber = 0;
 				if(available_colors.contains(requested_color)) {
 					available_colors.remove(available_colors.indexOf(requested_color));
 					break;
@@ -150,10 +150,13 @@ public class Engine {
 					System.out.println("Color Taken!\nAvailable Colors: " + available_colors + "\n");
 				}
 			}while(true);
-			tempplayers.add(i, new Player(names[i], requested_color, (i + 1)));  // Player(Name, Color, TurnPosition)
+			
+			tempplayers.add(i, new Player(names[i], requested_color,(i + 1), cardNumber));  // Player(Name, Color, TurnPosition, cardNumber)
 		}
+		
 		return tempplayers;
 	}
+	
 
 	//Scanner Functions
     public static int Get_A_Number(){
@@ -169,6 +172,7 @@ public class Engine {
 			
 		return num;
 	}
+    
 
 	public static String Get_A_String(){
 		String holder = keyboard.nextLine();
@@ -180,7 +184,63 @@ public class Engine {
 		keyboard.nextLine();
 		return di.roll();
 	}
+	
+	   public static String Get_Yes_No(){
+			String yes_no = "";
+			do {
+				System.out.print("Yes or No: ");
+				yes_no = keyboard.nextLine();
+				if(yes_no.equalsIgnoreCase("yes")){
+					yes_no ="yes";
+					break;
+				}else if(yes_no.equalsIgnoreCase("no")){
+					yes_no ="no";
+					break;
+				}else{
+					System.out.println("Input not Valid! (yes or no)\n");
+				}	
+			} while (true);
+			return yes_no;
+		}
+	   
+	   public static void purchaseInGameCredit(){
+		   String user_yes_no = "";
+		   user_yes_no = Get_Yes_No();
+		   
+		   if(user_yes_no == "yes"){
+			   System.out.println("To draw an additional card from the deck, $1.00 is needed.");
+			  
+			   System.out.println("Please enter your card number");
+			   getCardNumber(); 
+			   
+			   System.out.println("Would you like to store your card number?");
+			   storeCardNumber();
+		   }else if(user_yes_no == "no"){
+			   System.out.println("No purchase made");
+		   }
+		}
+	   
+	   public static void storeCardNumber(){
+		   String saveCard_yes_no = "";
+		   saveCard_yes_no = Get_Yes_No();
+		   
+		   if(saveCard_yes_no == "yes")
+		   {	
+			   players.set()
+			   System.out.println("Your card number has been stored.");
+			   
+		   }else if(saveCard_yes_no == "no"){
+			   System.out.println("Your card number has been discarded.");
+		   }
+		   
+		}
 
+	   public static int getCardNumber(){
+		   int cardNumber;
+			   cardNumber = Get_A_Number();
+			   return cardNumber;
+		}
+	   
 	public static String Get_Color(){
 		String color = "";
 		do{

@@ -38,7 +38,8 @@ public class TurnManager {
     }
 
     public boolean buyCredit() {
-    	System.out.println("you bought credit");
+    	System.out.println("Would you like to purchase in game credit?");
+    	Engine.purchaseInGameCredit();
         return true;
     }
     

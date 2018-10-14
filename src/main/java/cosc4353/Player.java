@@ -7,6 +7,7 @@ public class Player {
 
     private String name;
     private String color;
+    private int cardNumber;
     private int numberofArmies;
     private int turnPosition;
     private double inGameCredit;
@@ -15,11 +16,11 @@ public class Player {
     private Hand hand;
 
     //Constructor for a new player
-    public Player(String name, String color, int turnPosition) {
+    public Player(String name, String color, int turnPosition, int cardNumber) {
         this.name = name;
         this.color = color;
         this.turnPosition = turnPosition;
-
+        this.cardNumber = cardNumber;
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();
         hand = new Hand();
@@ -59,12 +60,20 @@ public class Player {
         this.turnPosition = turnPosition;
     }
     
-    public String getInGameCredit() {
-        return color;
+    public double getInGameCredit() {
+        return inGameCredit;
     }
 
     public void setInGameCredit(double inGameCredit) {
         this.inGameCredit = inGameCredit;
+    }
+    
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public ArrayList<Territory> getTerritories() {
