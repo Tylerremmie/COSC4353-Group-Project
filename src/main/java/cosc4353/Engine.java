@@ -51,13 +51,9 @@ public class Engine {
 			}
 			else if(userChoice == 4)
 			{
-				turnManager.buyCredit();
-			}
-			else if(userChoice == 5)
-			{
 				turnManager.buyCards();
 			}
-			else if(userChoice == 6)
+			else if(userChoice == 5)
 			{
 				gameover = true;
                 clearScreen();
@@ -80,9 +76,8 @@ public class Engine {
 				System.out.println("1 - Finish Turn");
                 System.out.println("2 - Undo");
                 System.out.println("3 - Redo");
-                System.out.println("4 - Purchase Game Credit");
-                System.out.println("5 - Buy Cards using in Game Credit");
-                System.out.println("6 - Exit");
+                System.out.println("4 - Buy Cards using in Game Credit");
+                System.out.println("5 - Exit");
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
@@ -139,10 +134,9 @@ public class Engine {
 		for(int i = 0; i < numberofplayers; i++) {
 			System.out.println("Player " + names[i]);
 			String requested_color = "";
-			int cardNumber;
+			
 			do{
 				requested_color = Get_Color();
-				cardNumber = 0;
 				if(available_colors.contains(requested_color)) {
 					available_colors.remove(available_colors.indexOf(requested_color));
 					break;
@@ -151,7 +145,7 @@ public class Engine {
 				}
 			}while(true);
 			
-			tempplayers.add(i, new Player(names[i], requested_color,(i + 1), cardNumber));  // Player(Name, Color, TurnPosition, cardNumber)
+			tempplayers.add(i, new Player(names[i], requested_color,(i + 1)));  // Player(Name, Color, TurnPosition)
 		}
 		
 		return tempplayers;
@@ -203,7 +197,7 @@ public class Engine {
 			return yes_no;
 		}
 	   
-	   public static void purchaseInGameCredit(){
+	   /*public static void purchaseInGameCredit(){
 		   String user_yes_no = "";
 		   user_yes_no = Get_Yes_No();
 		   
@@ -219,27 +213,8 @@ public class Engine {
 			   System.out.println("No purchase made");
 		   }
 		}
-	   
-	   public static void storeCardNumber(){
-		   String saveCard_yes_no = "";
-		   saveCard_yes_no = Get_Yes_No();
-		   
-		   if(saveCard_yes_no == "yes")
-		   {	
-			   players.set()
-			   System.out.println("Your card number has been stored.");
-			   
-		   }else if(saveCard_yes_no == "no"){
-			   System.out.println("Your card number has been discarded.");
-		   }
-		   
-		}
-
-	   public static int getCardNumber(){
-		   int cardNumber;
-			   cardNumber = Get_A_Number();
-			   return cardNumber;
-		}
+	   */
+	 
 	   
 	public static String Get_Color(){
 		String color = "";
