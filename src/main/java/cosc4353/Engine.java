@@ -38,40 +38,46 @@ public class Engine {
 
 		while(!gameover) {
 			int userChoice = menu(turnManager);
-			switch(userChoice) {
-                case 1:
-                    turnManager.takeTurn();
-					break;
-
-                case 2:
-                    turnManager.undo();
-					break;
-				
-                case 3:
-                    turnManager.redo();
-					break;
-                    
-                case 4:
-                    gameover = true;
-                    clearScreen();
-					break;
-	
-				default:
+			if(userChoice == 1){
+				turnManager.takeTurn();
+			}
+			else if(userChoice == 2)
+			{
+				turnManager.undo();
+			}
+			else if(userChoice == 3)
+			{
+				turnManager.redo();
+			}
+			else if(userChoice == 4)
+			{
+				turnManager.buyCards();
+			}
+			else if(userChoice == 5)
+			{
+				gameover = true;
+                clearScreen();
+			}
+			else
+			{
+				System.out.println("Please enter a number between 1 and 6");
 			}
 		}
 	}
+			
 
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
             clearScreen();
-			while(selection < 1 || selection > 4) {
+			while(selection < 1 || selection > 6) {
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Turn number: " + turnManager.getturnNumber());
 				System.out.println("-------------------------");
 				System.out.println("1 - Finish Turn");
                 System.out.println("2 - Undo");
                 System.out.println("3 - Redo");
-                System.out.println("4 - Exit");
+                System.out.println("4 - Buy Cards using in Game Credit");
+                System.out.println("5 - Exit");
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
@@ -128,6 +134,7 @@ public class Engine {
 		for(int i = 0; i < numberofplayers; i++) {
 			System.out.println("Player " + names[i]);
 			String requested_color = "";
+			
 			do{
 				requested_color = Get_Color();
 				if(available_colors.contains(requested_color)) {
@@ -137,10 +144,13 @@ public class Engine {
 					System.out.println("Color Taken!\nAvailable Colors: " + available_colors + "\n");
 				}
 			}while(true);
-			tempplayers.add(i, new Player(names[i], requested_color, (i + 1)));  // Player(Name, Color, TurnPosition)
+			
+			tempplayers.add(i, new Player(names[i], requested_color,(i + 1)));  // Player(Name, Color, TurnPosition)
 		}
+		
 		return tempplayers;
 	}
+	
 
 	//Scanner Functions
     public static int Get_A_Number(){
@@ -156,6 +166,7 @@ public class Engine {
 			
 		return num;
 	}
+    
 
 	public static String Get_A_String(){
 		String holder = keyboard.nextLine();
@@ -167,7 +178,44 @@ public class Engine {
 		keyboard.nextLine();
 		return di.roll();
 	}
-
+	
+	   public static String Get_Yes_No(){
+			String yes_no = "";
+			do {
+				System.out.print("Yes or No: ");
+				yes_no = keyboard.nextLine();
+				if(yes_no.equalsIgnoreCase("yes")){
+					yes_no ="yes";
+					break;
+				}else if(yes_no.equalsIgnoreCase("no")){
+					yes_no ="no";
+					break;
+				}else{
+					System.out.println("Input not Valid! (yes or no)\n");
+				}	
+			} while (true);
+			return yes_no;
+		}
+	   
+	   /*public static void purchaseInGameCredit(){
+		   String user_yes_no = "";
+		   user_yes_no = Get_Yes_No();
+		   
+		   if(user_yes_no == "yes"){
+			   System.out.println("To draw an additional card from the deck, $1.00 is needed.");
+			  
+			   System.out.println("Please enter your card number");
+			   getCardNumber(); 
+			   
+			   System.out.println("Would you like to store your card number?");
+			   storeCardNumber();
+		   }else if(user_yes_no == "no"){
+			   System.out.println("No purchase made");
+		   }
+		}
+	   */
+	 
+	   
 	public static String Get_Color(){
 		String color = "";
 		do{
