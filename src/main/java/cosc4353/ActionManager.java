@@ -27,15 +27,12 @@ public class ActionManager {
 	public boolean isRedoAvailable() {
 		return !redos.empty();
 	}
-
-	public void redo() {
-		assert(!redos.empty());
-		Action action = redos.pop();
-		action.execute();
-		undos.push(action);
-	}
 	
 	public int getsize() {
 		return undos.size();
+	}
+	
+	public void redo() {
+		System.out.println("CARD PRICE");
 	}
 }
