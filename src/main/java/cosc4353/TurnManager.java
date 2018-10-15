@@ -37,9 +37,15 @@ public class TurnManager {
         return true;
     }
 
-    //////////////////////////////////////////////////
+    
+    public boolean buyCards() {
+    	System.out.println("what card do you want to buy?");
+    	
+        return true;
+    }
+    ////////////////////////////////////////////////////
     // TurnManager GET AND SET functions
-    //////////////////////////////////////////////////
+    ////////////////////////////////////////////////////
 
     public int getplayersTurn() {
         return playersTurn;

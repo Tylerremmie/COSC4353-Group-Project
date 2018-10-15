@@ -3,12 +3,13 @@ package cosc4353;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements GetPlayerCredit{
 
     private String name;
     private String color;
     private int numberofArmies;
     private int turnPosition;
+    private int inGameCredit;
     private HashMap<String, Territory> territoriesControlled;
     private HashMap<String, Continent> continentControlled;
     private Hand hand;
@@ -18,7 +19,6 @@ public class Player {
         this.name = name;
         this.color = color;
         this.turnPosition = turnPosition;
-
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();
         hand = new Hand();
@@ -56,6 +56,14 @@ public class Player {
 
     public void setTurnPosition(int turnPosition) {
         this.turnPosition = turnPosition;
+    }
+    
+    public int getInGameCredit() {
+        return inGameCredit;
+    }
+
+    public void setInGameCredit(int inGameCredit) {
+        this.inGameCredit = inGameCredit;
     }
 
     public ArrayList<Territory> getTerritories() {
