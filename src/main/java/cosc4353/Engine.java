@@ -4,37 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
-import java.io.IOException;
 
 public class Engine {
 
 	ArrayList<Player> players;
+	Board board;
+	Deck deck;
+
 	private static Scanner keyboard = new Scanner(System.in);
 	public static boolean gameover = false;
+	public static boolean setup = false;
 
     public void StartUp() {
-		clearScreen();
         System.out.println("RISK Board Game");
 
         while(true) {
             System.out.println("Enter Number of Players:");
             int numplayer = Get_A_Number();
             if(numplayer >= 2 && numplayer <= 6) {
-                clearScreen();
                 players = Create_Names_and_Turn_Position(numplayer);
                 break;
             }else{
-				clearScreen();
                 System.out.println("Please Enter a valid number of players (2-6):");
             }
 		}
-		
-		// --CONTINUE SETUP AFTER RETURNING PLAYER ARRAYLIST
+		// Create Board
+		board = new Board();
+		board.createBoard();
 
+		// Setup the players and board with armies
+		setupArmies(players, board);
+
+		// Create and Shuffle Deck
+		deck = new Deck(board.getTerritories());
+
+		clearScreen();
 	}
 
 	public void Turns() {
-		TurnManager turnManager = new TurnManager(players);
+		TurnManager turnManager = new TurnManager(players, board);
 
 		while(!gameover) {
 			int userChoice = menu(turnManager);
@@ -53,7 +61,6 @@ public class Engine {
                     
                 case 4:
                     gameover = true;
-                    clearScreen();
 					break;
 	
 				default:
@@ -64,7 +71,6 @@ public class Engine {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
-            clearScreen();
 			while(selection < 1 || selection > 4) {
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Turn number: " + turnManager.getturnNumber());
 				System.out.println("-------------------------");
@@ -92,7 +98,6 @@ public class Engine {
 				names[i-1] = Get_A_String();
 			}while(names[i-1] == "");
 		}
-		clearScreen();
 
 		//Set Player Order
 		Dice d1 = new Dice();
@@ -137,9 +142,77 @@ public class Engine {
 					System.out.println("Color Taken!\nAvailable Colors: " + available_colors + "\n");
 				}
 			}while(true);
-			tempplayers.add(i, new Player(names[i], requested_color, (i + 1)));  // Player(Name, Color, TurnPosition)
+			tempplayers.add(i, new Player(names[i], requested_color, (i + 1), getArmyCount(numberofplayers)));  // Player(Name, Color, TurnPosition, numberofArmies)
 		}
 		return tempplayers;
+	}
+
+	public static void setupArmies(ArrayList<Player> players, Board board) {
+		int playerorder = 0;
+		int currentplayer = playerorder % players.size();
+
+		// Initial claiming of all 42 territories
+		while(board.hasUnoccupied()) {
+			ArrayList<Territory> unoccupiedList = new ArrayList<Territory>(board.getUnoccupied());
+			System.out.println("\n================================================================");
+			System.out.println(players.get(currentplayer).getName() + ": Please choose a territory to occupy.   [" + players.get(currentplayer).getNumberofArmies() + "] armies remaining.");
+			System.out.println("================================================================");
+			int userChoice = chooseUnoccupiedMenu(board, unoccupiedList);
+			
+			board.setPlayerOccupying(unoccupiedList.get(userChoice).getName(), players.get(currentplayer));
+			board.setNumberofArmies(unoccupiedList.get(userChoice).getName(), 1);
+			players.get(currentplayer).reduceArmiesBy(1);
+			players.get(currentplayer).setTerritories(unoccupiedList.get(userChoice).getName(), unoccupiedList.get(userChoice));
+			playerorder++;
+			currentplayer = playerorder % players.size();
+		}
+
+		// Continue placing armies onto controlled territories until everyone is out of armies.
+		while(players.get(currentplayer).hasArmy()) {
+			ArrayList<Territory> occupiedList = new ArrayList<Territory>(players.get(currentplayer).getTerritories());
+			System.out.println("\n================================================================");
+			System.out.println(players.get(currentplayer).getName() + ": Please choose a controlled territory to place an additonal army.   [" + players.get(currentplayer).getNumberofArmies() + "] armies remaining.");
+			System.out.println("================================================================");
+			
+			int userChoice = chooseOccupiedTerritoryMenu(board, occupiedList);
+
+			board.incrementArmies(occupiedList.get(userChoice).getName(), 1);
+			players.get(currentplayer).reduceArmiesBy(1);
+			playerorder++;
+			currentplayer = playerorder % players.size();
+		}
+	}
+
+	public static int chooseUnoccupiedMenu(Board board, ArrayList<Territory> unoccupiedList) {
+		int selection = -1;
+
+		try{
+			while(selection < 1 || selection > unoccupiedList.size()) {
+				System.out.println("-------------------------");
+				for(int i = 0; i < unoccupiedList.size(); i++)
+					System.out.println((i + 1) + ": " + unoccupiedList.get(i).getName());
+				selection = Get_A_Number();
+			}
+		} catch (InputMismatchException e) {
+			chooseUnoccupiedMenu(board, unoccupiedList);
+		}
+		return selection - 1;
+	}
+
+	public static int chooseOccupiedTerritoryMenu(Board board, ArrayList<Territory> territoryList) {
+		int selection = -1;
+
+		try{
+			while(selection < 1 || selection > territoryList.size()) {
+				for(int i = 0; i < territoryList.size(); i++)
+					System.out.println((i + 1) + ": " + territoryList.get(i).getName() + " [" + territoryList.get(i).getnumberofArmies() + "]");
+				selection = Get_A_Number();
+			}
+
+		} catch (InputMismatchException e) {
+			chooseOccupiedTerritoryMenu(board, territoryList);
+		}
+		return selection - 1;
 	}
 
 	//Scanner Functions
@@ -166,6 +239,22 @@ public class Engine {
 		System.out.println("Press Enter to roll:");
 		keyboard.nextLine();
 		return di.roll();
+	}
+
+	public static int getArmyCount(int numberofplayers) {
+		if(numberofplayers == 2) {
+			return 35;
+		}else if(numberofplayers == 3) {
+			return 35;
+		}else if(numberofplayers == 4) {
+			return 30;
+		}else if(numberofplayers == 5) {
+			return 25;
+		}else if(numberofplayers == 6) {
+			return 20;
+		} else {
+			return 0;
+		}
 	}
 
 	public static String Get_Color(){

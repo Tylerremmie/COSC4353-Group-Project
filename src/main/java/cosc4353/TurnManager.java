@@ -10,12 +10,14 @@ public class TurnManager {
     private int turnNumber;
     private int numberofplayers;
     private ArrayList<Player> Players;
+    private Board board;
 
-    public TurnManager(ArrayList<Player> Players) {
+    public TurnManager(ArrayList<Player> Players, Board board) {
         playersTurn = 0; //index of arraylist Players
         turnNumber = 1;
         numberofplayers = Players.size();
         this.Players = Players;
+        this.board = board;
 
         actionManager = new ActionManager();
     }
@@ -102,6 +104,10 @@ public class TurnManager {
 
     public ArrayList<Player> getPlayersObject() {
         return Players;
+    }
+
+    public Board getBoardObject() {
+        return board;
     }
 
     //////////////////////////////////////////////////

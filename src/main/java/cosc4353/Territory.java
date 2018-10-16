@@ -72,4 +72,9 @@ public class Territory {
     public ArrayList<Territory> getAdjacencies() {
         return adjacent;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

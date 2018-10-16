@@ -12,7 +12,7 @@ public class UnitTest
 {
 	ArrayList<Territory> territories = new ArrayList<Territory>();
 	ArrayList<Player> players = new ArrayList<Player>();
-	Player player = new Player("Tyler", "Red", 1);
+	Player player = new Player("Tyler", "Red", 1, 20);
 	Dice dice = new Dice();;
 	Territory territory = new Territory("Brazil");
 	Continent continent = new Continent("South America", 2, territories);
@@ -172,7 +172,8 @@ public class UnitTest
 	@Test
 	public void testTurnManager() {
 		players.add(player);
-		TurnManager turnManager = new TurnManager(players);
+		Board board = new Board();
+		TurnManager turnManager = new TurnManager(players, board);
 		Assert.assertEquals(turnManager.getnumberofPlayers(), 1);
 		Assert.assertEquals(turnManager.getplayersTurn(), 0);
 		Assert.assertEquals(turnManager.getturnNumber(), 1);

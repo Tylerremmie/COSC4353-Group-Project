@@ -83,12 +83,14 @@ public class Board {
             /////Load Board////////////////////////////////////////////////
             territoriesMap = new HashMap<String, Territory>();
             continentsMap = new HashMap<String, Continent>();
+            territoriesList = new ArrayList<Territory>();
 
             // Create Territories
-            for(int i = 0; i < territoriesArray.length; i++)
-                territoriesMap.put(territoriesArray[i], new Territory(territoriesArray[i]));
-            
-            territoriesList = new ArrayList<Territory>(territoriesMap.values());
+            for(int i = 0; i < territoriesArray.length; i++) {
+                Territory temp = new Territory(territoriesArray[i]);
+                territoriesMap.put(territoriesArray[i], temp);
+                territoriesList.add(temp);
+            }
 
             // Create Adjacencies
             for(int i = 0; i < adjacenciesArray.length; i++) {
@@ -167,6 +169,16 @@ public class Board {
         territoriesMap.get(territoryName).setnumberofArmies(armynumber);
     }
 
+    // increase the number of armies by int number
+    public void incrementArmies(String territoryName, int number) {
+        territoriesMap.get(territoryName).increaseArmies(number);
+    }
+
+    // decrease the number of armies by int number
+    public void decrementArmies(String territoryName, int number) {
+        territoriesMap.get(territoryName).decreaseArmies(number);
+    }
+
     // return number of armies in the territory given by territoryName
     public int getNumberofArmies(String territoryName) {
         return territoriesMap.get(territoryName).getnumberofArmies();
@@ -186,6 +198,15 @@ public class Board {
                 unoccupiedTerritories.add(territoriesList.get(i));
         
         return unoccupiedTerritories;
+    }
+
+    // return boolean true if atleast one territory is unoccupied; else returns false
+    public boolean hasUnoccupied() {
+        for(int i = 0; i < territoriesList.size(); i++) {
+            if(territoriesList.get(i).isOccupied() == false)
+                return true;
+        }
+        return false;
     }
     
     // return boolean true or false if String territoryOne is adjacent to String territoryTwo
@@ -208,5 +229,4 @@ public class Board {
     public String[] getAdjacenciesString() {
         return adjacenciesArray;
     }
-
 }

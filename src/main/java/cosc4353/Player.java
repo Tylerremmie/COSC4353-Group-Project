@@ -14,10 +14,11 @@ public class Player {
     private Hand hand;
 
     //Constructor for a new player
-    public Player(String name, String color, int turnPosition) {
+    public Player(String name, String color, int turnPosition, int numberofArmies) {
         this.name = name;
         this.color = color;
         this.turnPosition = turnPosition;
+        this.numberofArmies = numberofArmies;
 
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();
@@ -50,12 +51,31 @@ public class Player {
         this.numberofArmies = numberofArmies;
     }
 
+    public void reduceArmiesBy(int number) {
+        numberofArmies -= number;
+    }
+
+    public void increaseArmiesBy(int number) {
+        numberofArmies += number;
+    }
+
+    public boolean hasArmy() {
+        if(numberofArmies != 0)
+            return true;
+        else   
+            return false;
+    }
+
     public int getTurnPosition() {
         return turnPosition;
     }
 
     public void setTurnPosition(int turnPosition) {
         this.turnPosition = turnPosition;
+    }
+
+    public void setTerritories(String territoryname, Territory territory) {
+        territoriesControlled.put(territoryname, territory);
     }
 
     public ArrayList<Territory> getTerritories() {
