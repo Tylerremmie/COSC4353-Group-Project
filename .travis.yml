@@ -5,5 +5,5 @@ script: "mvn cobertura:cobertura"
 # script: "mvn javadoc:javadoc"
 
 after_success:
-    mvn site --settings target/travis/settings.xml
+  - mvn site --settings target/travis/settings.xml
   - bash <(curl -s https://codecov.io/bash)
