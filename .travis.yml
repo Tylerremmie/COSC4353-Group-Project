@@ -2,8 +2,7 @@ language: java
 sudo: false # faster builds
 
 script: "mvn cobertura:cobertura"
-# script: "mvn javadoc:javadoc"
+script: "mvn site"
 
 after_success:
-  - mvn site --settings target/travis/settings.xml
   - bash <(curl -s https://codecov.io/bash)
