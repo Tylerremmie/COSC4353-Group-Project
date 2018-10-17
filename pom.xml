@@ -60,9 +60,6 @@
 					<nohelp>true</nohelp>
 					<outputDirectory>${project.build.directory}/javadoc</outputDirectory>
 				</configuration>
-			<configuration>
-
-			</configuration>
 			</plugin>
 	  
 		</plugins>
