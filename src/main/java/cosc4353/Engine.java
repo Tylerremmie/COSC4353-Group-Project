@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class Engine {
+public class Engine implements GetPayment {
 
 	ArrayList<Player> players;
 	Board board;
@@ -39,8 +39,8 @@ public class Engine {
 
 		// Create and Shuffle Deck
 		deck = new Deck(board.getTerritories());
-
 		clearScreen();
+		
 	}
 
 	public void Turns() {
@@ -366,5 +366,10 @@ public class Engine {
 			else
 				Runtime.getRuntime().exec("clear");
 		} catch (IOException | InterruptedException ex) {}
+	}
+
+	public int givePlayerCredit() {
+		System.out.println("it worked");
+		return 100;
 	} 
 }
