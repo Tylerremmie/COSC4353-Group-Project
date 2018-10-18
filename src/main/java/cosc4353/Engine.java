@@ -71,7 +71,8 @@ public class Engine implements GetPayment {
 					break;
 
                 case 5:
-                    // Spend Credits
+                    // trade Credits
+                	
 					break;
 				
 				case 6:
@@ -104,7 +105,7 @@ public class Engine implements GetPayment {
                 System.out.println("2: Attack");
 				System.out.println("3: Fortify");
 				System.out.println("4: Buy Credits");
-				System.out.println("5: Spend Credits");
+				System.out.println("5: Give Credits");
 				System.out.println("6: Undo Turn");
 				System.out.println("7: Redo Turn");
 				System.out.println("8: End Turn");
@@ -286,6 +287,55 @@ public class Engine implements GetPayment {
 		}
 		return friendlyTerritories.get(selection - 1);
 	}
+	
+	
+	public static void giveCreditsMenu(TurnManager turnmanager){
+		int selection = -1;
+		try{
+		 //print players
+			ArrayList<Player> playerlist = turnmanager.getPlayersObject();
+			
+			while(selection < 1 || selection >(playerlist.size())){
+				
+				for(int i =0;i<(turnmanager.getPlayersObject()).size();i++){
+					
+					if((playerlist.get(i)).getName()!=turnmanager.getCurrentPlayerName()){
+						System.out.println((i+1)+")"+(playerlist.get(i)).getName());
+					}
+				}
+				
+				
+				selection = Get_A_Number();
+			
+			}
+			
+			selection -= 1;
+			
+			int amount =-1;
+			
+			while(amount < 0){
+				
+				System.out.println("How Much? to player:"+ playerlist.get(selection).getName());
+				amount = Get_A_Number();
+				
+				if(amount < 0 || amount > (turnmanager.getCurrentPlayerObject()).getInGameCredit()){
+					System.out.println("Invalid amount!");
+					amount = -1;
+				}
+				
+			}
+			
+			//do transfer between (turnmanager.getCurrentPlayerObject()) to playerlist.get(selection)
+			
+			transferGameCredit((turnmanager.getCurrentPlayerObject()),playerlist.get(selection),amount);
+			
+		}catch(InputMismatchException e){
+			giveCreditsMenu(turnmanager);
+		}
+		
+		
+		
+	}
 
 	//Scanner Functions
     public static int Get_A_Number(){
@@ -367,6 +417,11 @@ public class Engine implements GetPayment {
 				Runtime.getRuntime().exec("clear");
 		} catch (IOException | InterruptedException ex) {}
 	}
+    
+    public static void transferGameCredit(Player from, Player to,int amount){
+    	from.decrementInGameCredit(amount);
+    	to.incrementInGameCredit(amount);
+    }
 
 	public int givePlayerCredit() {
 		System.out.println("it worked");
