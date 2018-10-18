@@ -20,8 +20,6 @@ java -cp bin cosc4353.Main
 
 **v.0.3**
 - Users can undo their actions
-- Your Program uses Amazon S3 to replay games 
-- Test cases to cover at least 50% of the code
 - Show test coverage on the repository [page](https://blog.frankel.ch/travis-ci-tutorial-for-java-projects/)
 
 **v.0.2**

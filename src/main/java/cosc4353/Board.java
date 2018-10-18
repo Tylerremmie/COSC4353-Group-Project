@@ -22,9 +22,9 @@ public class Board {
     private String[] adjacenciesArray;
     private String[] adjacenciessplitArray;
 
-	private String territoriesFile = "src\\main\\resources\\territories.txt";
-	private String continentsFile = "src\\main\\resources\\continents.txt";
-    private String adjacenciesFile = "src\\main\\resources\\adjacent.txt";
+	private String territoriesFile = "src/main/resources/territories.txt";
+    private String continentsFile = "src/main/resources/continents.txt";
+    private String adjacenciesFile = "src/main/resources/adjacent.txt";
     
     private BufferedReader filereader;
     private String inputline;

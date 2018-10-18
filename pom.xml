@@ -25,7 +25,6 @@
 			<version>[4.0,)</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -48,6 +47,23 @@
 						<format>xml</format>
 					</formats>
 					<check />
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+
+					<!-- <docletPath>/path/to/UmlGraph.jar</docletPath> -->
+					<docletArtifact>
+						<groupId>org.umlgraph</groupId>
+						<artifactId>doclet</artifactId>
+						<version>5.1</version>
+					</docletArtifact>
+					<doclint>none</doclint>
+					<useStandardDocletOptions>true</useStandardDocletOptions>
 				</configuration>
 			</plugin>
 		</plugins>
