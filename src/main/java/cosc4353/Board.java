@@ -12,7 +12,6 @@ import java.util.List;
  * Class for creating all continent and territory objects for the "board".
  * Called at the beginning of the game to initialize the "board".
  * @author Tyler Remmie
- * @date 9/8/2018
  */
 
 public class Board {
@@ -91,6 +90,8 @@ public class Board {
                 territoriesMap.put(territoriesArray[i], temp);
                 territoriesList.add(temp);
             }
+
+
 
             // Create Adjacencies
             for(int i = 0; i < adjacenciesArray.length; i++) {

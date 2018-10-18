@@ -5,7 +5,6 @@ import java.util.ArrayList;
 /**
  * Class for Continent objects.
  * @author Tyler Remmie
- * @date 9/8/2018
  */
 
 public class Continent {

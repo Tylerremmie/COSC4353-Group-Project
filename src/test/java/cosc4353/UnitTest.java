@@ -85,7 +85,7 @@ public class UnitTest
 		Assert.assertEquals(T2.getPlayerOccupying(),player);
 
 		territories.add(territory);
-		Assert.assertTrue(T2.createAdjacencies(territories));
+		//Assert.assertTrue(T2.createAdjacencies(territories));
 		Assert.assertEquals(T2.getAdjacencies(), territories);
 	}
 
