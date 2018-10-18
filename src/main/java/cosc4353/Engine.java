@@ -31,14 +31,17 @@ public class Engine implements GetPayment {
 		}
 		clearScreen();
 		// Create Board
-		board = new Board();
-		board.createBoard();
+		//board = new Board();
+		//board.createBoard();
 
 		// Setup the players and board with armies
-		setupArmies(players, board);
+		//setupArmies(players, board);
 
 		// Create and Shuffle Deck
-		deck = new Deck(board.getTerritories());
+		//deck = new Deck(board.getTerritories());
+        
+        Turns();
+       
 		clearScreen();
 		
 	}
@@ -65,13 +68,13 @@ public class Engine implements GetPayment {
                 case 3:
 					// Fortify
 					break;
-				
-				case 4:
-					// Buy Credits
-					break;
-
+					
+                case 4:
+                	(turnManager.getCurrentPlayerObject()).incrementInGameCredit(givePlayerCredit());
+                	break;
+                    
                 case 5:
-                    // Spend Credits
+                    gameover = true;
 					break;
 				
 				case 6:
@@ -96,6 +99,7 @@ public class Engine implements GetPayment {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
+
 			while(selection < 1 || selection > 9) {
 				System.out.println("=======================================================================================================");
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
@@ -109,6 +113,7 @@ public class Engine implements GetPayment {
 				System.out.println("7: Redo Turn");
 				System.out.println("8: End Turn");
 				System.out.println("9: End Game");
+
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
@@ -168,6 +173,7 @@ public class Engine implements GetPayment {
 			String requested_color = "";
 			do{
 				requested_color = Get_Color();
+				
 				if(available_colors.contains(requested_color)) {
 					available_colors.remove(available_colors.indexOf(requested_color));
 					break;
@@ -369,7 +375,9 @@ public class Engine implements GetPayment {
 	}
 
 	public int givePlayerCredit() {
-		System.out.println("it worked");
+		System.out.println("You purchased  100 credit");
+		
+		
 		return 100;
 	} 
 }
