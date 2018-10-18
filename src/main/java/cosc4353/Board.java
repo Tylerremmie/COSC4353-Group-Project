@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class Board {
-
+    
     private String[] territoriesArray;
     private String[] continentsArray;
     private String[] continentsSplitArray;

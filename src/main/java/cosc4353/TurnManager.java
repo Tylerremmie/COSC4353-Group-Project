@@ -1,6 +1,7 @@
 package cosc4353;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TurnManager {
 
@@ -12,6 +13,13 @@ public class TurnManager {
     private ArrayList<Player> Players;
     private Board board;
 
+    private Territory attackingTerritory;
+    private Territory defendingTerritory;
+    private Player attackingPlayer;
+    private Player defendingPlayer;
+
+    private List<Observer> observers = new ArrayList<>();
+
     public TurnManager(ArrayList<Player> Players, Board board) {
         playersTurn = 0; //index of arraylist Players
         turnNumber = 1;
@@ -20,10 +28,6 @@ public class TurnManager {
         this.board = board;
 
         actionManager = new ActionManager();
-    }
-
-    public void attack() {
-
     }
 
     public boolean takeTurn() {
@@ -41,6 +45,40 @@ public class TurnManager {
         if(actionManager.isRedoAvailable())
             actionManager.redo();
         return true;
+    }
+
+    public void add(Observer o) {
+        observers.add(o);
+    }
+
+    public void attackState(Territory defendingTerritory, Territory attackingTerritory) {
+        this.defendingTerritory = defendingTerritory;
+        this.attackingTerritory = attackingTerritory;
+        this.defendingPlayer = defendingTerritory.getPlayerOccupying();
+        this.attackingPlayer = attackingTerritory.getPlayerOccupying();
+        attack();
+    }
+
+    public Territory getAttackingTerritory() {
+        return attackingTerritory;
+    }
+
+    public Territory getDefendingTerritory() {
+        return defendingTerritory;
+    }
+
+    public Player getAttackingPlayer() {
+        return attackingPlayer;
+    }
+
+    public Player getDefendingPlayer() {
+        return defendingPlayer;
+    }
+
+    private void attack() {
+        for(Observer observer : observers) {
+            observer.announce();
+        }
     }
 
     //////////////////////////////////////////////////
@@ -62,6 +100,19 @@ public class TurnManager {
                 }
         }
         return attackableTerritories;
+    }
+
+    public ArrayList<Territory> getControlledAdjacent(Territory enemyTerritory) {
+        ArrayList<Territory> friendlyAdjacent = new ArrayList<Territory>();
+        ArrayList<Territory> enemyAdjacent = enemyTerritory.getAdjacencies();
+
+        Player currentPlayer = Players.get(this.playersTurn);
+
+        for(int i = 0; i < enemyAdjacent.size(); i++) {
+            if(enemyAdjacent.get(i).getPlayerOccupying() == currentPlayer)
+                friendlyAdjacent.add(enemyAdjacent.get(i));
+        }
+        return friendlyAdjacent;
     }
 
     public int getplayersTurn() {
