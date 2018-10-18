@@ -89,7 +89,6 @@ public class Engine implements GetPayment {
 
 				case 8:
 					gameover = true;
->>>>>>> 53059ef674a9a218e3488868b8026688a5442546
 					break;
 			}
 		}
@@ -98,28 +97,18 @@ public class Engine implements GetPayment {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
-<<<<<<< HEAD
-			while(selection < 1 || selection > 5) {
-				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Turn number: " + turnManager.getturnNumber());
-				System.out.println("-------------------------");
-				System.out.println("1 - Finish Turn");
-                System.out.println("2 - Undo");
-                System.out.println("3 - Redo");
-                System.out.println("4 - Purchase Additional Cards ");
-                System.out.println("5 - Exit");
-=======
+
 			while(selection < 1 || selection > 8) {
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
 				System.out.println("----------------------------------------------------------");
 				System.out.println("1: Place New Armies");
-                System.out.println("2: Attack");
-                System.out.println("3: Fortify");
+                		System.out.println("2: Attack");
+                		System.out.println("3: Fortify");
 				System.out.println("4: Spend Credits");
 				System.out.println("5: Undo Turn");
 				System.out.println("6: Redo Turn");
 				System.out.println("7: End Turn");
 				System.out.println("8: End Game");
->>>>>>> 53059ef674a9a218e3488868b8026688a5442546
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
