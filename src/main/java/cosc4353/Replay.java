@@ -36,13 +36,6 @@ public class  Replay {
     private String fileDownload = System.getProperty("user.dir") + "/src/main/resources/replays/testdownload.ser";
     //TODO file naming convention needs to be cross-platform. Currently Linux compatible
 
-    public String getS3access() {
-        return s3access;
-    }
-
-    public String getS3Secret() {
-        return s3Secret;
-    }
 
     public void setS3access(String s3access) {
         this.s3access = s3access;
