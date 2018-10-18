@@ -5,7 +5,6 @@ import java.util.ArrayList;
 /**
  * Class for Territory objects.
  * @author Tyler Remmie
- * @date 9/8/2018
  */
 
 public class Territory {
@@ -27,9 +26,8 @@ public class Territory {
     //SET functions
 
     //Called later in a board creation function
-    public boolean createAdjacencies(ArrayList<Territory> adjacent) {
+    public void createAdjacencies(ArrayList<Territory> adjacent) {
         this.adjacent = adjacent;
-        return true;
     }
 
     //Called later in a game creation function

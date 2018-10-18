@@ -1,5 +1,6 @@
 package cosc4353;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,21 +46,23 @@ public class Engine implements GetPayment {
 	}
 
 	public void Turns() {
+
 		TurnManager turnManager = new TurnManager(players, board);
 
 		while(!gameover) {
 			int userChoice = menu(turnManager);
 			switch(userChoice) {
                 case 1:
-                    turnManager.takeTurn();
+					// Place Armies
 					break;
 
-                case 2:
-                    turnManager.undo();
+				case 2:
+					// Attack
+					attackMenu(turnManager, board);
 					break;
 				
                 case 3:
-                    turnManager.redo();
+					// Fortify
 					break;
 					
                 case 4:
@@ -68,9 +71,26 @@ public class Engine implements GetPayment {
                     
                 case 5:
                     gameover = true;
+
+                    // Spend Credits
 					break;
-	
-				default:
+				
+				case 5:
+					turnManager.undo();
+					break;
+
+				case 6:
+					turnManager.redo();
+					break;
+
+				case 7:
+					turnManager.takeTurn();
+					break;
+
+				case 8:
+					gameover = true;
+>>>>>>> 53059ef674a9a218e3488868b8026688a5442546
+					break;
 			}
 		}
 	}
@@ -78,6 +98,7 @@ public class Engine implements GetPayment {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
+<<<<<<< HEAD
 			while(selection < 1 || selection > 5) {
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Turn number: " + turnManager.getturnNumber());
 				System.out.println("-------------------------");
@@ -86,6 +107,19 @@ public class Engine implements GetPayment {
                 System.out.println("3 - Redo");
                 System.out.println("4 - Purchase Additional Cards ");
                 System.out.println("5 - Exit");
+=======
+			while(selection < 1 || selection > 8) {
+				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
+				System.out.println("----------------------------------------------------------");
+				System.out.println("1: Place New Armies");
+                System.out.println("2: Attack");
+                System.out.println("3: Fortify");
+				System.out.println("4: Spend Credits");
+				System.out.println("5: Undo Turn");
+				System.out.println("6: Redo Turn");
+				System.out.println("7: End Turn");
+				System.out.println("8: End Game");
+>>>>>>> 53059ef674a9a218e3488868b8026688a5442546
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
@@ -93,6 +127,7 @@ public class Engine implements GetPayment {
 		}
         return selection;
 	}
+
 
 	private ArrayList<Player> Create_Names_and_Turn_Position(int numberofplayers) {
 		ArrayList<Player> tempplayers = new ArrayList<Player>();
@@ -224,6 +259,17 @@ public class Engine implements GetPayment {
 		return selection - 1;
 	}
 
+	public static void attackMenu(TurnManager turnManager, Board board) {
+		ArrayList<Territory> attackableTerritories = new ArrayList<Territory>(turnManager.getAttackableTerritories());
+		System.out.println("\n================================================================");
+		System.out.println(turnManager.getCurrentPlayerName() + ": Please choose a territory to attack.");
+		System.out.println("================================================================");
+
+		for(int i = 0; i < attackableTerritories.size(); i++) {
+			System.out.println((i + 1) + ": " + attackableTerritories.get(i).getName() + " [" + attackableTerritories.get(i).getnumberofArmies() + "] - occupied by " + attackableTerritories.get(i).getPlayerOccupying().getName());
+		}
+	}
+
 	//Scanner Functions
     public static int Get_A_Number(){
 		int num;
@@ -295,21 +341,16 @@ public class Engine implements GetPayment {
 		}while(true);
 		return color;
 	}
-	
 
-	
     public static void clearScreen() {  
-		/*
 		try {
 			if (System.getProperty("os.name").contains("Windows"))
 				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 			else
 				Runtime.getRuntime().exec("clear");
 		} catch (IOException | InterruptedException ex) {}
-		*/
 	}
 
-	
 	public int givePlayerCredit() {
 		System.out.println("You purchased  100 credit");
 		
