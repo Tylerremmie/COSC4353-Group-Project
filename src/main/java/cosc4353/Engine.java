@@ -29,14 +29,17 @@ public class Engine implements GetPayment {
             }
 		}
 		// Create Board
-		board = new Board();
-		board.createBoard();
+		//board = new Board();
+		//board.createBoard();
 
 		// Setup the players and board with armies
-		setupArmies(players, board);
+		//setupArmies(players, board);
 
 		// Create and Shuffle Deck
-		deck = new Deck(board.getTerritories());
+		//deck = new Deck(board.getTerritories());
+        
+        Turns();
+       
 		clearScreen();
 		
 	}
@@ -58,8 +61,12 @@ public class Engine implements GetPayment {
                 case 3:
                     turnManager.redo();
 					break;
-                    
+					
                 case 4:
+                	(turnManager.getCurrentPlayerObject()).incrementInGameCredit(givePlayerCredit());
+                	break;
+                    
+                case 5:
                     gameover = true;
 					break;
 	
@@ -71,13 +78,14 @@ public class Engine implements GetPayment {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
-			while(selection < 1 || selection > 4) {
+			while(selection < 1 || selection > 5) {
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Turn number: " + turnManager.getturnNumber());
 				System.out.println("-------------------------");
 				System.out.println("1 - Finish Turn");
                 System.out.println("2 - Undo");
                 System.out.println("3 - Redo");
-                System.out.println("4 - Exit");
+                System.out.println("4 - Purchase Additional Cards ");
+                System.out.println("5 - Exit");
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
@@ -135,6 +143,7 @@ public class Engine implements GetPayment {
 			String requested_color = "";
 			do{
 				requested_color = Get_Color();
+				
 				if(available_colors.contains(requested_color)) {
 					available_colors.remove(available_colors.indexOf(requested_color));
 					break;
@@ -302,7 +311,9 @@ public class Engine implements GetPayment {
 
 	
 	public int givePlayerCredit() {
-		System.out.println("it worked");
+		System.out.println("You purchased  100 credit");
+		
+		
 		return 100;
 	} 
 }
