@@ -9,13 +9,14 @@ public class Deck {
 	private ArrayList<Card> deck;
 	
 	public Deck(ArrayList<Territory> territories) {
-		Collections.shuffle(territories);
+		ArrayList<Territory> temp = new ArrayList<Territory>(territories);
+		Collections.shuffle(temp);
 		deck = new ArrayList<Card>();
 
 		String cardtypes[] = new String[] { "Infantry", "Cavalry", "Artillery" };
 
-		for(int i = 0; i < territories.size(); i++) {
-			deck.add(new Card(cardtypes[i % 3], territories.get(i)));
+		for(int i = 0; i < temp.size(); i++) {
+			deck.add(new Card(cardtypes[i % 3], temp.get(i)));
 		}
 		Collections.shuffle(deck);
 	}

@@ -80,10 +80,10 @@ fabric.properties
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-# *.iml
-# modules.xml
-# .idea/misc.xml
-# *.ipr
+*.iml
+modules.xml
+.idea/misc.xml
+*.ipr
 
 # Sonarlint plugin
 .idea/sonarlint
@@ -101,7 +101,7 @@ fabric.properties
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Pack
 *.jar
 *.war
 *.nar
@@ -109,6 +109,7 @@ fabric.properties
 *.zip
 *.tar.gz
 *.rar
+*.sh
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -128,5 +129,10 @@ hs_err_pid*
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
+#team project keys
+secrets_DDMT.prop
+
+#game replay files
+*.ser
 
 # End of https://www.gitignore.io/api/java,linux,intellij

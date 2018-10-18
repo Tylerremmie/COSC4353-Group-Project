@@ -5,7 +5,6 @@ import java.util.ArrayList;
 /**
  * Class for Continent objects.
  * @author Tyler Remmie
- * @date 9/8/2018
  */
 
 public class Continent {
@@ -23,7 +22,7 @@ public class Continent {
         this.territories = territories;
         is_controlled = false;
 
-        System.out.println(name + " created.");
+        //System.out.println(name + " created.");
     }
 
      //SET functions
