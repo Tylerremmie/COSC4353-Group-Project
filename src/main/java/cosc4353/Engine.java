@@ -99,25 +99,12 @@ public class Engine implements GetPayment {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
-<<<<<<< HEAD
 
-			while(selection < 1 || selection > 8) {
-=======
 			while(selection < 1 || selection > 9) {
 				System.out.println("=======================================================================================================");
->>>>>>> c92b131a98d66f50a8d657668a2c834c01285744
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
 				System.out.println("=======================================================================================================");
 				System.out.println("1: Place New Armies");
-<<<<<<< HEAD
-                		System.out.println("2: Attack");
-                		System.out.println("3: Fortify");
-				System.out.println("4: Spend Credits");
-				System.out.println("5: Undo Turn");
-				System.out.println("6: Redo Turn");
-				System.out.println("7: End Turn");
-				System.out.println("8: End Game");
-=======
                 System.out.println("2: Attack");
 				System.out.println("3: Fortify");
 				System.out.println("4: Buy Credits");
@@ -126,7 +113,7 @@ public class Engine implements GetPayment {
 				System.out.println("7: Redo Turn");
 				System.out.println("8: End Turn");
 				System.out.println("9: End Game");
->>>>>>> c92b131a98d66f50a8d657668a2c834c01285744
+
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
