@@ -29,6 +29,7 @@ public class Engine implements GetPayment {
                 System.out.println("Please Enter a valid number of players (2-6):");
             }
 		}
+		clearScreen();
 		// Create Board
 		//board = new Board();
 		//board.createBoard();
@@ -48,6 +49,7 @@ public class Engine implements GetPayment {
 	public void Turns() {
 
 		TurnManager turnManager = new TurnManager(players, board);
+		new AttackWatcher(turnManager);
 
 		while(!gameover) {
 			int userChoice = menu(turnManager);
@@ -58,7 +60,9 @@ public class Engine implements GetPayment {
 
 				case 2:
 					// Attack
-					attackMenu(turnManager, board);
+					Territory enemyTerritory = chooseattackEnemyMenu(turnManager);
+					Territory friendlyTerritory = chooseattackFriendlyMenu(turnManager, enemyTerritory);
+					turnManager.attackState(enemyTerritory, friendlyTerritory);
 					break;
 				
                 case 3:
@@ -71,23 +75,21 @@ public class Engine implements GetPayment {
                     
                 case 5:
                     gameover = true;
-
-                    // Spend Credits
 					break;
 				
-				case 5:
+				case 6:
 					turnManager.undo();
 					break;
 
-				case 6:
+				case 7:
 					turnManager.redo();
 					break;
 
-				case 7:
+				case 8:
 					turnManager.takeTurn();
 					break;
 
-				case 8:
+				case 9:
 					gameover = true;
 					break;
 			}
@@ -97,11 +99,17 @@ public class Engine implements GetPayment {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
+<<<<<<< HEAD
 
 			while(selection < 1 || selection > 8) {
+=======
+			while(selection < 1 || selection > 9) {
+				System.out.println("=======================================================================================================");
+>>>>>>> c92b131a98d66f50a8d657668a2c834c01285744
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
-				System.out.println("----------------------------------------------------------");
+				System.out.println("=======================================================================================================");
 				System.out.println("1: Place New Armies");
+<<<<<<< HEAD
                 		System.out.println("2: Attack");
                 		System.out.println("3: Fortify");
 				System.out.println("4: Spend Credits");
@@ -109,6 +117,16 @@ public class Engine implements GetPayment {
 				System.out.println("6: Redo Turn");
 				System.out.println("7: End Turn");
 				System.out.println("8: End Game");
+=======
+                System.out.println("2: Attack");
+				System.out.println("3: Fortify");
+				System.out.println("4: Buy Credits");
+				System.out.println("5: Spend Credits");
+				System.out.println("6: Undo Turn");
+				System.out.println("7: Redo Turn");
+				System.out.println("8: End Turn");
+				System.out.println("9: End Game");
+>>>>>>> c92b131a98d66f50a8d657668a2c834c01285744
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
@@ -139,6 +157,7 @@ public class Engine implements GetPayment {
 			System.out.println("Rolled a: " + pos[i-1] + "\n");
 		}
 
+		clearScreen();
 		// Currently is sorting lowest rolls to highest (Turn 1 is lowest roller)
 		for (int i = 0; i < numberofplayers-1; i++){
             for (int j = 0; j < numberofplayers-i-1; j++){
@@ -187,9 +206,9 @@ public class Engine implements GetPayment {
 		// Initial claiming of all 42 territories
 		while(board.hasUnoccupied()) {
 			ArrayList<Territory> unoccupiedList = new ArrayList<Territory>(board.getUnoccupied());
-			System.out.println("\n================================================================");
+			System.out.println("\n=======================================================================================================");
 			System.out.println(players.get(currentplayer).getName() + ": Please choose a territory to occupy.   [" + players.get(currentplayer).getNumberofArmies() + "] armies remaining.");
-			System.out.println("================================================================");
+			System.out.println("=======================================================================================================");
 			int userChoice = chooseUnoccupiedMenu(board, unoccupiedList);
 			
 			board.setPlayerOccupying(unoccupiedList.get(userChoice).getName(), players.get(currentplayer));
@@ -203,9 +222,9 @@ public class Engine implements GetPayment {
 		// Continue placing armies onto controlled territories until everyone is out of armies.
 		while(players.get(currentplayer).hasArmy()) {
 			ArrayList<Territory> occupiedList = new ArrayList<Territory>(players.get(currentplayer).getTerritories());
-			System.out.println("\n================================================================");
+			System.out.println("\n=======================================================================================================");
 			System.out.println(players.get(currentplayer).getName() + ": Please choose a controlled territory to place an additonal army.   [" + players.get(currentplayer).getNumberofArmies() + "] armies remaining.");
-			System.out.println("================================================================");
+			System.out.println("=======================================================================================================");
 			
 			int userChoice = chooseOccupiedTerritoryMenu(board, occupiedList);
 
@@ -221,7 +240,6 @@ public class Engine implements GetPayment {
 
 		try{
 			while(selection < 1 || selection > unoccupiedList.size()) {
-				System.out.println("-------------------------");
 				for(int i = 0; i < unoccupiedList.size(); i++)
 					System.out.println((i + 1) + ": " + unoccupiedList.get(i).getName());
 				selection = Get_A_Number();
@@ -248,15 +266,44 @@ public class Engine implements GetPayment {
 		return selection - 1;
 	}
 
-	public static void attackMenu(TurnManager turnManager, Board board) {
+	public static Territory chooseattackEnemyMenu(TurnManager turnManager) {
+		int selection = -1;
 		ArrayList<Territory> attackableTerritories = new ArrayList<Territory>(turnManager.getAttackableTerritories());
-		System.out.println("\n================================================================");
-		System.out.println(turnManager.getCurrentPlayerName() + ": Please choose a territory to attack.");
-		System.out.println("================================================================");
-
-		for(int i = 0; i < attackableTerritories.size(); i++) {
-			System.out.println((i + 1) + ": " + attackableTerritories.get(i).getName() + " [" + attackableTerritories.get(i).getnumberofArmies() + "] - occupied by " + attackableTerritories.get(i).getPlayerOccupying().getName());
+		try{
+			while(selection < 1 || selection > attackableTerritories.size()) {
+				System.out.println("\n=======================================================================================================");
+				System.out.println(turnManager.getCurrentPlayerName() + ": Please choose an enemy territory to attack against.");
+				System.out.println("=======================================================================================================");
+		
+				for(int i = 0; i < attackableTerritories.size(); i++) {
+					System.out.println((i + 1) + ": " + attackableTerritories.get(i).getName() + " [" + attackableTerritories.get(i).getnumberofArmies() + "] - occupied by " + attackableTerritories.get(i).getPlayerOccupying().getName());
+				}
+				selection = Get_A_Number();
+			}
+		} catch (InputMismatchException e) {
+			chooseattackEnemyMenu(turnManager);
 		}
+		return attackableTerritories.get(selection - 1);
+	}
+
+	public static Territory chooseattackFriendlyMenu(TurnManager turnManager, Territory enemyTerritory) {
+		int selection = -1;
+		ArrayList<Territory> friendlyTerritories = new ArrayList<Territory>(turnManager.getControlledAdjacent(enemyTerritory));
+		try{
+			while(selection < 1 || selection > friendlyTerritories.size()) {
+				System.out.println("\n=======================================================================================================");
+				System.out.println(turnManager.getCurrentPlayerName() + ": Please choose a friendly territory to attack with.");
+				System.out.println("=======================================================================================================");
+		
+				for(int i = 0; i < friendlyTerritories.size(); i++) {
+					System.out.println((i + 1) + ": " + friendlyTerritories.get(i).getName() + " [" + friendlyTerritories.get(i).getnumberofArmies() + "]");
+				}
+				selection = Get_A_Number();
+			}
+		} catch (InputMismatchException e) {
+			chooseattackFriendlyMenu(turnManager, enemyTerritory);
+		}
+		return friendlyTerritories.get(selection - 1);
 	}
 
 	//Scanner Functions
