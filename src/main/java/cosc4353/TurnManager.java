@@ -22,6 +22,10 @@ public class TurnManager {
         actionManager = new ActionManager();
     }
 
+    public void attack() {
+
+    }
+
     public boolean takeTurn() {
         actionManager.executeAction(new Turn(this));
         return true;
@@ -42,6 +46,23 @@ public class TurnManager {
     //////////////////////////////////////////////////
     // TurnManager GET AND SET functions
     //////////////////////////////////////////////////
+
+    public ArrayList<Territory> getAttackableTerritories() {
+        ArrayList<Territory> attackableTerritories = new ArrayList<Territory>();
+        Player currentPlayer = Players.get(this.playersTurn);
+
+        ArrayList<Territory> ownedTerritories = currentPlayer.getTerritories();
+        ArrayList<Territory> adjacentTerritories;
+
+        for(int i = 0; i < ownedTerritories.size(); i++) {
+            adjacentTerritories = new ArrayList<Territory>(ownedTerritories.get(i).getAdjacencies());
+                for(int j = 0; j < adjacentTerritories.size(); j++) {
+                    if(adjacentTerritories.get(j).getPlayerOccupying() != currentPlayer && !attackableTerritories.contains(adjacentTerritories.get(j)))
+                        attackableTerritories.add(adjacentTerritories.get(j));
+                }
+        }
+        return attackableTerritories;
+    }
 
     public int getplayersTurn() {
         return playersTurn;
@@ -100,6 +121,10 @@ public class TurnManager {
 
     public String getCurrentPlayerName() {
         return Players.get(playersTurn).getName();
+    }
+
+    public Player getCurrentPlayerObject() {
+        return Players.get(playersTurn);
     }
 
     public ArrayList<Player> getPlayersObject() {
