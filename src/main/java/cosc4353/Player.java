@@ -12,6 +12,7 @@ public class Player {
     private HashMap<String, Territory> territoriesControlled;
     private HashMap<String, Continent> continentControlled;
     private Hand hand;
+    private int territoriesConquered;
 
     //Constructor for a new player
     public Player(String name, String color, int turnPosition, int numberofArmies) {
@@ -19,6 +20,7 @@ public class Player {
         this.color = color;
         this.turnPosition = turnPosition;
         this.numberofArmies = numberofArmies;
+        territoriesConquered = 0;
 
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();
@@ -92,6 +94,10 @@ public class Player {
     
     public Hand getHand() {
         return hand;
+    }
+
+    public int getTerritoriesConquered() {
+        return territoriesConquered;
     }
 
     public boolean turnIn(int[] cards) {
