@@ -91,6 +91,8 @@ public class Board {
                 territoriesList.add(temp);
             }
 
+
+
             // Create Adjacencies
             for(int i = 0; i < adjacenciesArray.length; i++) {
                 adjacenciessplitArray = adjacenciesArray[i].split(",");
