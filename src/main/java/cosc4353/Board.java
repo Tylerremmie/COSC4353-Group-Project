@@ -15,16 +15,16 @@ import java.util.List;
  */
 
 public class Board {
-
+    
     private String[] territoriesArray;
     private String[] continentsArray;
     private String[] continentsSplitArray;
     private String[] adjacenciesArray;
     private String[] adjacenciessplitArray;
 
-	private String territoriesFile = "src\\main\\resources\\territories.txt";
-	private String continentsFile = "src\\main\\resources\\continents.txt";
-    private String adjacenciesFile = "src\\main\\resources\\adjacent.txt";
+	private String territoriesFile = "src/main/resources/territories.txt";
+    private String continentsFile = "src/main/resources/continents.txt";
+    private String adjacenciesFile = "src/main/resources/adjacent.txt";
     
     private BufferedReader filereader;
     private String inputline;
