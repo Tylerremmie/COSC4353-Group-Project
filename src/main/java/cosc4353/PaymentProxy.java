@@ -5,4 +5,9 @@ public class PaymentProxy implements GetPayment {
 	{
 		return 100;
 	}
+	
+	public int giveOtherPlayerCredit()
+	{
+		return 10;
+	}
 }

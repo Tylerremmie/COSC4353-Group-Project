@@ -178,6 +178,9 @@ public class TurnManager {
         return Players.get(playersTurn);
     }
 
+    public Player getPlayerObject(int playerNumber) {
+        return Players.get(playerNumber);
+    }
     public ArrayList<Player> getPlayersObject() {
         return Players;
     }

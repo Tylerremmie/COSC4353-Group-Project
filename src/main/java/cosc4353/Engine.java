@@ -74,7 +74,16 @@ public class Engine implements GetPayment {
                 	break;
                     
                 case 5:
-                    gameover = true;
+                	int playerNum;
+                	turnManager.getnumberofPlayers();
+            		System.out.println("Which Player would you like to transfer credit to?");
+            		playerNum = Get_A_Number();
+            		if(turnManager.getnumberofPlayers() < playerNum) {
+            			System.out.println("Player number must be valid");
+            		}
+                	(turnManager.getPlayerObject(playerNum)).decrementInGameCredit(giveOtherPlayerCredit());
+                	System.out.print("you gave 10 credit to: ");
+                	System.out.println(playerNum);
 					break;
 				
 				case 6:
@@ -375,9 +384,12 @@ public class Engine implements GetPayment {
 	}
 
 	public int givePlayerCredit() {
-		System.out.println("You purchased  100 credit");
-		
-		
+		System.out.println("You purchased 100 credit");
 		return 100;
+	}
+
+	public int giveOtherPlayerCredit() {
+		System.out.println("You gave 10 credit");
+		return 10;
 	} 
 }
