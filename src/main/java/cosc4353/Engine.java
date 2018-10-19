@@ -72,7 +72,7 @@ public class Engine implements GetPayment {
 
                 case 5:
                     // trade Credits
-                	
+                	giveCreditsMenu(turnManager); 
 					break;
 				
 				case 6:
