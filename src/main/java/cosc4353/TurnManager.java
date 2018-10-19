@@ -10,6 +10,7 @@ public class TurnManager {
     private int playersTurn;
     private int turnNumber;
     private int numberofplayers;
+    private int territoriesConquered;
     private ArrayList<Player> Players;
     private Board board;
 
@@ -17,12 +18,14 @@ public class TurnManager {
     private Territory defendingTerritory;
     private Player attackingPlayer;
     private Player defendingPlayer;
+    private Tweets twitter = new Tweets();
 
     private List<Observer> observers = new ArrayList<>();
 
     public TurnManager(ArrayList<Player> Players, Board board) {
         playersTurn = 0; //index of arraylist Players
         turnNumber = 1;
+        territoriesConquered = 0;
         numberofplayers = Players.size();
         this.Players = Players;
         this.board = board;
@@ -31,6 +34,7 @@ public class TurnManager {
     }
 
     public boolean takeTurn() {
+    	twitter.sendTweet("Player " + (this.playersTurn + 1) + " conquered " + this.territoriesConquered + " territories on turn " + this.turnNumber + ".");
         actionManager.executeAction(new Turn(this));
         return true;
     }

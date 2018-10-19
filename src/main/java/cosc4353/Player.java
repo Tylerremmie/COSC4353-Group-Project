@@ -10,10 +10,10 @@ public class Player {
     private int inGameCredit;
     private int numberofArmies;
     private int turnPosition;
+    private int territoriesConquered;
     private HashMap<String, Territory> territoriesControlled;
     private HashMap<String, Continent> continentControlled;
     private Hand hand;
-    private int territoriesConquered;
 
     //Constructor for a new player
     public Player(String name, String color, int turnPosition, int numberofArmies) {
@@ -21,8 +21,8 @@ public class Player {
         this.color = color;
         this.turnPosition = turnPosition;
         this.numberofArmies = numberofArmies;
+        inGameCredit = 0;
         territoriesConquered = 0;
-        this.inGameCredit = 0;
 
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();
@@ -43,7 +43,7 @@ public class Player {
         return inGameCredit;
     }
 
-    public void setInGameCredit() {
+    public void setInGameCredit(int inGameCredit) {
     	this.inGameCredit = inGameCredit;
     }
     
@@ -57,6 +57,22 @@ public class Player {
 
     public int getNumberofArmies() {
         return numberofArmies;
+    }
+    
+    public int getTerritoriesConquered() {
+    	return territoriesConquered;
+    }
+    
+    public void setTerritoriesConquered(int territoriesConquered) {
+    	this.territoriesConquered = territoriesConquered;
+    }
+    
+    public void increaseTerritoriesConquered(int number) {
+    	territoriesConquered += number;
+    }
+    
+    public void decreaseTerritoriesConquered(int number) {
+    	territoriesConquered -= number;
     }
 
     public void setNumberofArmies(int numberofArmies) {
@@ -104,10 +120,6 @@ public class Player {
     
     public Hand getHand() {
         return hand;
-    }
-
-    public int getTerritoriesConquered() {
-        return territoriesConquered;
     }
 
     public boolean turnIn(int[] cards) {

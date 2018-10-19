@@ -31,19 +31,15 @@ public class Engine implements GetPayment {
 		}
 		clearScreen();
 		// Create Board
-		//board = new Board();
-		//board.createBoard();
+		board = new Board();
+		board.createBoard();
 
 		// Setup the players and board with armies
 		//setupArmies(players, board);
 
 		// Create and Shuffle Deck
-		//deck = new Deck(board.getTerritories());
-        
-        Turns();
-       
+		deck = new Deck(board.getTerritories());
 		clearScreen();
-		
 	}
 
 	public void Turns() {

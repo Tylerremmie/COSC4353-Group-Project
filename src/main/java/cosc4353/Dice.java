@@ -15,5 +15,4 @@ public class Dice {
 		return faceval;
 	}
 	
-	
 }

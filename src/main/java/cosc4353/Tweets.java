@@ -45,7 +45,7 @@ public class Tweets {
     //
     public Tweets(){
         this.loadAccess();
-        ConfigurationBuilder cb = new ConfigurationBuilder();
+        //ConfigurationBuilder cb = new ConfigurationBuilder();
         //cb.setDebugEnabled(true).setOAuthConsumerKey(consumerAccess).setOAuthConsumerSecret(consumerSecret).setOAuthAccessToken(twaccessToken).setOAuthAccessTokenSecret(twsecretToken);
         tweets = new TwitterFactory().getInstance();
         tweets.setOAuthConsumer(consumerAccess,consumerSecret);
