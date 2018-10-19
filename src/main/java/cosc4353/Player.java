@@ -10,6 +10,7 @@ public class Player {
     private int inGameCredit;
     private int numberofArmies;
     private int turnPosition;
+    private int territoriesConquered;
     private HashMap<String, Territory> territoriesControlled;
     private HashMap<String, Continent> continentControlled;
     private Hand hand;
@@ -20,7 +21,8 @@ public class Player {
         this.color = color;
         this.turnPosition = turnPosition;
         this.numberofArmies = numberofArmies;
-        this.inGameCredit = 0;
+        inGameCredit = 0;
+        territoriesConquered = 0;
 
         territoriesControlled = new HashMap<String, Territory>();
         continentControlled = new HashMap<String, Continent>();
@@ -41,7 +43,7 @@ public class Player {
         return inGameCredit;
     }
 
-    public void setInGameCredit() {
+    public void setInGameCredit(int inGameCredit) {
     	this.inGameCredit = inGameCredit;
     }
     
@@ -55,6 +57,22 @@ public class Player {
 
     public int getNumberofArmies() {
         return numberofArmies;
+    }
+    
+    public int getTerritoriesConquered() {
+    	return territoriesConquered;
+    }
+    
+    public void setTerritoriesConquered(int territoriesConquered) {
+    	this.territoriesConquered = territoriesConquered;
+    }
+    
+    public void increaseTerritoriesConquered(int number) {
+    	territoriesConquered += number;
+    }
+    
+    public void decreaseTerritoriesConquered(int number) {
+    	territoriesConquered -= number;
     }
 
     public void setNumberofArmies(int numberofArmies) {

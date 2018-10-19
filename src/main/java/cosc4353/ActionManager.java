@@ -7,10 +7,11 @@ public class ActionManager {
 	private Stack<Action> undos = new Stack<Action>();
 	private Stack<Action> redos = new Stack<Action>();
 
-	public void executeAction(Action a) {
+	public boolean executeAction(Action a) {
 		a.execute();
 		undos.push(a);
 		redos.clear();
+		return true;
 	}
 
 	public boolean isUndoAvailable() {
