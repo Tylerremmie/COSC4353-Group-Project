@@ -15,8 +15,8 @@ java -cp bin cosc4353.Main
 **v.0.4**
 - [X] Notify players if their territories are under attack.
 - [X] Players can purchase in-game credit. Players can use the credit to buy cards, buy undo actions, or transfer the credits to another player.
-- [ ] Post the number of territories conquered by each player on Twitter after each turn and at the end of the game [Reference1](https://developer.twitter.com/en/docs/developer-utilities/twitter-libraries.html) or [Reference2](http://twitter4j.org/en/index.html)
-- [X] Modify pom.xml to generate JavaDocs and class diagrams [Reference](https://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html)
+- [X] Post the number of territories conquered by each player on Twitter after each turn and at the end of the game. Follow us on twitter: https://twitter.com/DDMTRisk
+- [X] Modify pom.xml to generate JavaDocs and class diagrams. [Reference](https://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html)
 
 **v.0.3**
 - [X] Users can undo their actions
