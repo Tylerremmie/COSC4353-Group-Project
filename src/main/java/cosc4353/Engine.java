@@ -35,11 +35,12 @@ public class Engine implements GetPayment {
 		board.createBoard();
 
 		// Setup the players and board with armies
-		//setupArmies(players, board);
+		setupArmies(players, board);
 
 		// Create and Shuffle Deck
 		deck = new Deck(board.getTerritories());
 		clearScreen();
+		
 	}
 
 	public void Turns() {
@@ -64,13 +65,14 @@ public class Engine implements GetPayment {
                 case 3:
 					// Fortify
 					break;
-					
-                case 4:
-                	(turnManager.getCurrentPlayerObject()).incrementInGameCredit(givePlayerCredit());
-                	break;
-                    
+				
+				case 4:
+					// Buy Credits
+					break;
+
                 case 5:
-                    gameover = true;
+                    // trade Credits
+                	giveCreditsMenu(turnManager); 
 					break;
 				
 				case 6:
@@ -95,7 +97,6 @@ public class Engine implements GetPayment {
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
 		try{
-
 			while(selection < 1 || selection > 9) {
 				System.out.println("=======================================================================================================");
 				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
@@ -104,12 +105,11 @@ public class Engine implements GetPayment {
                 System.out.println("2: Attack");
 				System.out.println("3: Fortify");
 				System.out.println("4: Buy Credits");
-				System.out.println("5: Spend Credits");
+				System.out.println("5: Give Credits");
 				System.out.println("6: Undo Turn");
 				System.out.println("7: Redo Turn");
 				System.out.println("8: End Turn");
 				System.out.println("9: End Game");
-
 				selection = Get_A_Number();
 			}
 		} catch (InputMismatchException e) {
@@ -169,7 +169,6 @@ public class Engine implements GetPayment {
 			String requested_color = "";
 			do{
 				requested_color = Get_Color();
-				
 				if(available_colors.contains(requested_color)) {
 					available_colors.remove(available_colors.indexOf(requested_color));
 					break;
@@ -288,6 +287,55 @@ public class Engine implements GetPayment {
 		}
 		return friendlyTerritories.get(selection - 1);
 	}
+	
+	
+	public static void giveCreditsMenu(TurnManager turnmanager){
+		int selection = -1;
+		try{
+		 //print players
+			ArrayList<Player> playerlist = turnmanager.getPlayersObject();
+			
+			while(selection < 1 || selection >(playerlist.size())){
+				
+				for(int i =0;i<(turnmanager.getPlayersObject()).size();i++){
+					
+					if((playerlist.get(i)).getName()!=turnmanager.getCurrentPlayerName()){
+						System.out.println((i+1)+")"+(playerlist.get(i)).getName());
+					}
+				}
+				
+				
+				selection = Get_A_Number();
+			
+			}
+			
+			selection -= 1;
+			
+			int amount =-1;
+			
+			while(amount < 0){
+				
+				System.out.println("How Much? to player:"+ playerlist.get(selection).getName());
+				amount = Get_A_Number();
+				
+				if(amount < 0 || amount > (turnmanager.getCurrentPlayerObject()).getInGameCredit()){
+					System.out.println("Invalid amount!");
+					amount = -1;
+				}
+				
+			}
+			
+			//do transfer between (turnmanager.getCurrentPlayerObject()) to playerlist.get(selection)
+			
+			transferGameCredit((turnmanager.getCurrentPlayerObject()),playerlist.get(selection),amount);
+			
+		}catch(InputMismatchException e){
+			giveCreditsMenu(turnmanager);
+		}
+		
+		
+		
+	}
 
 	//Scanner Functions
     public static int Get_A_Number(){
@@ -369,11 +417,14 @@ public class Engine implements GetPayment {
 				Runtime.getRuntime().exec("clear");
 		} catch (IOException | InterruptedException ex) {}
 	}
+    
+    public static void transferGameCredit(Player from, Player to,int amount){
+    	from.decrementInGameCredit(amount);
+    	to.incrementInGameCredit(amount);
+    }
 
 	public int givePlayerCredit() {
-		System.out.println("You purchased  100 credit");
-		
-		
+		System.out.println("it worked");
 		return 100;
 	} 
 }
