@@ -19,7 +19,7 @@ import java.util.Scanner;
 */
 public class Chatbot extends TelegramLongPollingBot {
 
-    private String chatID = "-1001329331161"; //normal not test one2  -1001244051424 this is the ChucksTestID
+    private String chatID = "-1001329331161";
     public ArrayList<Player> telegramPlayers = new ArrayList<Player>(3);
     private Integer playerCount = 0;
     private Update parseUpdate;
