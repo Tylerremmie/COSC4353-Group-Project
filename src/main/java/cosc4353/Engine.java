@@ -1,33 +1,55 @@
 package cosc4353;
 
+import org.telegram.telegrambots.ApiContextInitializer;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.InputMismatchException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Engine implements GetPayment {
 
 	ArrayList<Player> players;
 	Board board;
 	Deck deck;
+	//private String gameID =  new SimpleDateFormat("mmss").format(new Date());
 
 	private static Scanner keyboard = new Scanner(System.in);
 	public static boolean gameover = false;
 	public static boolean setup = false;
+	private Integer telegramGame = 1;
+
+
 
     public void StartUp() {
         System.out.println("RISK Board Game");
 
         while(true) {
-            System.out.println("Enter Number of Players:");
-            int numplayer = Get_A_Number();
-            if(numplayer >= 2 && numplayer <= 6) {
-                players = Create_Names_and_Turn_Position(numplayer);
-                break;
-            }else{
-                System.out.println("Please Enter a valid number of players (2-6):");
-            }
+        	System.out.println("Press 1 to start a game through Telegram or any other digit to proceed:");
+        	telegramGame = Get_A_Number();
+        	if(!(telegramGame == 1)){
+				System.out.println("Enter Number of Players:");
+				int numplayer = Get_A_Number();
+				if(numplayer >= 2 && numplayer <= 6) {
+					players = Create_Names_and_Turn_Position(numplayer);
+					break;
+				}else{
+					System.out.println("Please Enter a valid number of players (2-6):");
+				}
+			}
+			else
+			{
+				System.out.println("Telegram players must join channel DDMT_Gameplay and use /ddmt_risk to start. Waiting for 3 players to join...");
+				keyboard.nextLine();
+
+				/*
+				Telegram bot only runs if the option is chosen at start of the game.
+				 */
+
+			}
+
 		}
 		clearScreen();
 		// Create Board
@@ -43,13 +65,26 @@ public class Engine implements GetPayment {
 		
 	}
 
+
+	public void BotLaunch(){
+		ApiContextInitializer.init();
+		TelegramBotsApi botsApi = new TelegramBotsApi();
+		try{
+			botsApi.registerBot(new Chatbot());
+
+		} catch (TelegramApiException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void Turns() {
 
 		TurnManager turnManager = new TurnManager(players, board);
 		new AttackWatcher(turnManager);
 
 		while(!gameover) {
-			int userChoice = menu(turnManager);
+			int userChoice = Integer.parseInt(getinput(turnManager.getCurrentPlayerName(), turnManager.getturnNumber()));
+			
 			switch(userChoice) {
                 case 1:
 					// Place Armies
@@ -71,8 +106,16 @@ public class Engine implements GetPayment {
 					break;
 
                 case 5:
-                    // trade Credits
-                	giveCreditsMenu(turnManager); 
+                	int playerNum;
+                	turnManager.getnumberofPlayers();
+            		System.out.println("Which Player would you like to transfer credit to?");
+            		playerNum = Get_A_Number();
+            		if(turnManager.getnumberofPlayers() < playerNum) {
+            			System.out.println("Player number must be valid");
+            		}
+                	(turnManager.getPlayerObject(playerNum)).decrementInGameCredit(giveOtherPlayerCredit());
+                	System.out.print("you gave 10 credit to: ");
+                	System.out.println(playerNum);
 					break;
 				
 				case 6:
@@ -94,29 +137,35 @@ public class Engine implements GetPayment {
 		}
 	}
 
-	public static int menu(TurnManager turnManager) {
-		int selection = -1;
-		try{
-			while(selection < 1 || selection > 9) {
-				System.out.println("=======================================================================================================");
-				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
-				System.out.println("=======================================================================================================");
-				System.out.println("1: Place New Armies");
-                System.out.println("2: Attack");
-				System.out.println("3: Fortify");
-				System.out.println("4: Buy Credits");
-				System.out.println("5: Give Credits");
-				System.out.println("6: Undo Turn");
-				System.out.println("7: Redo Turn");
-				System.out.println("8: End Turn");
-				System.out.println("9: End Game");
-				selection = Get_A_Number();
+    public String getinput(String currentplayername, int turnnumber) {
+
+		Timer timer = new Timer();
+        Menu menu = new Menu();
+        
+		timer.start();
+        menu.start();
+        
+        menu.setTurnNumber(turnnumber);
+        menu.setCurrentPlayer(currentplayername);
+		
+		//System.out.println("Started while!");
+		String holder = "";
+		while(timer.isAlive() && !timer.isInterrupted()){
+			if(menu.getdata() != ""){
+				holder = menu.getdata();
+				timer.interrupt();
 			}
-		} catch (InputMismatchException e) {
-			menu(turnManager);
 		}
-        return selection;
-	}
+		
+		if(!menu.interrupted()){
+			menu.interrupt();
+		}
+		
+		if(holder == "")
+			return "8";
+		
+        return holder;
+    }
 
 
 	private ArrayList<Player> Create_Names_and_Turn_Position(int numberofplayers) {
@@ -179,6 +228,20 @@ public class Engine implements GetPayment {
 			tempplayers.add(i, new Player(names[i], requested_color, (i + 1), getArmyCount(numberofplayers)));  // Player(Name, Color, TurnPosition, numberofArmies)
 		}
 		return tempplayers;
+	}
+
+	/**Overloaded function creates the player array based on Telegram input rather than console inpute
+	 *
+	 * @param players Array created by the Chatbot
+	 * @param numberofplayers for this function. always 3 when we come from Telegram
+	 * @return a formatted array that the Turns method can use
+	 * Dan M.
+	 */
+	private ArrayList<Player> Create_Names_and_Turn_Position(ArrayList<Player> players,  int numberofplayers){
+
+		ArrayList <Player> telegramPlayers = players;
+
+		return telegramPlayers;
 	}
 
 	public static void setupArmies(ArrayList<Player> players, Board board) {
@@ -424,7 +487,12 @@ public class Engine implements GetPayment {
     }
 
 	public int givePlayerCredit() {
-		System.out.println("it worked");
+		System.out.println("You purchased 100 credit");
 		return 100;
-	} 
+	}
+
+	public int giveOtherPlayerCredit() {
+		System.out.println("You gave 10 credit");
+		return 10;
+	}
 }

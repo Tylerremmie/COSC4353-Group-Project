@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
+/**3
  Class used to tweet during a session of our game
 
   Dan Martinez
@@ -83,10 +83,16 @@ public class Tweets {
             e.printStackTrace();
             return false;
         }
+    }
+/*
+    public boolean getTimeline(){
 
-    //public void readTweets
     }
 
+    public boolean deleteTweets(){
+
+    }
+*/
     //secondary method to build Twitter instance to access our account.
     public ConfigurationBuilder config(){
         this.loadAccess();
