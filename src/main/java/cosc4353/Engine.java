@@ -49,7 +49,8 @@ public class Engine implements GetPayment {
 		new AttackWatcher(turnManager);
 
 		while(!gameover) {
-			int userChoice = menu(turnManager);
+			int userChoice = Integer.parseInt(getinput(turnManager.getCurrentPlayerName(), turnManager.getturnNumber()));
+			
 			switch(userChoice) {
                 case 1:
 					// Place Armies
@@ -102,29 +103,35 @@ public class Engine implements GetPayment {
 		}
 	}
 
-	public static int menu(TurnManager turnManager) {
-		int selection = -1;
-		try{
-			while(selection < 1 || selection > 9) {
-				System.out.println("=======================================================================================================");
-				System.out.println(turnManager.getCurrentPlayerName() + "'s turn. Please choose an action. Turn number: " + turnManager.getturnNumber());
-				System.out.println("=======================================================================================================");
-				System.out.println("1: Place New Armies");
-                System.out.println("2: Attack");
-				System.out.println("3: Fortify");
-				System.out.println("4: Buy Credits");
-				System.out.println("5: Give Credits");
-				System.out.println("6: Undo Turn");
-				System.out.println("7: Redo Turn");
-				System.out.println("8: End Turn");
-				System.out.println("9: End Game");
-				selection = Get_A_Number();
+    public String getinput(String currentplayername, int turnnumber) {
+
+		Timer timer = new Timer();
+        Menu menu = new Menu();
+        
+		timer.start();
+        menu.start();
+        
+        menu.setTurnNumber(turnnumber);
+        menu.setCurrentPlayer(currentplayername);
+		
+		//System.out.println("Started while!");
+		String holder = "";
+		while(timer.isAlive() && !timer.isInterrupted()){
+			if(menu.getdata() != ""){
+				holder = menu.getdata();
+				timer.interrupt();
 			}
-		} catch (InputMismatchException e) {
-			menu(turnManager);
 		}
-        return selection;
-	}
+		
+		if(!menu.interrupted()){
+			menu.interrupt();
+		}
+		
+		if(holder == "")
+			return "8";
+		
+        return holder;
+    }
 
 
 	private ArrayList<Player> Create_Names_and_Turn_Position(int numberofplayers) {
