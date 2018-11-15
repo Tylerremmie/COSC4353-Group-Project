@@ -1,33 +1,55 @@
 package cosc4353;
 
+import org.telegram.telegrambots.ApiContextInitializer;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.InputMismatchException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Engine implements GetPayment {
 
 	ArrayList<Player> players;
 	Board board;
 	Deck deck;
+	//private String gameID =  new SimpleDateFormat("mmss").format(new Date());
 
 	private static Scanner keyboard = new Scanner(System.in);
 	public static boolean gameover = false;
 	public static boolean setup = false;
+	private Integer telegramGame = 1;
+
+
 
     public void StartUp() {
         System.out.println("RISK Board Game");
 
         while(true) {
-            System.out.println("Enter Number of Players:");
-            int numplayer = Get_A_Number();
-            if(numplayer >= 2 && numplayer <= 6) {
-                players = Create_Names_and_Turn_Position(numplayer);
-                break;
-            }else{
-                System.out.println("Please Enter a valid number of players (2-6):");
-            }
+        	System.out.println("Press 1 to start a game through Telegram or any other digit to proceed:");
+        	telegramGame = Get_A_Number();
+        	if(!(telegramGame == 1)){
+				System.out.println("Enter Number of Players:");
+				int numplayer = Get_A_Number();
+				if(numplayer >= 2 && numplayer <= 6) {
+					players = Create_Names_and_Turn_Position(numplayer);
+					break;
+				}else{
+					System.out.println("Please Enter a valid number of players (2-6):");
+				}
+			}
+			else
+			{
+				System.out.println("Telegram players must join channel DDMT_Gameplay and use /ddmt_risk to start. Waiting for 3 players to join...");
+				keyboard.nextLine();
+
+				/*
+				Telegram bot only runs if the option is chosen at start of the game.
+				 */
+
+			}
+
 		}
 		clearScreen();
 		// Create Board
@@ -41,6 +63,18 @@ public class Engine implements GetPayment {
 		deck = new Deck(board.getTerritories());
 		clearScreen();
 		
+	}
+
+
+	public void BotLaunch(){
+		ApiContextInitializer.init();
+		TelegramBotsApi botsApi = new TelegramBotsApi();
+		try{
+			botsApi.registerBot(new Chatbot());
+
+		} catch (TelegramApiException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void Turns() {
@@ -194,6 +228,20 @@ public class Engine implements GetPayment {
 			tempplayers.add(i, new Player(names[i], requested_color, (i + 1), getArmyCount(numberofplayers)));  // Player(Name, Color, TurnPosition, numberofArmies)
 		}
 		return tempplayers;
+	}
+
+	/**Overloaded function creates the player array based on Telegram input rather than console inpute
+	 *
+	 * @param players Array created by the Chatbot
+	 * @param numberofplayers for this function. always 3 when we come from Telegram
+	 * @return a formatted array that the Turns method can use
+	 * Dan M.
+	 */
+	private ArrayList<Player> Create_Names_and_Turn_Position(ArrayList<Player> players,  int numberofplayers){
+
+		ArrayList <Player> telegramPlayers = players;
+
+		return telegramPlayers;
 	}
 
 	public static void setupArmies(ArrayList<Player> players, Board board) {
@@ -446,5 +494,5 @@ public class Engine implements GetPayment {
 	public int giveOtherPlayerCredit() {
 		System.out.println("You gave 10 credit");
 		return 10;
-	} 
+	}
 }
