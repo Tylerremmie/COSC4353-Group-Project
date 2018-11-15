@@ -14,7 +14,7 @@ java -cp target/classes/ cosc4353.Main
 
 **v.0.5**
 - [X] Timeout: A player has only 30 seconds to take an action, otherwise the game moves on to the next player
-- [ ] Telegram Chatbot: Players can play using a Chatbot. At first, player identifies the game session that it wants to play by entering a gameId. A game starts when all players have joined the game. Assume that the number of players in this case is always 3.
+- [X] Telegram Chatbot: Players can play using a Chatbot. At first, player identifies the game session that it wants to play by entering a gameId. A game starts when all players have joined the game. Assume that the number of players in this case is always 3.
 
 **v.0.4**
 - [X] Notify players if their territories are under attack.
