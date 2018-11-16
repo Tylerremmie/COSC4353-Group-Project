@@ -79,7 +79,7 @@ public class Engine implements GetPayment {
                   }
         	  }
           }
-    	System.out.println("hiiii0");
+    	//System.out.println("hiiii0");
 		clearScreen();
 		// Create Board
 		board = new Board();
@@ -89,9 +89,9 @@ public class Engine implements GetPayment {
 
 		// Create and Shuffle Deck
 		deck = new Deck(board.getTerritories());
-		System.out.println("hiiii1");
+		//System.out.println("hiiii1");
 		clearScreen();
-		System.out.println("hiiii2");
+		//System.out.println("hiiii2");
           
 	}
 
@@ -101,7 +101,7 @@ public class Engine implements GetPayment {
 		new AttackWatcher(turnManager);
 
 		while(!gameover) {
-			int userChoice = menu(turnManager);
+			int userChoice = Integer.parseInt(getinput(turnManager.getCurrentPlayerName(), turnManager.getturnNumber()));
 			switch(userChoice) {
                 case 1:
 					// Place Armies
@@ -160,6 +160,36 @@ public class Engine implements GetPayment {
 			}
 		}
 	}
+
+	public String getinput(String currentplayername, int turnnumber) {
+
+		Timer timer = new Timer();
+        Menu menu = new Menu();
+        
+		timer.start();
+        menu.start();
+        
+        menu.setTurnNumber(turnnumber);
+        menu.setCurrentPlayer(currentplayername);
+		
+		//System.out.println("Started while!");
+		String holder = "";
+		while(timer.isAlive() && !timer.isInterrupted()){
+			if(menu.getdata() != ""){
+				holder = menu.getdata();
+				timer.interrupt();
+			}
+		}
+		
+		if(!menu.interrupted()){
+			menu.interrupt();
+		}
+		
+		if(holder == "")
+			return "8";
+		
+        return holder;
+    }
 
 	public static int menu(TurnManager turnManager) {
 		int selection = -1;
