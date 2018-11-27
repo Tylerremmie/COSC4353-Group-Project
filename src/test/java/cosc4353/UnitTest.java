@@ -199,6 +199,14 @@ public class UnitTest
 		Assert.assertEquals(engine.getinput("Tom", 3),"8");
 		
 	}
+	
+	@Test
+	public void testannounce() {
+		Board board = new Board();
+		TurnManager turnManager = new TurnManager(players, board);
+		turnManager.attackState(territory, territory);
+	}
+	}
 
 	
 }
