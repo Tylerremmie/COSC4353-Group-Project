@@ -196,7 +196,7 @@ public class UnitTest
 	
 	@Test
 	public void testThreadTimeout() {
-		Assert.assertTrue(engine.getinput("Tom", 3),"8");
+		Assert.assertEquals(engine.getinput("Tom", 3),"8");
 		
 	}
 
