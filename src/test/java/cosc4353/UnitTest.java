@@ -194,4 +194,11 @@ public class UnitTest
 		Assert.assertNotNull(turnManager.getPlayersObject());
 	}
 	
+	@Test
+	public void testThreadTimeout() {
+		Assert.assertTrue(engine.getinput("Tom", 3),"8");
+		
+	}
+
+	
 }
