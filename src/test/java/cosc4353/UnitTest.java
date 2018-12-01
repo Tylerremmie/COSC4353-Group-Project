@@ -121,6 +121,15 @@ public class UnitTest
 		Assert.assertEquals(T2.getAdjacencies(), territories);
 		*/
 	}
+	
+	
+	@Test
+	public void testMenu(){
+		Menu men = new Menu();
+		men.run();
+		men.interrupt();
+		Assert.assertTrue(men.interrupted());
+	}
 
 	@Test
 	public void testDice() {
@@ -187,6 +196,8 @@ public class UnitTest
 		
 		Assert.assertTrue(hand.checkcards(1, 2, 3));
 		Assert.assertTrue(hand.checkcards(1, 4, 2));
+		
+		Assert.assertTrue(hand.checkcards(1, 1, 1));
 		
 		Assert.assertTrue(hand.checkcards(1, 1, 4));
 
