@@ -205,6 +205,9 @@ public class UnitTest
 		Timer ti = new Timer();
 		Assert.assertNull(ti.start());
 		
+		ti = new Timer();
+		ti.start();
+		Assert.assertNull(ti.interrupt());
 	}
 	
 	
