@@ -71,18 +71,24 @@ public class UnitTest
 
 		player.decreaseTerritoriesConquered(2);
 		Assert.assertEquals(player.getTerritoriesConquered(),10);
-
-		
-		
 		
 		
 	}
-
+	
 	@Test
-	public void testBoard() {
-
+	public void testEngine(){
 		
+		Assert.assertEquals(engine.getArmyCount(2),35);
+		Assert.assertEquals(engine.getArmyCount(3),35);
+		Assert.assertEquals(engine.getArmyCount(4),30);
+		Assert.assertEquals(engine.getArmyCount(5),25);
+		Assert.assertEquals(engine.getArmyCount(6),20);
+		
+		Assert.assertEquals(engine.givePlayerCredit(),100);
+		Assert.assertEquals(engine.giveOtherPlayerCredit(),10);
+
 	}
+
 
 	
 	@Test
@@ -123,7 +129,7 @@ public class UnitTest
 	}
 	
 	
-//	@Test
+//	@Test // infinate runtime
 //	public void testMenu(){
 //		Menu men = new Menu();
 //		men.run();
@@ -204,6 +210,7 @@ public class UnitTest
 		Assert.assertTrue(hand.checkcards(1, 1, 4));
 
 		Assert.assertTrue(hand.turnInCards(0, 1, 2));
+		
 		Assert.assertNotNull(hand.getHand());
 		
 		
@@ -242,6 +249,18 @@ public class UnitTest
 	}
 	
 	@Test
+	public void testBoard() {
+//		Board Bd = new Board();
+//		Assert.assertTrue(Bd.createBoard());
+//		
+//		Assert.assertNotNull(Bd.getTerritories());
+		
+		
+		
+	}
+
+	
+	@Test
 	public void testThreadTimeout() {
 		Assert.assertEquals(engine.getinput("Tom", 3),"8");
 		
@@ -251,12 +270,14 @@ public class UnitTest
 	public void testTimer(){
 		Timer ti = new Timer();
 		ti.start();
-		Assert.assertFalse(ti.interrupted());
-		
-		ti = new Timer();
-		ti.start();
+		Assert.assertFalse(ti.isInterrupted());
 		ti.interrupt();
-		Assert.assertTrue(ti.interrupted());
+		Assert.assertTrue(ti.isInterrupted());
+		
+//		ti = new Timer();
+//		ti.start();
+//		ti.interrupt();
+//		Assert.assertTrue(ti.isInterrupted());
 	}
 	
 //	@Test // not sure if observer can be tested (doesnt show on the codecov)
