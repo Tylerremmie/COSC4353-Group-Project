@@ -157,6 +157,8 @@ public class UnitTest
 		
 		Assert.assertTrue(hand.checkcards(1, 2, 3));
 		Assert.assertTrue(hand.checkcards(1, 4, 2));
+		
+		Assert.assertTrue(hand.checkcards(1, 1, 1));
 
 		Assert.assertTrue(hand.turnInCards(0, 1, 2));
 		Assert.assertNotNull(hand.getHand());
@@ -193,5 +195,25 @@ public class UnitTest
 		Assert.assertTrue(turnManager.decrementturn());
 		Assert.assertNotNull(turnManager.getPlayersObject());
 	}
+	
+	@Test
+	public void testThreadTimeout() {
+		Assert.assertEquals(engine.getinput("Tom", 3),"8");
+		
+	}
+	
+	@Test
+	public void testTimer(){
+		Timer ti = new Timer();
+		ti.start();
+		Assert.assertFalse(ti.interrupted());
+		
+		ti = new Timer();
+		ti.start();
+		ti.interrupt();
+		Assert.assertTrue(ti.interrupted());
+	}
+	
+	
 	
 }
