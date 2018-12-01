@@ -71,11 +71,18 @@ public class UnitTest
 
 		player.decreaseTerritoriesConquered(2);
 		Assert.assertEquals(player.getTerritoriesConquered(),10);
+		
+		
+	}
+	
+	@Test
+	public void testEngine(){
+		
+		Assert.assertEquals(engine.getArmyCount(2),35);
+		
+		Assert.assertEquals(engine.givePlayerCredit(),100);
+		Assert.assertEquals(engine.giveOtherPlayerCredit(),10);
 
-		
-		
-		
-		
 	}
 
 
