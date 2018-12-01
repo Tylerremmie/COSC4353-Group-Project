@@ -79,6 +79,10 @@ public class UnitTest
 	public void testEngine(){
 		
 		Assert.assertEquals(engine.getArmyCount(2),35);
+		Assert.assertEquals(engine.getArmyCount(3),35);
+		Assert.assertEquals(engine.getArmyCount(4),30);
+		Assert.assertEquals(engine.getArmyCount(5),25);
+		Assert.assertEquals(engine.getArmyCount(6),20);
 		
 		Assert.assertEquals(engine.givePlayerCredit(),100);
 		Assert.assertEquals(engine.giveOtherPlayerCredit(),10);
