@@ -157,6 +157,8 @@ public class UnitTest
 		
 		Assert.assertTrue(hand.checkcards(1, 2, 3));
 		Assert.assertTrue(hand.checkcards(1, 4, 2));
+		
+		Assert.assertTrue(hand.checkcards(1, 1, 1));
 
 		Assert.assertTrue(hand.turnInCards(0, 1, 2));
 		Assert.assertNotNull(hand.getHand());
