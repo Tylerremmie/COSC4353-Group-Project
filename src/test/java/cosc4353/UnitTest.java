@@ -259,17 +259,23 @@ public class UnitTest
 		Assert.assertTrue(ti.interrupted());
 	}
 	
+//	@Test // not sure if observer can be tested (doesnt show on the codecov)
+//	public void testAttackWatcher(){
+//		players.add(player);
+//		Board board = new Board();
+//		TurnManager turnManager = new TurnManager(players, board);
+//		AttackWatcher aw = new AttackWatcher(turnManager);
+//		
+//		aw.announce();
+//		
+//	}
+	
 	@Test
-	public void testAttackWatcher(){
-		players.add(player);
-		Board board = new Board();
-		TurnManager turnManager = new TurnManager(players, board);
-		AttackWatcher aw = new AttackWatcher(turnManager);
-		
-		aw.announce();
-		
+	public void testPaymentProxy(){
+		PaymentProxy pp = new PaymentProxy();
+		Assert.assertEquals(pp.givePlayerCredit(),100);
+		Assert.assertEquals(pp.giveOtherPlayerCredit(),10);
 		
 	}
-	
 	
 }
