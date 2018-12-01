@@ -78,18 +78,6 @@ public class UnitTest
 		
 	}
 
-	@Test
-	public void testBoard() {
-		Board Bd = new Board();
-		Assert.assertTrue(Bd.createBoard());
-		
-		Assert.assertNotNull(Bd.getTerritories());
-		
-		
-		
-		
-		
-	}
 
 	
 	@Test
@@ -249,6 +237,18 @@ public class UnitTest
 	}
 	
 	@Test
+	public void testBoard() {
+		Board Bd = new Board();
+		Assert.assertTrue(Bd.createBoard());
+		
+		Assert.assertNotNull(Bd.getTerritories());
+		
+		
+		
+	}
+
+	
+	@Test
 	public void testThreadTimeout() {
 		Assert.assertEquals(engine.getinput("Tom", 3),"8");
 		
@@ -259,6 +259,7 @@ public class UnitTest
 		Timer ti = new Timer();
 		ti.start();
 		Assert.assertFalse(ti.interrupted());
+		ti.interrupt();
 		
 		ti = new Timer();
 		ti.start();
