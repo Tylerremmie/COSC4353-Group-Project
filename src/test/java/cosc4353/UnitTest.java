@@ -80,7 +80,14 @@ public class UnitTest
 
 	@Test
 	public void testBoard() {
-
+		Board Bd = new Board();
+		Assert.assertTrue(Bd.createBoard());
+		
+		Assert.assertNotNull(Bd.getTerritories());
+		
+		
+		
+		
 		
 	}
 
@@ -123,7 +130,7 @@ public class UnitTest
 	}
 	
 	
-//	@Test
+//	@Test // infinate runtime
 //	public void testMenu(){
 //		Menu men = new Menu();
 //		men.run();
