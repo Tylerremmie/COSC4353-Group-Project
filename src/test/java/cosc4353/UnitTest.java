@@ -107,40 +107,20 @@ public class UnitTest
 
 	@Test
 	public void testTerritory() {
-		/*
-		Assert.assertEquals(territory.getName(), "Brazil");
-		Assert.assertEquals(territory.isOccupied(), false);
-		Assert.assertEquals(territory.getnumberofArmies(), 0);
-		
-		
-		Territory T2 = new Territory("Testing");
-		
-		T2.setnumberofArmies(5);
-		Assert.assertEquals(T2.getnumberofArmies(),5);
-		T2.increaseArmies(5);
-		Assert.assertEquals(T2.getnumberofArmies(),10);
-		T2.decreaseArmies(3);
-		Assert.assertEquals(T2.getnumberofArmies(),7);
-		
-		T2.setPlayer(player);
-		Assert.assertEquals(T2.getPlayerOccupying(),player);
+		Territory terr = new Territory("Brazil");
+		Player playerobj = new Player("Tyler", "Red", 1, 20);
 
-		territories.add(territory);
-		//Assert.assertTrue(T2.createAdjacencies(territories));
-		Assert.assertEquals(T2.getAdjacencies(), territories);
-		*/
+		Assert.assertTrue(terr.setPlayer(playerobj));
+		Assert.assertTrue(terr.setnumberofArmies(100));
+		Assert.assertTrue(terr.increaseArmies(50));
+		Assert.assertTrue(terr.decreaseArmies(50));
+
+		Assert.assertEquals(territory.getName(), "Brazil");
+		Assert.assertTrue(terr.isOccupied());
+		Assert.assertEquals(terr.getnumberofArmies(), 100);
+		Assert.assertEquals(terr.getPlayerOccupying(), playerobj);
 	}
 	
-	
-//	@Test // infinate runtime
-//	public void testMenu(){
-//		Menu men = new Menu();
-//		men.run();
-//		men.interrupt();
-//		Assert.assertTrue(men.interrupted());
-//		
-//		
-//	}
 
 	@Test
 	public void testDice() {
@@ -239,6 +219,7 @@ public class UnitTest
 		players.add(player);
 		Board board = new Board();
 		TurnManager turnManager = new TurnManager(players, board);
+		
 		Assert.assertEquals(turnManager.getnumberofPlayers(), 1);
 		Assert.assertEquals(turnManager.getplayersTurn(), 0);
 		Assert.assertEquals(turnManager.getturnNumber(), 1);

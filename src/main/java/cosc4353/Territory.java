@@ -31,22 +31,26 @@ public class Territory {
     }
 
     //Called later in a game creation function
-    public void setPlayer(Player playerOccupying) {
+    public boolean setPlayer(Player playerOccupying) {
         this.playerOccupying = playerOccupying;
         is_occupied = true;
+        return true;
     }
 
-    public void setnumberofArmies(int armynumber) {
+    public boolean setnumberofArmies(int armynumber) {
         numberofarmies = armynumber;
+        return true;
     }
 
-    public void increaseArmies(int armynumber) {
+    public boolean increaseArmies(int armynumber) {
         numberofarmies = numberofarmies + armynumber;
+        return true;
         //System.out.println(playerOccupying.getName() + " gained army size in " + name + " by " + armynumber);
     }
 
-    public void decreaseArmies(int armynumber) {
+    public boolean decreaseArmies(int armynumber) {
         numberofarmies = numberofarmies - armynumber;
+        return true;
         //System.out.println(playerOccupying.getName() + " lost army size in " + name + " by " + armynumber);
     }
 
