@@ -123,13 +123,15 @@ public class UnitTest
 	}
 	
 	
-	@Test
-	public void testMenu(){
-		Menu men = new Menu();
-		men.run();
-		men.interrupt();
-		Assert.assertTrue(men.interrupted());
-	}
+//	@Test
+//	public void testMenu(){
+//		Menu men = new Menu();
+//		men.run();
+//		men.interrupt();
+//		Assert.assertTrue(men.interrupted());
+//		
+//		
+//	}
 
 	@Test
 	public void testDice() {
@@ -257,6 +259,17 @@ public class UnitTest
 		Assert.assertTrue(ti.interrupted());
 	}
 	
+	@Test
+	public void testAttackWatcher(){
+		players.add(player);
+		Board board = new Board();
+		TurnManager turnManager = new TurnManager(players, board);
+		AttackWatcher aw = new AttackWatcher(turnManager);
+		
+		aw.announce();
+		
+		
+	}
 	
 	
 }
