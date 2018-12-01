@@ -201,12 +201,13 @@ public class UnitTest
 	}
 	
 	@Test
-	public void testannounce() {
-		Board board = new Board();
-		TurnManager turnManager = new TurnManager(players, board);
-		turnManager.attackState(territory, territory);
+	public void testTimer(){
+		Timer ti = new Timer();
+		Assert.assertNull(ti.start());
+		
 	}
-	}
-
 	
+	
+	
+	}
 }
