@@ -35,6 +35,12 @@ public class UnitTest
 		player.setNumberofArmies(5);
 		Assert.assertEquals(player.getNumberofArmies(), 5);
 		
+		Assert.assertTrue(player.hasArmy());
+		player.increaseArmiesBy(1);
+		player.reduceArmiesBy(6);
+		Assert.assertFalse(player.hasArmy());
+		
+		
 		player.setTurnPosition(0);
 		Assert.assertEquals(player.getTurnPosition(),0);
 		player.setTurnPosition(6);
@@ -46,6 +52,30 @@ public class UnitTest
 		Assert.assertNotNull(player.getHand());
 		int[] cards = {0,1,2};
 		Assert.assertTrue(player.turnIn(cards));
+		
+		player.setInGameCredit(10);
+		Assert.assertEquals(player.getInGameCredit(),10);
+		
+		player.incrementInGameCredit(10);
+		player.decrementInGameCredit(5);
+		Assert.assertEquals(player.getInGameCredit(),15);
+
+		
+		
+		
+		player.setTerritoriesConquered(10);
+		Assert.assertEquals(player.getTerritoriesConquered(),10);
+		
+		player.increaseTerritoriesConquered(2);
+		Assert.assertEquals(player.getTerritoriesConquered(),12);
+
+		player.decreaseTerritoriesConquered(2);
+		Assert.assertEquals(player.getTerritoriesConquered(),10);
+
+		
+		
+		
+		
 	}
 
 	@Test
@@ -91,6 +121,17 @@ public class UnitTest
 		Assert.assertEquals(T2.getAdjacencies(), territories);
 		*/
 	}
+	
+	
+//	@Test
+//	public void testMenu(){
+//		Menu men = new Menu();
+//		men.run();
+//		men.interrupt();
+//		Assert.assertTrue(men.interrupted());
+//		
+//		
+//	}
 
 	@Test
 	public void testDice() {
@@ -159,9 +200,13 @@ public class UnitTest
 		Assert.assertTrue(hand.checkcards(1, 4, 2));
 		
 		Assert.assertTrue(hand.checkcards(1, 1, 1));
+		
+		Assert.assertTrue(hand.checkcards(1, 1, 4));
 
 		Assert.assertTrue(hand.turnInCards(0, 1, 2));
 		Assert.assertNotNull(hand.getHand());
+		
+		
 
 	}
 
@@ -214,6 +259,23 @@ public class UnitTest
 		Assert.assertTrue(ti.interrupted());
 	}
 	
+//	@Test // not sure if observer can be tested (doesnt show on the codecov)
+//	public void testAttackWatcher(){
+//		players.add(player);
+//		Board board = new Board();
+//		TurnManager turnManager = new TurnManager(players, board);
+//		AttackWatcher aw = new AttackWatcher(turnManager);
+//		
+//		aw.announce();
+//		
+//	}
 	
+	@Test
+	public void testPaymentProxy(){
+		PaymentProxy pp = new PaymentProxy();
+		Assert.assertEquals(pp.givePlayerCredit(),100);
+		Assert.assertEquals(pp.giveOtherPlayerCredit(),10);
+		
+	}
 	
 }
