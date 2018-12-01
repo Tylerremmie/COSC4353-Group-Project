@@ -205,11 +205,13 @@ public class UnitTest
 	@Test
 	public void testTimer(){
 		Timer ti = new Timer();
-		Assert.assertNull(ti.start());
+		ti.start();
+		Assert.assertFalse(ti.interrupted());
 		
 		ti = new Timer();
 		ti.start();
-		Assert.assertNull(ti.interrupt());
+		ti.interrupt();
+		Assert.assertTrue(ti.interrupted());
 	}
 	
 	
