@@ -7,9 +7,10 @@ class AttackWatcher extends Observer {
         turn.add(this);
     }
 
-    public void announce() {
+    public boolean announce() {
         System.out.println("=======================================================================================================");
         System.out.println("AttackWatcher Observer: " + turn.getDefendingPlayer().getName() + ", your territory " + turn.getDefendingTerritory().getName() + " is under attack by Player " + turn.getAttackingPlayer().getName() + ": " + turn.getAttackingTerritory().getName() + ".");
         System.out.println("=======================================================================================================");
+        return true;
     }
 }

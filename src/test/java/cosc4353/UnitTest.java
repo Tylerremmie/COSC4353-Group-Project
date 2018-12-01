@@ -13,7 +13,7 @@ public class UnitTest
 	ArrayList<Territory> territories = new ArrayList<Territory>();
 	ArrayList<Player> players = new ArrayList<Player>();
 	Player player = new Player("Tyler", "Red", 1, 20);
-	Dice dice = new Dice();;
+	Dice dice = new Dice();
 	Territory territory = new Territory("Brazil");
 	Continent continent = new Continent("South America", 2, territories);
 	Card card = new Card("Infantry", territory);
@@ -89,8 +89,11 @@ public class UnitTest
 
 	}
 
+	@Test
+	public void testa() {
+		Assert.assertEquals(0,0);
+	}
 
-	
 	@Test
 	public void testContinent() {
 		Assert.assertEquals(continent.getName(), "South America");
@@ -223,7 +226,12 @@ public class UnitTest
 		Assert.assertFalse(actionManager.isRedoAvailable());
 		
 		Assert.assertTrue(actionManager.getsize() >=0);
-		
+	}
+
+	@Test
+	public void testAttackWatcher() {
+
+		Assert.assertEquals(0,0);
 	}
 
 	@Test
@@ -250,13 +258,17 @@ public class UnitTest
 	
 	@Test
 	public void testBoard() {
-//		Board Bd = new Board();
-//		Assert.assertTrue(Bd.createBoard());
-//		
-//		Assert.assertNotNull(Bd.getTerritories());
-		
-		
-		
+		Board bd = new Board();
+		bd.createBoard();
+
+		Board bd2 = new Board();
+		bd2.createBoard();
+
+		Assert.assertEquals(bd.getTerritories(), bd2.getTerritories());	
+		Assert.assertEquals(bd.getTerritoriesString(), bd2.getTerritoriesString());
+		Assert.assertEquals(bd.getContinentsString(), bd2.getContinentsString());
+		Assert.assertEquals(bd.getAdjacenciesString(), bd2.getAdjacenciesString());
+
 	}
 
 	

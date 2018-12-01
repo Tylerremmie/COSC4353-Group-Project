@@ -18,22 +18,24 @@ public class ActionManager {
 		return !undos.empty();
 	}
 
-	public void undo() {
+	public boolean undo() {
 		assert(!undos.empty());
 		Action action = undos.pop();
 		action.undo();
 		redos.push(action);
+		return true;
 	}
 
 	public boolean isRedoAvailable() {
 		return !redos.empty();
 	}
 
-	public void redo() {
+	public boolean redo() {
 		assert(!redos.empty());
 		Action action = redos.pop();
 		action.execute();
 		undos.push(action);
+		return true;
 	}
 	
 	public int getsize() {
