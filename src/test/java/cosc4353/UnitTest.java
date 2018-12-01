@@ -35,6 +35,12 @@ public class UnitTest
 		player.setNumberofArmies(5);
 		Assert.assertEquals(player.getNumberofArmies(), 5);
 		
+		Assert.assertTrue(player.hasArmy());
+		player.increaseArmiesBy(1);
+		player.reduceArmiesBy(6);
+		Assert.assertFalse(player.hasArmy());
+		
+		
 		player.setTurnPosition(0);
 		Assert.assertEquals(player.getTurnPosition(),0);
 		player.setTurnPosition(6);
@@ -46,6 +52,30 @@ public class UnitTest
 		Assert.assertNotNull(player.getHand());
 		int[] cards = {0,1,2};
 		Assert.assertTrue(player.turnIn(cards));
+		
+		player.setInGameCredit(10);
+		Assert.assertEquals(player.getInGameCredit(),10);
+		
+		player.incrementInGameCredit(10);
+		player.decrementInGameCredit(5);
+		Assert.assertEquals(player.getInGameCredit(),15);
+
+		
+		
+		
+		player.setTerritoriesConquered(10);
+		Assert.assertEquals(player.getTerritoriesConquered(),10);
+		
+		player.increaseTerritoriesConquered(2);
+		Assert.assertEquals(player.getTerritoriesConquered(),12);
+
+		player.decreaseTerritoriesConquered(2);
+		Assert.assertEquals(player.getTerritoriesConquered(),10);
+
+		
+		
+		
+		
 	}
 
 	@Test
