@@ -16,10 +16,10 @@ import java.util.Properties;
 
 public class Tweets {
 
-    private String consumerAccess;
-    private String consumerSecret;
-    private String twaccessToken;
-    private String twsecretToken;
+    private String consumerAccess ="XXXX";
+    private String consumerSecret ="XXXX";
+    private String twaccessToken = "XXXX";
+    private String twsecretToken = "XXXX";
     private Twitter tweets;
     private List<Status> statuses;
     private String user;

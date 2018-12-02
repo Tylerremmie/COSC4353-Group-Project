@@ -307,7 +307,6 @@ public class UnitTest
 	@Test
 	public void testTweets(){
 		Tweets testtweet = new Tweets();
-		Assert.assertTrue(testtweet.sendTweet("Unit test"));
 		Assert.assertFalse(testtweet.sendTweet("Unit test"));
 		Assert.assertFalse(testtweet.getTimeline());
 		Assert.assertFalse(testtweet.deleteTweets());

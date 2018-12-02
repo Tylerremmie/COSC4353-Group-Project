@@ -92,6 +92,7 @@ public class Engine implements GetPayment {
 
 		// Create and Shuffle Deck
 		deck = new Deck(board.getTerritories());
+		//Gets current Twitter Timeline and prepares starting message
 		tweet.getTimeline();
 		StringBuilder names = new StringBuilder();
 		for(Player p: players ){
@@ -105,6 +106,7 @@ public class Engine implements GetPayment {
 	}
 
 	public void Turns() {
+		//Announces players in new game and deletes all messages previous to that
 		tweet.sendTweet("Game starting with players: " + playing);
 		tweet.deleteTweets();
 
