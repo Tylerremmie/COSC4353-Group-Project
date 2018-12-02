@@ -1,5 +1,6 @@
 package cosc4353;
 
+import com.amazonaws.services.greengrass.model.AssociateServiceRoleToAccountRequest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -245,7 +246,7 @@ public class UnitTest
 		Board bd2 = new Board();
 		bd2.createBoard();
 
-		Assert.assertEquals(bd.getTerritories(), bd2.getTerritories());	
+		Assert.assertEquals(bd.getTerritories(), bd2.getTerritories());
 		Assert.assertEquals(bd.getTerritoriesString(), bd2.getTerritoriesString());
 		Assert.assertEquals(bd.getContinentsString(), bd2.getContinentsString());
 		Assert.assertEquals(bd.getAdjacenciesString(), bd2.getAdjacenciesString());
@@ -290,6 +291,18 @@ public class UnitTest
 		Assert.assertEquals(pp.givePlayerCredit(),100);
 		Assert.assertEquals(pp.giveOtherPlayerCredit(),10);
 		
+	}
+
+	/*
+		On S3 and Twitter tests we have to check for failures since our repo will not have the keys to properly test the functionality.
+		We have ensured these methods were tested locally first before changing to asserting false.
+	*/
+	@Test
+	public void testReplays(){
+
+		Replay s3 = new Replay();
+		Assert.assertFalse(s3.uploadReplay());
+		Assert.assertFalse(s3.downloadReplay());
 	}
 	
 }
