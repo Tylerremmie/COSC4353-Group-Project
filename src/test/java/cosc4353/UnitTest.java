@@ -304,5 +304,14 @@ public class UnitTest
 		Assert.assertFalse(s3.uploadReplay());
 		Assert.assertFalse(s3.downloadReplay());
 	}
+	@Test
+	public void testTweets(){
+		Tweets testtweet = new Tweets();
+		Assert.assertTrue(testtweet.sendTweet("Unit test"));
+		Assert.assertFalse(testtweet.sendTweet("Unit test"));
+		Assert.assertFalse(testtweet.getTimeline());
+		Assert.assertFalse(testtweet.deleteTweets());
+
+	}
 	
 }
