@@ -23,7 +23,7 @@ public class Engine implements GetPayment {
 	private static Scanner keyboard = new Scanner(System.in);
 	public static boolean gameover = false;
 	public static boolean setup = false;
-	public Integer numplayer = null;
+	//public Integer numplayer = null;
 	
 	
 	public static void telegramOrConsole(){
@@ -44,7 +44,7 @@ public class Engine implements GetPayment {
 	}
 	
     public void StartUp() throws InterruptedException {
-    	Thread.sleep(5000);	
+    	//Thread.sleep(5000);
     	if(playingTelegramGame == true){
     		sentMessage = "RISK Board Game";	
     		TelegramBotsApi sendUserMessage = new TelegramBotsApi();	
@@ -62,10 +62,10 @@ public class Engine implements GetPayment {
    		 	Thread.sleep(5000);		//4
    		 System.out.println("this is user input");
    		System.out.println(userInputString);
-   		 	numplayer = Integer.parseInt(userInputString);
-   		 players = Create_Names_and_Turn_Position(numplayer);
+   		Integer telegramplayers = Integer.parseInt(userInputString);
+   		 players = Create_Names_and_Turn_Position(telegramplayers);
    		 System.out.println("this is what numplayer was set to");
-   		 System.out.println(numplayer);
+   		 System.out.println(telegramplayers);
     	}
     	else if(Main.instructionsExecuted == false && playingTelegramGame == false){
         	  while(true) {
@@ -276,10 +276,9 @@ public class Engine implements GetPayment {
             }
 		}
 		clearScreen();
-		// Currently is sorting lowest rolls to highest (Turn 1 is lowest roller)
 		for (int i = 0; i < numberofplayers-1; i++){
             for (int j = 0; j < numberofplayers-i-1; j++){
-                if (pos[j] > pos[j+1]){
+                if (pos[j] < pos[j+1]){
                     int temp = pos[j]; String temp2 = names[j];
                     pos[j] = pos[j+1];
                     names[j] = names[j+1];
@@ -331,6 +330,7 @@ public class Engine implements GetPayment {
 						System.out.println("Color Taken!\nAvailable Colors: " + available_colors + "\n");
 					}
 				}while(true);
+				tempplayers.add(i, new Player(names[i], requested_color, (i + 1), getArmyCount(numberofplayers)));
 			}
 		}
 

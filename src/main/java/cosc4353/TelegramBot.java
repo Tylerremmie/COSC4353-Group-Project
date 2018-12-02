@@ -2,7 +2,6 @@ package cosc4353;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Math.toIntExact;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -55,13 +54,13 @@ public class TelegramBot extends TelegramLongPollingBot {
         } else if (update.hasCallbackQuery()) {
             // Set variables
             String call_data = update.getCallbackQuery().getData();
-            long message_id = update.getCallbackQuery().getMessage().getMessageId();
+            int message_id = update.getCallbackQuery().getMessage().getMessageId();
             long chat_id = update.getCallbackQuery().getMessage().getChatId();
             if (call_data.equals("start")) {
                 String answer = "gamestarted";
                 EditMessageText new_message = new EditMessageText()
                         .setChatId(chat_id)
-                        .setMessageId(toIntExact(message_id))
+                        .setMessageId(message_id)
                         .setText(answer);
                 try {
                     execute(new_message);
@@ -98,7 +97,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     public String getBotUsername() {
     	  // Return bot username
         // If bot username is @MyAmazingBot, it must return 'MyAmazingBot'
-        return "MyAmazingBot";
+        return "Risk-Chatbot";
     }
 
     public String getBotToken() {
