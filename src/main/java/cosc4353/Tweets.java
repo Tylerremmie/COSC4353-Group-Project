@@ -101,7 +101,7 @@ public class Tweets {
             }
             return true;
         }
-        catch(TwitterException e){
+        catch(TwitterException | NullPointerException e){
             e.printStackTrace();
             System.out.println("Failed to delete status: " + e.getMessage());
             return false;
