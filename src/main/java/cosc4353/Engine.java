@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Engine implements GetPayment {
-	public static String sentMessage = null;
+	public static String sentMessage = "Initial";
 	public static String userInputString = "";
 	public static boolean needUserInput = false;
 	public static boolean playingTelegramGame;

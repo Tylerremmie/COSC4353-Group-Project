@@ -298,6 +298,16 @@ public class UnitTest {
 	public void testReplays() {
 
 		Replay s3 = new Replay();
+		try{
+			Method s3access = s3.getClass().getDeclaredMethod("setS3access", String.class);
+			Method s3secret = s3.getClass().getDeclaredMethod("setS3Secret", String.class);
+			s3access.setAccessible(true);
+			s3secret.setAccessible(true);
+			Object s3a = s3access.invoke(s3,"access");
+			Object s3s = s3secret.invoke(s3, "secret");
+		}catch(NoSuchMethodException | InvocationTargetException | IllegalAccessException e ){
+			e.printStackTrace();
+		}
 		Assert.assertFalse(s3.uploadReplay());
 		Assert.assertFalse(s3.downloadReplay());
 	}
@@ -327,5 +337,19 @@ public class UnitTest {
 		Assert.assertFalse(testtweet.sendTweet("Unit test"));
 		Assert.assertFalse(testtweet.getTimeline());
 		Assert.assertFalse(testtweet.deleteTweets());
+	}
+
+	@Test
+	public void testTelegramFunctions() {
+		TelegramBot testBot = new TelegramBot();
+		Assert.assertTrue(testBot.sendInstructions());
+		Assert.assertTrue(testBot.sendUserMessage());
+		Assert.assertEquals(testBot.getBotUsername(), "Risk-Chatbot");
+		Assert.assertEquals(testBot.getBotToken(), "659396904:AAHJ2kEU34amNR3CHNOMvumLNR8zh4nG7UA");
+		Assert.assertEquals(Engine.sentMessage, "Initial");
+		Assert.assertEquals(Engine.userInputString, "");
+		Assert.assertEquals(Engine.gameover, false);
+		Assert.assertEquals(Engine.needUserInput, false);
+		Assert.assertEquals(Engine.playingTelegramGame, false);
 	}
 }
