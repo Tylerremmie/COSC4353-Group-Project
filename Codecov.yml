@@ -1,5 +1,0 @@
-ignore:
-  - "src/main/java/cosc4353/Engine.java"
-  - "src/main/java/cosc4353/Main.java"
-  - "src/main/java/cosc4353/Observer.java"
-  - "src/main/java/cosc4353/TelegramBot.java"
