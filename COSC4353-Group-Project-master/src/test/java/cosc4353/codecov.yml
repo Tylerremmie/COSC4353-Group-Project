@@ -1,2 +1,2 @@
 ignore:
-  - "Engine.java"  # ignore folders and all its contents
+   - "COSC4353-Group-Project/src/main/java/cosc4353"
