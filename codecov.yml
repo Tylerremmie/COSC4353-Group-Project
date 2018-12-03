@@ -5,4 +5,4 @@ ignore:
   - "src/main/java/cosc4353/TelegramBot.java"
   - "src/main/java/cosc4353/AttackWatcher.java"
   - "src/main/java/cosc4353/MenuInput.java"
-  - "src/main/java/cosc4353/Replay.java"
+  - "src/main/java/cosc4353/Board.java"

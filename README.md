@@ -24,7 +24,7 @@ java -cp target/classes/ cosc4353.Main
 
 **v.0.3**
 - [X] Users can undo their actions
-- [ ] Your Program uses Amazon S3 to replay games. (You get some Amazon credits through your GitHub student pack)
+- [X] Your Program uses Amazon S3 to replay games. (You get some Amazon credits through your GitHub student pack)
 - [X] Test cases to cover at least 50% of the code. 
 - [X] Show test coverage on the repository page.
 
