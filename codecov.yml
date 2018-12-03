@@ -3,3 +3,5 @@ ignore:
   - "src/main/java/cosc4353/Main.java"
   - "src/main/java/cosc4353/Observer.java"
   - "src/main/java/cosc4353/TelegramBot.java"
+  - "src/main/java/cosc4353/AttackWatcher.java"
+  - "src/main/java/cosc4353/MenuInput.java"
