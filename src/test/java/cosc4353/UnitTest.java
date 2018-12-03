@@ -331,7 +331,12 @@ public class UnitTest {
 
 	@Test
 	public void testTelegramFunctions() {
-		Assert.assertEquals(Engine.sentMessage, null);
+		TelegramBot testBot = new TelegramBot();
+		Assert.assertTrue(testBot.sendInstructions());
+		Assert.assertTrue(testBot.sendUserMessage());
+		Assert.assertEquals(testBot.getBotUsername(), "Risk-Chatbot");
+		Assert.assertEquals(testBot.getBotToken(), "659396904:AAHJ2kEU34amNR3CHNOMvumLNR8zh4nG7UA");
+		Assert.assertEquals(Engine.sentMessage, "Initial");
 		Assert.assertEquals(Engine.userInputString, "");
 		Assert.assertEquals(Engine.gameover, false);
 		Assert.assertEquals(Engine.needUserInput, false);

@@ -71,26 +71,30 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
    
-    public void sendInstructions(){
+    public boolean sendInstructions(){
     		SendMessage message = new SendMessage() // Create a message object object
     		.setChatId("-1001329331161")
     		.setText("Hello Welcome to Risk! To start the game type /ddmt_risk in a group chat window. You need exactly 3 players to start.");
     		try {
     			execute(message); // Sending our message object to user
+                return true;
   
     		}catch (TelegramApiException e) {
-    			e.printStackTrace();   
+    			e.printStackTrace();
+    			return false;
     		}
     }
     
-    public void sendUserMessage(){
+    public boolean sendUserMessage(){
 		SendMessage message = new SendMessage() // Create a message object object
 		.setChatId("-1001329331161")
 		.setText(Engine.sentMessage);
 		try {
 			execute(message); // Sending our message object to user
+            return true;
 		}catch (TelegramApiException e) {
-			e.printStackTrace();   
+			e.printStackTrace();
+			return false;
 		}
     }
     	
