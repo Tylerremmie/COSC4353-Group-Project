@@ -298,6 +298,16 @@ public class UnitTest {
 	public void testReplays() {
 
 		Replay s3 = new Replay();
+		try{
+			Method s3access = s3.getClass().getDeclaredMethod("setS3access", String.class);
+			Method s3secret = s3.getClass().getDeclaredMethod("setS3Secret", String.class);
+			s3access.setAccessible(true);
+			s3secret.setAccessible(true);
+			Object s3a = s3access.invoke(s3,"access");
+			Object s3s = s3secret.invoke(s3, "secret");
+		}catch(NoSuchMethodException | InvocationTargetException | IllegalAccessException e ){
+			e.printStackTrace();
+		}
 		Assert.assertFalse(s3.uploadReplay());
 		Assert.assertFalse(s3.downloadReplay());
 	}
