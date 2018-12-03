@@ -28,8 +28,8 @@ public class  Replay {
 
 
     private String s3bucket = "risk-replays";
-    private String s3access;
-    private String s3Secret;
+    private String s3access = "XXXX";
+    private String s3Secret = "XXXX";
     private String fileUpload = System.getProperty("user.dir") + "/src/main/resources/replays/examplereplay.ser";
     private String fileDownload = System.getProperty("user.dir") + "/src/main/resources/replays/testdownload.ser";
     private AmazonS3 S3;

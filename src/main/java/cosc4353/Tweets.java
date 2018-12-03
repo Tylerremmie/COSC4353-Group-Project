@@ -1,13 +1,11 @@
 package cosc4353;
 
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.auth.AccessToken;
-import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 /**3
@@ -18,45 +16,44 @@ import java.util.Properties;
 
 public class Tweets {
 
-    private String creds = "secrets_DDMT.prop";
-    private String consumerAccess;
-    private String consumerSecret;
-    private String twaccessToken;
-    private String twsecretToken;
+    private String consumerAccess ="XXXX";
+    private String consumerSecret ="XXXX";
+    private String twaccessToken = "XXXX";
+    private String twsecretToken = "XXXX";
     private Twitter tweets;
+    private List<Status> statuses;
+    private String user;
 
 
-    public void setConsumerAccess(String consumerAccess) {
+    private void setConsumerAccess(String consumerAccess) {
         this.consumerAccess = consumerAccess;
     }
 
-    public void setConsumerSecret(String consumerSecret) {
+    private void setConsumerSecret(String consumerSecret) {
         this.consumerSecret = consumerSecret;
     }
 
-    public void setTwaccessToken(String twaccessToken) {
+    private void setTwaccessToken(String twaccessToken) {
         this.twaccessToken = twaccessToken;
     }
 
-    public void setTwsecretToken(String twsecretToken) {
+    private void setTwsecretToken(String twsecretToken) {
         this.twsecretToken = twsecretToken;
     }
 
     //
-    public Tweets(){
+    Tweets(){
         this.loadAccess();
-        //ConfigurationBuilder cb = new ConfigurationBuilder();
-        //cb.setDebugEnabled(true).setOAuthConsumerKey(consumerAccess).setOAuthConsumerSecret(consumerSecret).setOAuthAccessToken(twaccessToken).setOAuthAccessTokenSecret(twsecretToken);
         tweets = new TwitterFactory().getInstance();
         tweets.setOAuthConsumer(consumerAccess,consumerSecret);
         AccessToken accessToken = new AccessToken(twaccessToken, twsecretToken);
-        //System.out.println(accessToken.getScreenName());
         tweets.setOAuthAccessToken(accessToken);
 
     }
 
     private Boolean loadAccess(){
         try{
+            final String creds = "secrets_DDMT.prop";
             Properties tw = new Properties();
             tw.load(new FileInputStream(creds));
             this.setConsumerAccess(tw.getProperty("twapi"));
@@ -72,7 +69,6 @@ public class Tweets {
         }
     }
 
-//TODO create String template to pass in function call after each player takes a turn.
     //function fails if the same message is sent twice in a row. This is a Twitter restriction
     public boolean sendTweet(String status){
         try{
@@ -80,30 +76,37 @@ public class Tweets {
             return true;
         }
         catch(TwitterException e){
+            e.getMessage();
+            return false;
+        }
+    }
+
+
+    public boolean getTimeline(){
+        try{
+            user = tweets.verifyCredentials().getScreenName();
+            statuses = tweets.getUserTimeline(user);
+            return true;
+        }
+        catch(TwitterException e){
             e.printStackTrace();
             return false;
         }
     }
-/*
-    public boolean getTimeline(){
-
-    }
 
     public boolean deleteTweets(){
+        try{
+            for(Status old: statuses){
+                tweets.destroyStatus(old.getId());
+            }
+            return true;
+        }
+        catch(TwitterException | NullPointerException e){
+            e.printStackTrace();
+            System.out.println("Failed to delete status: " + e.getMessage());
+            return false;
+        }
 
-    }
-*/
-    //secondary method to build Twitter instance to access our account.
-    public ConfigurationBuilder config(){
-        this.loadAccess();
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true);
-        cb.setOAuthConsumerKey(consumerAccess);
-        cb.setOAuthConsumerSecret(consumerSecret);
-        cb.setOAuthAccessToken(twaccessToken);
-        cb.setOAuthAccessTokenSecret(twsecretToken);
-        System.out.println(" Credentials are here\n" + this.consumerAccess + "\n" + this.consumerSecret + "\n" + this.twaccessToken +"\n" + this.twsecretToken + "\n");
-        return cb;
     }
 
 }
