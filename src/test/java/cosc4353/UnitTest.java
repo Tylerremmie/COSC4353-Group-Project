@@ -328,4 +328,13 @@ public class UnitTest {
 		Assert.assertFalse(testtweet.getTimeline());
 		Assert.assertFalse(testtweet.deleteTweets());
 	}
+
+	@Test
+	public void testTelegramFunctions() {
+		Assert.assertEquals(Engine.sentMessage, null);
+		Assert.assertEquals(Engine.userInputString, "");
+		Assert.assertEquals(Engine.gameover, false);
+		Assert.assertEquals(Engine.needUserInput, false);
+		Assert.assertEquals(Engine.playingTelegramGame, false);
+	}
 }
