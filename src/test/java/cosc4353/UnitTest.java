@@ -1,16 +1,16 @@
 package cosc4353;
 
-import com.amazonaws.services.greengrass.model.AssociateServiceRoleToAccountRequest;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 /**
  * Unit test for Group Project.
  */
-public class UnitTest
-{
+public class UnitTest {
 	ArrayList<Territory> territories = new ArrayList<Territory>();
 	ArrayList<Player> players = new ArrayList<Player>();
 	Player player = new Player("Tyler", "Red", 1, 20);
@@ -21,78 +21,76 @@ public class UnitTest
 	Hand hand = new Hand();
 	Engine engine = new Engine();
 	ActionManager actionManager = new ActionManager();
-	
+
 	@Test
 	public void testPlayer() {
 		Assert.assertEquals(player.getName(), "Tyler");
 		Assert.assertEquals(player.getColor(), "Red");
 		Assert.assertEquals(player.getTurnPosition(), 1);
-		
+
 		player.setName("Dan");
 		Assert.assertEquals(player.getName(), "Dan");
 		player.setColor("yellow");
 		Assert.assertEquals(player.getColor(), "yellow");
-		
+
 		player.setNumberofArmies(5);
 		Assert.assertEquals(player.getNumberofArmies(), 5);
-		
+
 		Assert.assertTrue(player.hasArmy());
 		player.increaseArmiesBy(1);
 		player.reduceArmiesBy(6);
 		Assert.assertFalse(player.hasArmy());
-		
-		
+
+
 		player.setTurnPosition(0);
-		Assert.assertEquals(player.getTurnPosition(),0);
+		Assert.assertEquals(player.getTurnPosition(), 0);
 		player.setTurnPosition(6);
-		Assert.assertEquals(player.getTurnPosition(),6);
+		Assert.assertEquals(player.getTurnPosition(), 6);
 
 		Assert.assertNotNull(player.getTerritories());
 		Assert.assertNotNull(player.getContinents());
 		Assert.assertNotNull(player.getCardsInHand());
 		Assert.assertNotNull(player.getHand());
-		int[] cards = {0,1,2};
+		int[] cards = {0, 1, 2};
 		Assert.assertTrue(player.turnIn(cards));
-		
+
 		player.setInGameCredit(10);
-		Assert.assertEquals(player.getInGameCredit(),10);
-		
+		Assert.assertEquals(player.getInGameCredit(), 10);
+
 		player.incrementInGameCredit(10);
 		player.decrementInGameCredit(5);
-		Assert.assertEquals(player.getInGameCredit(),15);
+		Assert.assertEquals(player.getInGameCredit(), 15);
 
-		
-		
-		
+
 		player.setTerritoriesConquered(10);
-		Assert.assertEquals(player.getTerritoriesConquered(),10);
-		
+		Assert.assertEquals(player.getTerritoriesConquered(), 10);
+
 		player.increaseTerritoriesConquered(2);
-		Assert.assertEquals(player.getTerritoriesConquered(),12);
+		Assert.assertEquals(player.getTerritoriesConquered(), 12);
 
 		player.decreaseTerritoriesConquered(2);
-		Assert.assertEquals(player.getTerritoriesConquered(),10);
-		
-		
+		Assert.assertEquals(player.getTerritoriesConquered(), 10);
+
+
 	}
-	
+
 	@Test
-	public void testEngine(){
-		
-		Assert.assertEquals(engine.getArmyCount(2),35);
-		Assert.assertEquals(engine.getArmyCount(3),35);
-		Assert.assertEquals(engine.getArmyCount(4),30);
-		Assert.assertEquals(engine.getArmyCount(5),25);
-		Assert.assertEquals(engine.getArmyCount(6),20);
-		
-		Assert.assertEquals(engine.givePlayerCredit(),100);
-		Assert.assertEquals(engine.giveOtherPlayerCredit(),10);
+	public void testEngine() {
+
+		Assert.assertEquals(engine.getArmyCount(2), 35);
+		Assert.assertEquals(engine.getArmyCount(3), 35);
+		Assert.assertEquals(engine.getArmyCount(4), 30);
+		Assert.assertEquals(engine.getArmyCount(5), 25);
+		Assert.assertEquals(engine.getArmyCount(6), 20);
+
+		Assert.assertEquals(engine.givePlayerCredit(), 100);
+		Assert.assertEquals(engine.giveOtherPlayerCredit(), 10);
 
 	}
 
 	@Test
 	public void testa() {
-		Assert.assertEquals(0,0);
+		Assert.assertEquals(0, 0);
 	}
 
 	@Test
@@ -121,11 +119,11 @@ public class UnitTest
 		Assert.assertEquals(terr.getnumberofArmies(), 100);
 		Assert.assertEquals(terr.getPlayerOccupying(), playerobj);
 	}
-	
+
 
 	@Test
 	public void testDice() {
-		Assert.assertEquals(dice.getval(),0);
+		Assert.assertEquals(dice.getval(), 0);
 		int result = dice.roll();
 		Assert.assertTrue(1 <= result && result <= 6);
 	}
@@ -137,15 +135,15 @@ public class UnitTest
 		Assert.assertTrue(card.setTypeofCard("Infantry"));
 		Assert.assertTrue(card.setTerritory(territory));
 	}
-	
+
 	@Test
 	public void testDeck() {
-		ArrayList<Territory> testTlist= new ArrayList<Territory>();
+		ArrayList<Territory> testTlist = new ArrayList<Territory>();
 		Territory T3 = new Territory("Infantry");
 		testTlist.add(T3);
 		Deck deck = new Deck(testTlist);
-		
-		Assert.assertEquals((deck.draw()).getTypeofCard(),"Infantry");
+
+		Assert.assertEquals((deck.draw()).getTypeofCard(), "Infantry");
 		Assert.assertTrue(deck.add(card));
 		Assert.assertTrue(deck.shuffle());
 	}
@@ -171,33 +169,32 @@ public class UnitTest
 		Assert.assertEquals(engine.Unit_Turn_Reset(1),1);
 	}
 	*/
-	
+
 	@Test
-	public void testHand(){
+	public void testHand() {
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test",territory));
+		hand.insert(new Card("Test", territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test2",territory));
+		hand.insert(new Card("Test2", territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Test3",territory));
+		hand.insert(new Card("Test3", territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Wild",territory));
+		hand.insert(new Card("Wild", territory));
 		Assert.assertFalse(hand.handSize());
-		hand.insert(new Card("Wild",territory));
+		hand.insert(new Card("Wild", territory));
 		Assert.assertTrue(hand.handSize());
-		
+
 		Assert.assertTrue(hand.checkcards(1, 2, 3));
 		Assert.assertTrue(hand.checkcards(1, 4, 2));
-		
+
 		Assert.assertTrue(hand.checkcards(1, 1, 1));
-		
+
 		Assert.assertTrue(hand.checkcards(1, 1, 4));
 
 		Assert.assertTrue(hand.turnInCards(0, 1, 2));
-		
+
 		Assert.assertNotNull(hand.getHand());
-		
-		
+
 
 	}
 
@@ -205,14 +202,14 @@ public class UnitTest
 	public void testActionManager() {
 		Assert.assertFalse(actionManager.isUndoAvailable());
 		Assert.assertFalse(actionManager.isRedoAvailable());
-		
-		Assert.assertTrue(actionManager.getsize() >=0);
+
+		Assert.assertTrue(actionManager.getsize() >= 0);
 	}
 
 	@Test
 	public void testAttackWatcher() {
 
-		Assert.assertEquals(0,0);
+		Assert.assertEquals(0, 0);
 	}
 
 	@Test
@@ -220,7 +217,7 @@ public class UnitTest
 		players.add(player);
 		Board board = new Board();
 		TurnManager turnManager = new TurnManager(players, board);
-		
+
 		Assert.assertEquals(turnManager.getnumberofPlayers(), 1);
 		Assert.assertEquals(turnManager.getplayersTurn(), 0);
 		Assert.assertEquals(turnManager.getturnNumber(), 1);
@@ -237,7 +234,7 @@ public class UnitTest
 		Assert.assertTrue(turnManager.decrementturn());
 		Assert.assertNotNull(turnManager.getPlayersObject());
 	}
-	
+
 	@Test
 	public void testBoard() {
 		Board bd = new Board();
@@ -253,27 +250,27 @@ public class UnitTest
 
 	}
 
-	
+
 	@Test
 	public void testThreadTimeout() {
-		Assert.assertEquals(engine.getinput("Tom", 3),"8");
-		
+		Assert.assertEquals(engine.getinput("Tom", 3), "8");
+
 	}
-	
+
 	@Test
-	public void testTimer(){
+	public void testTimer() {
 		Timer ti = new Timer();
 		ti.start();
 		Assert.assertFalse(ti.isInterrupted());
 		ti.interrupt();
 		Assert.assertTrue(ti.isInterrupted());
-		
+
 //		ti = new Timer();
 //		ti.start();
 //		ti.interrupt();
 //		Assert.assertTrue(ti.isInterrupted());
 	}
-	
+
 //	@Test // not sure if observer can be tested (doesnt show on the codecov)
 //	public void testAttackWatcher(){
 //		players.add(player);
@@ -284,13 +281,13 @@ public class UnitTest
 //		aw.announce();
 //		
 //	}
-	
+
 	@Test
-	public void testPaymentProxy(){
+	public void testPaymentProxy() {
 		PaymentProxy pp = new PaymentProxy();
-		Assert.assertEquals(pp.givePlayerCredit(),100);
-		Assert.assertEquals(pp.giveOtherPlayerCredit(),10);
-		
+		Assert.assertEquals(pp.givePlayerCredit(), 100);
+		Assert.assertEquals(pp.giveOtherPlayerCredit(), 10);
+
 	}
 
 	/*
@@ -298,19 +295,37 @@ public class UnitTest
 		We have ensured these methods were tested locally first before changing to asserting false.
 	*/
 	@Test
-	public void testReplays(){
+	public void testReplays() {
 
 		Replay s3 = new Replay();
 		Assert.assertFalse(s3.uploadReplay());
 		Assert.assertFalse(s3.downloadReplay());
 	}
+
 	@Test
-	public void testTweets(){
+	public void testTweets() {
 		Tweets testtweet = new Tweets();
+		try {
+			Method setConsumerAccess = testtweet.getClass().getDeclaredMethod("setConsumerAccess", String.class);
+			Method setConsumerSecret = testtweet.getClass().getDeclaredMethod("setConsumerSecret", String.class);
+			Method setTwaccessToken = testtweet.getClass().getDeclaredMethod("setTwaccessToken", String.class);
+			Method setTwsecretToken = testtweet.getClass().getDeclaredMethod("setTwsecretToken", String.class);
+			setConsumerAccess.setAccessible(true);
+			setConsumerSecret.setAccessible(true);
+			setTwaccessToken.setAccessible(true);
+			setTwsecretToken.setAccessible(true);
+			Object ca = setConsumerAccess.invoke(testtweet, "consumertest");
+			Object cs = setConsumerSecret.invoke(testtweet, "secrettest");
+			Object ta = setTwaccessToken.invoke(testtweet, "twtest");
+			Object ts = setTwsecretToken.invoke(testtweet, "twsecrettest");
+
+
+		} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
 		Assert.assertFalse(testtweet.sendTweet("Unit test"));
 		Assert.assertFalse(testtweet.getTimeline());
 		Assert.assertFalse(testtweet.deleteTweets());
-
 	}
-	
 }
