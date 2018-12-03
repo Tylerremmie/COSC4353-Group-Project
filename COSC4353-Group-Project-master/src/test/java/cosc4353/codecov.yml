@@ -1,2 +1,2 @@
 ignore:
-  - "COSC4353-Group-Project-master\src\main\java\cosc4353\Engine.java"  # ignore folders and all its contents
+  - "COSC4353-Group-Project-master//src//main//java//cosc4353//Engine.java"  # ignore folders and all its contents
